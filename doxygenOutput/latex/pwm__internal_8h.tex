@@ -1,0 +1,193 @@
+\hypertarget{pwm__internal_8h}{}\section{src/lib/peripherals/pwm\+\_\+internal.h File Reference}
+\label{pwm__internal_8h}\index{src/lib/peripherals/pwm\+\_\+internal.\+h@{src/lib/peripherals/pwm\+\_\+internal.\+h}}
+
+
+Helper macros for the pwm peripheral. Used internally by the library.  
+
+
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{pwm__internal_8h_a9d4850aef28705670b27bb053ed79de6}{P\+W\+M\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}~(\hyperlink{addressing_8h_a245eee72d3b42da5ce640ea1be193edb}{peripherals\+Base\+Address\+Phys}+0x20c000)\hypertarget{pwm__internal_8h_a9d4850aef28705670b27bb053ed79de6}{}\label{pwm__internal_8h_a9d4850aef28705670b27bb053ed79de6}
+
+\begin{DoxyCompactList}\small\item\em Physical base address of the pwm peripheral. \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_a98f828409c0c83edb486131b277e8b57}{P\+W\+M\+\_\+\+A\+R\+E\+A\+\_\+\+L\+EN}~0x28\hypertarget{pwm__internal_8h_a98f828409c0c83edb486131b277e8b57}{}\label{pwm__internal_8h_a98f828409c0c83edb486131b277e8b57}
+
+\begin{DoxyCompactList}\small\item\em Size in bytes of the memory area dedicated to the pwm peripheral. \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_a9d426e891f58295c34c0cf54ebd9f551}{P\+W\+M\+\_\+\+R\+E\+G\+\_\+\+C\+T\+L\+\_\+\+O\+FF}~0x0\hypertarget{pwm__internal_8h_a9d426e891f58295c34c0cf54ebd9f551}{}\label{pwm__internal_8h_a9d426e891f58295c34c0cf54ebd9f551}
+
+\begin{DoxyCompactList}\small\item\em Control register offset. \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_a439394ec78ba1266b491efc316698dea}{P\+W\+M\+\_\+\+R\+E\+G\+\_\+\+C\+T\+L\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}~(\hyperlink{pwm__internal_8h_a9d426e891f58295c34c0cf54ebd9f551}{P\+W\+M\+\_\+\+R\+E\+G\+\_\+\+C\+T\+L\+\_\+\+O\+FF} + \hyperlink{pwm__internal_8h_a9d4850aef28705670b27bb053ed79de6}{P\+W\+M\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS})\hypertarget{pwm__internal_8h_a439394ec78ba1266b491efc316698dea}{}\label{pwm__internal_8h_a439394ec78ba1266b491efc316698dea}
+
+\begin{DoxyCompactList}\small\item\em Control register physical address. \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_a1d292231d1a29745e3d73ba5d252df36}{P\+W\+M\+\_\+\+R\+E\+G\+\_\+\+S\+T\+A\+\_\+\+O\+FF}~0x4\hypertarget{pwm__internal_8h_a1d292231d1a29745e3d73ba5d252df36}{}\label{pwm__internal_8h_a1d292231d1a29745e3d73ba5d252df36}
+
+\begin{DoxyCompactList}\small\item\em Status register offset. \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_afb21d78ed204ca03d684e1a062af82ae}{P\+W\+M\+\_\+\+R\+E\+G\+\_\+\+S\+T\+A\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}~(\hyperlink{pwm__internal_8h_a1d292231d1a29745e3d73ba5d252df36}{P\+W\+M\+\_\+\+R\+E\+G\+\_\+\+S\+T\+A\+\_\+\+O\+FF} + \hyperlink{pwm__internal_8h_a9d4850aef28705670b27bb053ed79de6}{P\+W\+M\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}\hypertarget{pwm__internal_8h_afb21d78ed204ca03d684e1a062af82ae}{}\label{pwm__internal_8h_afb21d78ed204ca03d684e1a062af82ae}
+
+\begin{DoxyCompactList}\small\item\em Status register physical address. \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_aa930a240337f6ccdb0140855190515a2}{P\+W\+M\+\_\+\+R\+E\+G\+\_\+\+D\+M\+A\+C\+\_\+\+O\+FF}~0x8\hypertarget{pwm__internal_8h_aa930a240337f6ccdb0140855190515a2}{}\label{pwm__internal_8h_aa930a240337f6ccdb0140855190515a2}
+
+\begin{DoxyCompactList}\small\item\em D\+MA configuration register offset. \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_ac69d6eeb8af7c81420f68159faa2e102}{P\+W\+M\+\_\+\+R\+E\+G\+\_\+\+D\+M\+A\+C\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}~(\hyperlink{pwm__internal_8h_aa930a240337f6ccdb0140855190515a2}{P\+W\+M\+\_\+\+R\+E\+G\+\_\+\+D\+M\+A\+C\+\_\+\+O\+FF} + \hyperlink{pwm__internal_8h_a9d4850aef28705670b27bb053ed79de6}{P\+W\+M\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS})\hypertarget{pwm__internal_8h_ac69d6eeb8af7c81420f68159faa2e102}{}\label{pwm__internal_8h_ac69d6eeb8af7c81420f68159faa2e102}
+
+\begin{DoxyCompactList}\small\item\em D\+MA configuration register. \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_aec17ecd6ed9ecde4f7fe01142470340a}{P\+W\+M\+\_\+\+R\+E\+G\+\_\+\+R\+N\+G1\+\_\+\+O\+FF}~0x10\hypertarget{pwm__internal_8h_aec17ecd6ed9ecde4f7fe01142470340a}{}\label{pwm__internal_8h_aec17ecd6ed9ecde4f7fe01142470340a}
+
+\begin{DoxyCompactList}\small\item\em Channel 1 range register offset. \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_a0a66a05bf71a70f65e6adc6500b9a636}{P\+W\+M\+\_\+\+R\+E\+G\+\_\+\+R\+N\+G1\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}~(\hyperlink{pwm__internal_8h_aec17ecd6ed9ecde4f7fe01142470340a}{P\+W\+M\+\_\+\+R\+E\+G\+\_\+\+R\+N\+G1\+\_\+\+O\+FF} + \hyperlink{pwm__internal_8h_a9d4850aef28705670b27bb053ed79de6}{P\+W\+M\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS})\hypertarget{pwm__internal_8h_a0a66a05bf71a70f65e6adc6500b9a636}{}\label{pwm__internal_8h_a0a66a05bf71a70f65e6adc6500b9a636}
+
+\begin{DoxyCompactList}\small\item\em Channel 1 range register physical address. \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_a71579dce5f2c19bc0a60a653345efabb}{P\+W\+M\+\_\+\+R\+E\+G\+\_\+\+D\+A\+T1\+\_\+\+O\+FF}~0x14\hypertarget{pwm__internal_8h_a71579dce5f2c19bc0a60a653345efabb}{}\label{pwm__internal_8h_a71579dce5f2c19bc0a60a653345efabb}
+
+\begin{DoxyCompactList}\small\item\em Channel 1 data register offset. \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_a53d7da5680f1fcae0e62e76592185778}{P\+W\+M\+\_\+\+R\+E\+G\+\_\+\+D\+A\+T1\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}~(\hyperlink{pwm__internal_8h_a71579dce5f2c19bc0a60a653345efabb}{P\+W\+M\+\_\+\+R\+E\+G\+\_\+\+D\+A\+T1\+\_\+\+O\+FF} + \hyperlink{pwm__internal_8h_a9d4850aef28705670b27bb053ed79de6}{P\+W\+M\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS})\hypertarget{pwm__internal_8h_a53d7da5680f1fcae0e62e76592185778}{}\label{pwm__internal_8h_a53d7da5680f1fcae0e62e76592185778}
+
+\begin{DoxyCompactList}\small\item\em Channel 1 data register physical address. \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_a38b3c6be10faad5ff07530fad224e529}{P\+W\+M\+\_\+\+R\+E\+G\+\_\+\+F\+I\+F1\+\_\+\+O\+FF}~0x18\hypertarget{pwm__internal_8h_a38b3c6be10faad5ff07530fad224e529}{}\label{pwm__internal_8h_a38b3c6be10faad5ff07530fad224e529}
+
+\begin{DoxyCompactList}\small\item\em Fifo input register offset. \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_ac9e741e59911eabd963ebadb8328f444}{P\+W\+M\+\_\+\+R\+E\+G\+\_\+\+F\+I\+F1\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}~(\hyperlink{pwm__internal_8h_a38b3c6be10faad5ff07530fad224e529}{P\+W\+M\+\_\+\+R\+E\+G\+\_\+\+F\+I\+F1\+\_\+\+O\+FF} + \hyperlink{pwm__internal_8h_a9d4850aef28705670b27bb053ed79de6}{P\+W\+M\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS})\hypertarget{pwm__internal_8h_ac9e741e59911eabd963ebadb8328f444}{}\label{pwm__internal_8h_ac9e741e59911eabd963ebadb8328f444}
+
+\begin{DoxyCompactList}\small\item\em Fifo input register physical address. \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_ac92f23121208fe3a992118aecb2c5bd9}{P\+W\+M\+\_\+\+R\+E\+G\+\_\+\+R\+N\+G2\+\_\+\+O\+FF}~0x20\hypertarget{pwm__internal_8h_ac92f23121208fe3a992118aecb2c5bd9}{}\label{pwm__internal_8h_ac92f23121208fe3a992118aecb2c5bd9}
+
+\begin{DoxyCompactList}\small\item\em Channel 2 range register offset. \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_a3a1fd0d32d8b514df8cf8c37b8278580}{P\+W\+M\+\_\+\+R\+E\+G\+\_\+\+R\+N\+G2\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}~(\hyperlink{pwm__internal_8h_ac92f23121208fe3a992118aecb2c5bd9}{P\+W\+M\+\_\+\+R\+E\+G\+\_\+\+R\+N\+G2\+\_\+\+O\+FF} + \hyperlink{pwm__internal_8h_a9d4850aef28705670b27bb053ed79de6}{P\+W\+M\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS})\hypertarget{pwm__internal_8h_a3a1fd0d32d8b514df8cf8c37b8278580}{}\label{pwm__internal_8h_a3a1fd0d32d8b514df8cf8c37b8278580}
+
+\begin{DoxyCompactList}\small\item\em Channel 2 range register physical address. \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_a37ccc130a1653a1cef9cb31721e2ce7a}{P\+W\+M\+\_\+\+R\+E\+G\+\_\+\+D\+A\+T2\+\_\+\+O\+FF}~0x24\hypertarget{pwm__internal_8h_a37ccc130a1653a1cef9cb31721e2ce7a}{}\label{pwm__internal_8h_a37ccc130a1653a1cef9cb31721e2ce7a}
+
+\begin{DoxyCompactList}\small\item\em Channel 2 data register offset. \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_a80e4413a185d82e8602b01db1d636213}{P\+W\+M\+\_\+\+R\+E\+G\+\_\+\+D\+A\+T2\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}~(\hyperlink{pwm__internal_8h_a37ccc130a1653a1cef9cb31721e2ce7a}{P\+W\+M\+\_\+\+R\+E\+G\+\_\+\+D\+A\+T2\+\_\+\+O\+FF} + \hyperlink{pwm__internal_8h_a9d4850aef28705670b27bb053ed79de6}{P\+W\+M\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS})\hypertarget{pwm__internal_8h_a80e4413a185d82e8602b01db1d636213}{}\label{pwm__internal_8h_a80e4413a185d82e8602b01db1d636213}
+
+\begin{DoxyCompactList}\small\item\em Channel 2 data register physical address. \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_a45b14a384f5ef142c184433167094dca}{C\+T\+L\+\_\+\+P\+W\+E\+N1\+\_\+\+M\+A\+SK}~0x1\hypertarget{pwm__internal_8h_a45b14a384f5ef142c184433167094dca}{}\label{pwm__internal_8h_a45b14a384f5ef142c184433167094dca}
+
+\begin{DoxyCompactList}\small\item\em Channel 1 Control Register mask\+: pwm enable. \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_aba48a311accb2acfdd78ef0785359db3}{C\+T\+L\+\_\+\+M\+O\+D\+E1\+\_\+\+M\+A\+SK}~(1$<$$<$1)\hypertarget{pwm__internal_8h_aba48a311accb2acfdd78ef0785359db3}{}\label{pwm__internal_8h_aba48a311accb2acfdd78ef0785359db3}
+
+\begin{DoxyCompactList}\small\item\em Channel 1 Control Register mask\+: mode (0\+: pwm mode; 1\+:serializer mode) \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_a04565b47b1ddae6528ceafcb850aade0}{C\+T\+L\+\_\+\+R\+P\+T\+L1\+\_\+\+M\+A\+SK}~(1$<$$<$2)\hypertarget{pwm__internal_8h_a04565b47b1ddae6528ceafcb850aade0}{}\label{pwm__internal_8h_a04565b47b1ddae6528ceafcb850aade0}
+
+\begin{DoxyCompactList}\small\item\em Channel 1 Control Register mask\+: Repeat Last Data (1=Transmission interrupts when fifo is empty; 0=Last data is retransmitter until fifo is not empty) \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_a159c65da9658183c573580ef87a4232b}{C\+T\+L\+\_\+\+S\+B\+I\+T1\+\_\+\+M\+A\+SK}~(1$<$$<$3)\hypertarget{pwm__internal_8h_a159c65da9658183c573580ef87a4232b}{}\label{pwm__internal_8h_a159c65da9658183c573580ef87a4232b}
+
+\begin{DoxyCompactList}\small\item\em Channel 1 Control Register mask\+: Silence bit (state of the output when not transmitting) \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_af17e2a6ceca27bbb23fa552c3e0e2b69}{C\+T\+L\+\_\+\+P\+O\+L\+A1\+\_\+\+M\+A\+SK}~(1$<$$<$4)\hypertarget{pwm__internal_8h_af17e2a6ceca27bbb23fa552c3e0e2b69}{}\label{pwm__internal_8h_af17e2a6ceca27bbb23fa552c3e0e2b69}
+
+\begin{DoxyCompactList}\small\item\em Channel 1 Control Register mask\+: polarity (0\+: 0=low, 1=high; 1\+: 0=high 1=low) \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_a5b599485da4c760200fcf24bd4ffa72d}{C\+T\+L\+\_\+\+U\+S\+E\+F1\+\_\+\+M\+A\+SK}~(1$<$$<$5)\hypertarget{pwm__internal_8h_a5b599485da4c760200fcf24bd4ffa72d}{}\label{pwm__internal_8h_a5b599485da4c760200fcf24bd4ffa72d}
+
+\begin{DoxyCompactList}\small\item\em Channel 1 Control Register mask\+: Use Fifo (0\+:data register is transmitted ; 1\+: fifi is transmitted) \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_abb9a42b0587a1247664b4b42ec4bbc3b}{C\+T\+L\+\_\+\+C\+L\+R\+F\+\_\+\+M\+A\+SK}~(1$<$$<$6)\hypertarget{pwm__internal_8h_abb9a42b0587a1247664b4b42ec4bbc3b}{}\label{pwm__internal_8h_abb9a42b0587a1247664b4b42ec4bbc3b}
+
+\begin{DoxyCompactList}\small\item\em Channel 1 Control Register mask\+: Clear Fifo (write 1 clears fifo; write 0 does nothing; read is always 0) \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_af9714e025a3a83ec626485c802252c5a}{C\+T\+L\+\_\+\+M\+S\+E\+N1\+\_\+\+M\+A\+SK}~(1$<$$<$7)\hypertarget{pwm__internal_8h_af9714e025a3a83ec626485c802252c5a}{}\label{pwm__internal_8h_af9714e025a3a83ec626485c802252c5a}
+
+\begin{DoxyCompactList}\small\item\em Channel 1 Control Register mask\+: M/S Enable (0\+: use pwm algorithm; 1\+:use M/S transmission) \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_a53d64c61c6f26b3972b6fd2ecefe1c9f}{C\+T\+L\+\_\+\+P\+W\+E\+N2\+\_\+\+M\+A\+SK}~(1$<$$<$8)\hypertarget{pwm__internal_8h_a53d64c61c6f26b3972b6fd2ecefe1c9f}{}\label{pwm__internal_8h_a53d64c61c6f26b3972b6fd2ecefe1c9f}
+
+\begin{DoxyCompactList}\small\item\em Channel 2 Control Register mask\+: pwm enable. \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_afb47411df445447aa79dc156b4690005}{C\+T\+L\+\_\+\+M\+O\+D\+E2\+\_\+\+M\+A\+SK}~(1$<$$<$9)\hypertarget{pwm__internal_8h_afb47411df445447aa79dc156b4690005}{}\label{pwm__internal_8h_afb47411df445447aa79dc156b4690005}
+
+\begin{DoxyCompactList}\small\item\em Channel 2 Control Register mask\+: mode (0\+: pwm mode; 1\+:serializer mode) \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_adbb3586c0b0a39a18df4a2492677aec9}{C\+T\+L\+\_\+\+R\+P\+T\+L2\+\_\+\+M\+A\+SK}~(1$<$$<$10)\hypertarget{pwm__internal_8h_adbb3586c0b0a39a18df4a2492677aec9}{}\label{pwm__internal_8h_adbb3586c0b0a39a18df4a2492677aec9}
+
+\begin{DoxyCompactList}\small\item\em Channel 2 Control Register mask\+: Repeat Last Data (1=Transmission interrupts when fifo is empty; 0=Last data is retransmitter until fifo is not empty) \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_a614625cc547112c3f25c63f46194791a}{C\+T\+L\+\_\+\+S\+B\+I\+T2\+\_\+\+M\+A\+SK}~(1$<$$<$11)\hypertarget{pwm__internal_8h_a614625cc547112c3f25c63f46194791a}{}\label{pwm__internal_8h_a614625cc547112c3f25c63f46194791a}
+
+\begin{DoxyCompactList}\small\item\em Channel 2 Control Register mask\+: Silence bit (state of the output when not transmitting) \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_ab5b3a89d62fd36239831e106bd20ee2c}{C\+T\+L\+\_\+\+P\+O\+L\+A2\+\_\+\+M\+A\+SK}~(1$<$$<$12)\hypertarget{pwm__internal_8h_ab5b3a89d62fd36239831e106bd20ee2c}{}\label{pwm__internal_8h_ab5b3a89d62fd36239831e106bd20ee2c}
+
+\begin{DoxyCompactList}\small\item\em Channel 2 Control Register mask\+: polarity (0\+: 0=low, 1=high; 1\+: 0=high 1=low) \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_accd6a494b209bbf5f96e9926f9888be8}{C\+T\+L\+\_\+\+U\+S\+E\+F2\+\_\+\+M\+A\+SK}~(1$<$$<$13)\hypertarget{pwm__internal_8h_accd6a494b209bbf5f96e9926f9888be8}{}\label{pwm__internal_8h_accd6a494b209bbf5f96e9926f9888be8}
+
+\begin{DoxyCompactList}\small\item\em Channel 2 Control Register mask\+: Use Fifo (0\+:data register is transmitted ; 1\+: fifi is transmitted) \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_a756bddc3a8fa1735300b2066fe0d844b}{C\+T\+L\+\_\+\+M\+S\+E\+N2\+\_\+\+M\+A\+SK}~(1$<$$<$15)\hypertarget{pwm__internal_8h_a756bddc3a8fa1735300b2066fe0d844b}{}\label{pwm__internal_8h_a756bddc3a8fa1735300b2066fe0d844b}
+
+\begin{DoxyCompactList}\small\item\em Channel 2 Control Register mask\+: M/S Enable (0\+: use pwm algorithm; 1\+:use M/S transmission) \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_a349ca6437ecabd02b27f101213514aa4}{S\+T\+A\+\_\+\+F\+U\+L\+L1\+\_\+\+M\+A\+SK}~0x1\hypertarget{pwm__internal_8h_a349ca6437ecabd02b27f101213514aa4}{}\label{pwm__internal_8h_a349ca6437ecabd02b27f101213514aa4}
+
+\begin{DoxyCompactList}\small\item\em Status register mask\+: Fifo Full. \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_a1f0b76605674b52372cab04c3d1cd6d5}{S\+T\+A\+\_\+\+E\+M\+P\+T1\+\_\+\+M\+A\+SK}~(1$<$$<$1)\hypertarget{pwm__internal_8h_a1f0b76605674b52372cab04c3d1cd6d5}{}\label{pwm__internal_8h_a1f0b76605674b52372cab04c3d1cd6d5}
+
+\begin{DoxyCompactList}\small\item\em Status register mask\+: Fifo empty. \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_a56ebadd01ab9f88bd3c029046415df98}{S\+T\+A\+\_\+\+W\+E\+R\+R1\+\_\+\+M\+A\+SK}~(1$<$$<$2)\hypertarget{pwm__internal_8h_a56ebadd01ab9f88bd3c029046415df98}{}\label{pwm__internal_8h_a56ebadd01ab9f88bd3c029046415df98}
+
+\begin{DoxyCompactList}\small\item\em Status register mask\+: \char`\"{}\+Write when full\char`\"{} error. \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_afad323a09a257b381963aa9ce3f3457d}{S\+T\+A\+\_\+\+R\+E\+R\+R1\+\_\+\+M\+A\+SK}~(1$<$$<$3)\hypertarget{pwm__internal_8h_afad323a09a257b381963aa9ce3f3457d}{}\label{pwm__internal_8h_afad323a09a257b381963aa9ce3f3457d}
+
+\begin{DoxyCompactList}\small\item\em Status register mask\+: \char`\"{}\+Read when empty\char`\"{} error. \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_a48abd89783d2cb5dbbec518d68d52072}{S\+T\+A\+\_\+\+G\+A\+P\+O1\+\_\+\+M\+A\+SK}~(1$<$$<$4)\hypertarget{pwm__internal_8h_a48abd89783d2cb5dbbec518d68d52072}{}\label{pwm__internal_8h_a48abd89783d2cb5dbbec518d68d52072}
+
+\begin{DoxyCompactList}\small\item\em Status register mask\+: Channel 1\+: Gap Occurred between transmission of two data in the fifo. \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_a43b84ae97513caad9a28dc44d4c41eda}{S\+T\+A\+\_\+\+G\+A\+P\+O2\+\_\+\+M\+A\+SK}~(1$<$$<$5)\hypertarget{pwm__internal_8h_a43b84ae97513caad9a28dc44d4c41eda}{}\label{pwm__internal_8h_a43b84ae97513caad9a28dc44d4c41eda}
+
+\begin{DoxyCompactList}\small\item\em Status register mask\+: Channel 2\+: Gap Occurred between transmission of two data in the fifo. \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_a9f8ee7c6a3aa8e7b75bd92a80cfd366c}{S\+T\+A\+\_\+\+G\+A\+P\+O3\+\_\+\+M\+A\+SK}~(1$<$$<$6)\hypertarget{pwm__internal_8h_a9f8ee7c6a3aa8e7b75bd92a80cfd366c}{}\label{pwm__internal_8h_a9f8ee7c6a3aa8e7b75bd92a80cfd366c}
+
+\begin{DoxyCompactList}\small\item\em Status register mask\+: Channel 3\+: Gap Occurred between transmission of two data in the fifo. \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_aba45385a86b803937c48bf4a8d099f1e}{S\+T\+A\+\_\+\+G\+A\+P\+O4\+\_\+\+M\+A\+SK}~(1$<$$<$7)\hypertarget{pwm__internal_8h_aba45385a86b803937c48bf4a8d099f1e}{}\label{pwm__internal_8h_aba45385a86b803937c48bf4a8d099f1e}
+
+\begin{DoxyCompactList}\small\item\em Status register mask\+: Channel 4\+: Gap Occurred between transmission of two data in the fifo. \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_ae84a55e5f0b097e7ff924b1a0ce548d6}{S\+T\+A\+\_\+\+B\+E\+R\+R\+\_\+\+M\+A\+SK}~(1$<$$<$8)\hypertarget{pwm__internal_8h_ae84a55e5f0b097e7ff924b1a0ce548d6}{}\label{pwm__internal_8h_ae84a55e5f0b097e7ff924b1a0ce548d6}
+
+\begin{DoxyCompactList}\small\item\em Status register mask\+: Bus error. \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_ab70fb23112e17da1095bf435c157915d}{S\+T\+A\+\_\+\+S\+T\+A1\+\_\+\+M\+A\+SK}~(1$<$$<$9)\hypertarget{pwm__internal_8h_ab70fb23112e17da1095bf435c157915d}{}\label{pwm__internal_8h_ab70fb23112e17da1095bf435c157915d}
+
+\begin{DoxyCompactList}\small\item\em Status register mask\+: Channel 1 state\+: 1=transmitting , 0=not transmitting. \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_ab1c0481149fb661d8678718bb92ba7a1}{S\+T\+A\+\_\+\+S\+T\+A2\+\_\+\+M\+A\+SK}~(1$<$$<$10)\hypertarget{pwm__internal_8h_ab1c0481149fb661d8678718bb92ba7a1}{}\label{pwm__internal_8h_ab1c0481149fb661d8678718bb92ba7a1}
+
+\begin{DoxyCompactList}\small\item\em Status register mask\+: Channel 2 state\+: 1=transmitting , 0=not transmitting. \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_a688c547d09a1f746b96e6643b3f96a89}{S\+T\+A\+\_\+\+S\+T\+A3\+\_\+\+M\+A\+SK}~(1$<$$<$11)\hypertarget{pwm__internal_8h_a688c547d09a1f746b96e6643b3f96a89}{}\label{pwm__internal_8h_a688c547d09a1f746b96e6643b3f96a89}
+
+\begin{DoxyCompactList}\small\item\em Status register mask\+: Channel 3 state\+: 1=transmitting , 0=not transmitting. \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_aa1d86bcdc6d9f512516449512ec39f00}{S\+T\+A\+\_\+\+S\+T\+A4\+\_\+\+M\+A\+SK}~(1$<$$<$12)\hypertarget{pwm__internal_8h_aa1d86bcdc6d9f512516449512ec39f00}{}\label{pwm__internal_8h_aa1d86bcdc6d9f512516449512ec39f00}
+
+\begin{DoxyCompactList}\small\item\em Status register mask\+: Channel 4 state\+: 1=transmitting , 0=not transmitting. \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_a9f41b6645668dfe290de3590311fbb05}{D\+M\+A\+C\+\_\+\+D\+R\+E\+Q\+\_\+\+M\+A\+SK}~(0x\+F\+F)\hypertarget{pwm__internal_8h_a9f41b6645668dfe290de3590311fbb05}{}\label{pwm__internal_8h_a9f41b6645668dfe290de3590311fbb05}
+
+\begin{DoxyCompactList}\small\item\em Dma configuartion register mask\+: D\+MA Threshold for D\+R\+EQ signal. \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_ae12193ff994e5679773144294978b0dd}{D\+M\+A\+C\+\_\+\+P\+A\+N\+I\+C\+\_\+\+M\+A\+SK}~(0x\+F\+F$<$$<$8)\hypertarget{pwm__internal_8h_ae12193ff994e5679773144294978b0dd}{}\label{pwm__internal_8h_ae12193ff994e5679773144294978b0dd}
+
+\begin{DoxyCompactList}\small\item\em Dma configuartion register mask\+: D\+MA Threshold for P\+A\+N\+IC signal. \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_aaec1a9746fa2e3764c775b6c055198fc}{D\+M\+A\+C\+\_\+\+E\+N\+A\+B\+\_\+\+M\+A\+SK}~(0x1$<$$<$31)\hypertarget{pwm__internal_8h_aaec1a9746fa2e3764c775b6c055198fc}{}\label{pwm__internal_8h_aaec1a9746fa2e3764c775b6c055198fc}
+
+\begin{DoxyCompactList}\small\item\em Dma configuartion register mask\+: D\+MA Enable. \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_a0ff9db57a8c76fdea4730c796448646c}{R\+N\+G1\+\_\+\+P\+W\+M\+\_\+\+R\+N\+G1\+\_\+\+M\+A\+SK}~0x\+F\+F\+F\+F\+F\+F\+FF\hypertarget{pwm__internal_8h_a0ff9db57a8c76fdea4730c796448646c}{}\label{pwm__internal_8h_a0ff9db57a8c76fdea4730c796448646c}
+
+\begin{DoxyCompactList}\small\item\em D\+MA Channel 1 Range register mask\+: number of possible pulses in a period. \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_a6c5703ed8812632ed82745c491839b2e}{P\+W\+M\+\_\+\+D\+A\+T1\+\_\+\+M\+A\+SK}~0x\+F\+F\+F\+F\+F\+F\+FF
+\begin{DoxyCompactList}\small\item\em D\+MA Channel 1 Data register\+: \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_a0b069d18fa1c590e53380c052223be6f}{F\+I\+F1\+\_\+\+P\+W\+M\+\_\+\+F\+I\+F\+O\+\_\+\+M\+A\+SK}~0x\+F\+F\+F\+F\+F\+F\+FF\hypertarget{pwm__internal_8h_a0b069d18fa1c590e53380c052223be6f}{}\label{pwm__internal_8h_a0b069d18fa1c590e53380c052223be6f}
+
+\begin{DoxyCompactList}\small\item\em D\+MA F\+I\+FO input\+: input for the fifo, write here to insert into fifo. \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_a7a98729adc654841ea5e61f4528194ae}{R\+N\+G1\+\_\+\+P\+W\+M\+\_\+\+R\+N\+G2\+\_\+\+M\+A\+SK}~0x\+F\+F\+F\+F\+F\+F\+FF\hypertarget{pwm__internal_8h_a7a98729adc654841ea5e61f4528194ae}{}\label{pwm__internal_8h_a7a98729adc654841ea5e61f4528194ae}
+
+\begin{DoxyCompactList}\small\item\em D\+MA Channel 2 Range register mask\+: number of possible pulses in a period. \end{DoxyCompactList}\item 
+\#define \hyperlink{pwm__internal_8h_a5376def0b3dd9237be2fe501c99f514c}{P\+W\+M\+\_\+\+D\+A\+T2\+\_\+\+M\+A\+SK}~0x\+F\+F\+F\+F\+F\+F\+FF
+\begin{DoxyCompactList}\small\item\em D\+MA Channel 2 Data register\+: \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Helper macros for the pwm peripheral. Used internally by the library. 
+
+See documentation at \char`\"{}\+B\+C\+M2835 A\+R\+M peripherals\char`\"{} pag 138 
+
+\subsection{Macro Definition Documentation}
+\index{pwm\+\_\+internal.\+h@{pwm\+\_\+internal.\+h}!P\+W\+M\+\_\+\+D\+A\+T1\+\_\+\+M\+A\+SK@{P\+W\+M\+\_\+\+D\+A\+T1\+\_\+\+M\+A\+SK}}
+\index{P\+W\+M\+\_\+\+D\+A\+T1\+\_\+\+M\+A\+SK@{P\+W\+M\+\_\+\+D\+A\+T1\+\_\+\+M\+A\+SK}!pwm\+\_\+internal.\+h@{pwm\+\_\+internal.\+h}}
+\subsubsection[{\texorpdfstring{P\+W\+M\+\_\+\+D\+A\+T1\+\_\+\+M\+A\+SK}{PWM_DAT1_MASK}}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+W\+M\+\_\+\+D\+A\+T1\+\_\+\+M\+A\+SK~0x\+F\+F\+F\+F\+F\+F\+FF}\hypertarget{pwm__internal_8h_a6c5703ed8812632ed82745c491839b2e}{}\label{pwm__internal_8h_a6c5703ed8812632ed82745c491839b2e}
+
+
+D\+MA Channel 1 Data register\+: 
+
+Serializer mode\+: Data to be sent when U\+S\+E\+F1=0 pwm mode\+: Number of pulses in a period \index{pwm\+\_\+internal.\+h@{pwm\+\_\+internal.\+h}!P\+W\+M\+\_\+\+D\+A\+T2\+\_\+\+M\+A\+SK@{P\+W\+M\+\_\+\+D\+A\+T2\+\_\+\+M\+A\+SK}}
+\index{P\+W\+M\+\_\+\+D\+A\+T2\+\_\+\+M\+A\+SK@{P\+W\+M\+\_\+\+D\+A\+T2\+\_\+\+M\+A\+SK}!pwm\+\_\+internal.\+h@{pwm\+\_\+internal.\+h}}
+\subsubsection[{\texorpdfstring{P\+W\+M\+\_\+\+D\+A\+T2\+\_\+\+M\+A\+SK}{PWM_DAT2_MASK}}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+W\+M\+\_\+\+D\+A\+T2\+\_\+\+M\+A\+SK~0x\+F\+F\+F\+F\+F\+F\+FF}\hypertarget{pwm__internal_8h_a5376def0b3dd9237be2fe501c99f514c}{}\label{pwm__internal_8h_a5376def0b3dd9237be2fe501c99f514c}
+
+
+D\+MA Channel 2 Data register\+: 
+
+Serializer mode\+: Data to be sent when U\+S\+E\+F1=0 pwm mode\+: Number of pulses in a period 

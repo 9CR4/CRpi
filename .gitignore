@@ -1,0 +1,11 @@
+*.o
+*~
+*.d
+*.layout
+*tags
+old/*
+CMakeFiles/*
+bin/*
+CMakeCache.txt
+cmake_install.cmake
+

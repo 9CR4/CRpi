@@ -1,0 +1,622 @@
+\hypertarget{dma_8c}{}\section{src/lib/peripherals/dma.c File Reference}
+\label{dma_8c}\index{src/lib/peripherals/dma.\+c@{src/lib/peripherals/dma.\+c}}
+
+
+Interface to the dma peripheral.  
+
+
+{\ttfamily \#include $<$memory\+Management/addressing.\+h$>$}\\*
+{\ttfamily \#include $<$coding\+Utils/error\+Management.\+h$>$}\\*
+{\ttfamily \#include $<$coding\+Utils/utils.\+h$>$}\\*
+{\ttfamily \#include $<$memory\+Management/phys\+Memory\+Management.\+h$>$}\\*
+{\ttfamily \#include $<$memory\+Management/cache\+Coherent\+Memory\+Provider.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$peripherals/dma.\+h$>$}\\*
+{\ttfamily \#include $<$inttypes.\+h$>$}\\*
+{\ttfamily \#include $<$errno.\+h$>$}\\*
+{\ttfamily \#include $<$unistd.\+h$>$}\\*
+{\ttfamily \#include $<$sys/mman.\+h$>$}\\*
+{\ttfamily \#include $<$fcntl.\+h$>$}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{dma_8c_ab8bd83a84fac8032e10e55d9473d1624}{D\+M\+A\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}~(\hyperlink{addressing_8h_a245eee72d3b42da5ce640ea1be193edb}{peripherals\+Base\+Address\+Phys} + 0x7000)\hypertarget{dma_8c_ab8bd83a84fac8032e10e55d9473d1624}{}\label{dma_8c_ab8bd83a84fac8032e10e55d9473d1624}
+
+\begin{DoxyCompactList}\small\item\em The base physical address of the dma peripheral. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a00241a4699910a76c903d5267e1710f4}{C\+H\+A\+N\+N\+E\+L\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+S\+E\+T\+\_\+\+O\+F\+F\+S\+ET}(ch)~(0x100$\ast$ch)\hypertarget{dma_8c_a00241a4699910a76c903d5267e1710f4}{}\label{dma_8c_a00241a4699910a76c903d5267e1710f4}
+
+\begin{DoxyCompactList}\small\item\em Returns the offset from D\+M\+A\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS of the register sets of the different channels. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_abc183a7dde8c0ab339eea617a0ed4206}{D\+M\+A\+\_\+\+A\+R\+E\+A\+\_\+\+L\+EN}~0xf00\hypertarget{dma_8c_abc183a7dde8c0ab339eea617a0ed4206}{}\label{dma_8c_abc183a7dde8c0ab339eea617a0ed4206}
+
+\begin{DoxyCompactList}\small\item\em The size of the memory area dedicated to the dma peripheral. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a8f2f9e93eea1d892e8a358436b3eeec5}{R\+E\+G\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+O\+FF}~0\hypertarget{dma_8c_a8f2f9e93eea1d892e8a358436b3eeec5}{}\label{dma_8c_a8f2f9e93eea1d892e8a358436b3eeec5}
+
+\begin{DoxyCompactList}\small\item\em Offset from the set base address of the Control and Status register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a722b580761c0cbe14d87e3faf031f029}{R\+E\+G\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+B\+L\+O\+C\+K\+\_\+\+A\+D\+D\+R\+\_\+\+O\+FF}~0x4\hypertarget{dma_8c_a722b580761c0cbe14d87e3faf031f029}{}\label{dma_8c_a722b580761c0cbe14d87e3faf031f029}
+
+\begin{DoxyCompactList}\small\item\em Offset from the set base address of the Control Block Address register (must be 32-\/byte aligned) \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a7ed231781459259290fa87c4de6de9db}{R\+E\+G\+\_\+\+T\+R\+A\+N\+S\+F\+E\+R\+\_\+\+I\+N\+F\+O\+\_\+\+O\+FF}~0x8\hypertarget{dma_8c_a7ed231781459259290fa87c4de6de9db}{}\label{dma_8c_a7ed231781459259290fa87c4de6de9db}
+
+\begin{DoxyCompactList}\small\item\em Offset from the set base address of the Transefer Info register (writable only through control block) \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_acafe33ea7ae586e52056e618e1561dd2}{R\+E\+G\+\_\+\+S\+O\+U\+R\+C\+E\+\_\+\+A\+D\+D\+R\+\_\+\+O\+FF}~0xC\hypertarget{dma_8c_acafe33ea7ae586e52056e618e1561dd2}{}\label{dma_8c_acafe33ea7ae586e52056e618e1561dd2}
+
+\begin{DoxyCompactList}\small\item\em Offset from the set base address of the Source Address register (writable only through control block) \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_aa27f7c81055dd886da40d54e4cceb4c1}{R\+E\+G\+\_\+\+D\+E\+S\+T\+\_\+\+A\+D\+D\+R\+\_\+\+O\+FF}~0x10\hypertarget{dma_8c_aa27f7c81055dd886da40d54e4cceb4c1}{}\label{dma_8c_aa27f7c81055dd886da40d54e4cceb4c1}
+
+\begin{DoxyCompactList}\small\item\em Offset from the set base address of the Destination Address register (writable only through control block) \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a17258047c6d266863029a641bff0b18d}{R\+E\+G\+\_\+\+T\+R\+A\+N\+S\+F\+E\+R\+\_\+\+L\+E\+N\+G\+T\+H\+\_\+\+O\+FF}~0x14\hypertarget{dma_8c_a17258047c6d266863029a641bff0b18d}{}\label{dma_8c_a17258047c6d266863029a641bff0b18d}
+
+\begin{DoxyCompactList}\small\item\em Offset from the set base address of the Transfer Length register (writable only through control block) \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_af78491712d4a418887322c48fab8851b}{R\+E\+G\+\_\+2\+D\+\_\+\+S\+T\+R\+I\+D\+E\+\_\+\+M\+O\+D\+E\+\_\+\+O\+FF}~0x18\hypertarget{dma_8c_af78491712d4a418887322c48fab8851b}{}\label{dma_8c_af78491712d4a418887322c48fab8851b}
+
+\begin{DoxyCompactList}\small\item\em Offset from the set base address of the 2D Stride register (writable only through control block) \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_afa434a39bb61fa3d247ab9ba6ea98793}{R\+E\+G\+\_\+\+N\+E\+X\+T\+\_\+\+B\+L\+O\+C\+K\+\_\+\+A\+D\+D\+R\+\_\+\+O\+FF}~0x1C\hypertarget{dma_8c_afa434a39bb61fa3d247ab9ba6ea98793}{}\label{dma_8c_afa434a39bb61fa3d247ab9ba6ea98793}
+
+\begin{DoxyCompactList}\small\item\em Offset from the set base address of the Next Contorl Block Address register (writable only through control block) \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a5e7e5fefe6ed84258ae9f69af2e09003}{R\+E\+G\+\_\+\+D\+E\+B\+U\+G\+\_\+\+O\+FF}~0x20\hypertarget{dma_8c_a5e7e5fefe6ed84258ae9f69af2e09003}{}\label{dma_8c_a5e7e5fefe6ed84258ae9f69af2e09003}
+
+\begin{DoxyCompactList}\small\item\em Offset from the set base address of the Debug register (writable only through control block) \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a48b0f629305aacddf1298380d58f69b0}{R\+E\+G\+\_\+\+G\+L\+O\+B\+A\+L\+\_\+\+I\+N\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+O\+FF}~0xfe0\hypertarget{dma_8c_a48b0f629305aacddf1298380d58f69b0}{}\label{dma_8c_a48b0f629305aacddf1298380d58f69b0}
+
+\begin{DoxyCompactList}\small\item\em Offset from the dma base address of the global interrupt status register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_ad743f04281e062a3407377f3e33dff5c}{R\+E\+G\+\_\+\+G\+L\+O\+B\+A\+L\+\_\+\+E\+N\+A\+B\+L\+E\+\_\+\+O\+FF}~0xff0\hypertarget{dma_8c_ad743f04281e062a3407377f3e33dff5c}{}\label{dma_8c_ad743f04281e062a3407377f3e33dff5c}
+
+\begin{DoxyCompactList}\small\item\em Offset from the dma base address of the global enable register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a20dc896536475d1e2cd8d0e84577937a}{C\+N\+T\+R\+L\+\_\+\+S\+T\+T\+S\+\_\+\+R\+E\+S\+E\+T\+\_\+\+M\+A\+SK}~(1$<$$<$31)\hypertarget{dma_8c_a20dc896536475d1e2cd8d0e84577937a}{}\label{dma_8c_a20dc896536475d1e2cd8d0e84577937a}
+
+\begin{DoxyCompactList}\small\item\em Write 1 to reset the channel. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a0b548499346af2ac1462f3b1283e4e73}{C\+N\+T\+R\+L\+\_\+\+S\+T\+T\+S\+\_\+\+A\+B\+O\+R\+T\+\_\+\+M\+A\+SK}~(1$<$$<$30)\hypertarget{dma_8c_a0b548499346af2ac1462f3b1283e4e73}{}\label{dma_8c_a0b548499346af2ac1462f3b1283e4e73}
+
+\begin{DoxyCompactList}\small\item\em Write 1 to abort the current Control Block. Will continue from the next. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a433037830d22b92437a1cf1d0be24179}{C\+N\+T\+R\+L\+\_\+\+S\+T\+T\+S\+\_\+\+D\+I\+S\+D\+E\+B\+U\+G\+\_\+\+M\+A\+SK}~(1$<$$<$29)\hypertarget{dma_8c_a433037830d22b92437a1cf1d0be24179}{}\label{dma_8c_a433037830d22b92437a1cf1d0be24179}
+
+\begin{DoxyCompactList}\small\item\em Set to 1 to disable stopping on debug pause signal. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a0f00cde1cfc9a6465f2a66d2f4105cbb}{C\+N\+T\+R\+L\+\_\+\+S\+T\+T\+S\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+O\+U\+T\+S\+T\+A\+N\+D\+I\+N\+G\+\_\+\+W\+R\+I\+T\+E\+S\+\_\+\+M\+A\+SK}~(1$<$$<$28)\hypertarget{dma_8c_a0f00cde1cfc9a6465f2a66d2f4105cbb}{}\label{dma_8c_a0f00cde1cfc9a6465f2a66d2f4105cbb}
+
+\begin{DoxyCompactList}\small\item\em If set will wait for write responses. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a6e8f900ea921241d6a45255dfa1bc580}{C\+N\+T\+R\+L\+\_\+\+S\+T\+T\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+M\+A\+SK}~(1$<$8)\hypertarget{dma_8c_a6e8f900ea921241d6a45255dfa1bc580}{}\label{dma_8c_a6e8f900ea921241d6a45255dfa1bc580}
+
+\begin{DoxyCompactList}\small\item\em Indicates if D\+MA detected an error, see more in the D\+E\+B\+UG register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a200b12a6f7e01f82ccb56dd7b7c721d9}{C\+N\+T\+R\+L\+\_\+\+S\+T\+T\+S\+\_\+\+W\+A\+I\+T\+I\+N\+G\+\_\+\+F\+O\+R\+\_\+\+O\+U\+T\+S\+T\+A\+N\+D\+I\+N\+G\+\_\+\+W\+R\+I\+T\+E\+S\+\_\+\+M\+A\+SK}~(1$<$6)\hypertarget{dma_8c_a200b12a6f7e01f82ccb56dd7b7c721d9}{}\label{dma_8c_a200b12a6f7e01f82ccb56dd7b7c721d9}
+
+\begin{DoxyCompactList}\small\item\em Indicates D\+MA is waiting for outstanding writes and isn\textquotesingle{}t writing. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a5a4dbaff8f19b809766b2dca1576975e}{C\+N\+T\+R\+L\+\_\+\+S\+T\+T\+S\+\_\+\+D\+R\+E\+Q\+\_\+\+S\+T\+O\+P\+S\+\_\+\+D\+M\+A\+\_\+\+M\+A\+SK}~(1$<$5)\hypertarget{dma_8c_a5a4dbaff8f19b809766b2dca1576975e}{}\label{dma_8c_a5a4dbaff8f19b809766b2dca1576975e}
+
+\begin{DoxyCompactList}\small\item\em Indicates D\+MA is stopped due to the D\+R\+EQ being active. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a4a445939175d51219de8efa38f34346a}{C\+N\+T\+R\+L\+\_\+\+S\+T\+T\+S\+\_\+\+P\+A\+U\+S\+E\+D\+\_\+\+M\+A\+SK}~(1$<$4)\hypertarget{dma_8c_a4a445939175d51219de8efa38f34346a}{}\label{dma_8c_a4a445939175d51219de8efa38f34346a}
+
+\begin{DoxyCompactList}\small\item\em Indicates the D\+MA is paused and not transferring data. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_ae7a753a3f78b22dc9ed552412b041422}{C\+N\+T\+R\+L\+\_\+\+S\+T\+T\+S\+\_\+\+D\+R\+E\+Q\+\_\+\+M\+A\+SK}~(1$<$3)\hypertarget{dma_8c_ae7a753a3f78b22dc9ed552412b041422}{}\label{dma_8c_ae7a753a3f78b22dc9ed552412b041422}
+
+\begin{DoxyCompactList}\small\item\em Indicates Tte status of the D\+R\+EQ signal selected by P\+E\+R\+M\+AP in the transfer info. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_ad153c9f06e710911b3748cb43a45cbe2}{C\+N\+T\+R\+L\+\_\+\+S\+T\+T\+S\+\_\+\+I\+N\+T\+\_\+\+M\+A\+SK}~(1$<$2)\hypertarget{dma_8c_ad153c9f06e710911b3748cb43a45cbe2}{}\label{dma_8c_ad153c9f06e710911b3748cb43a45cbe2}
+
+\begin{DoxyCompactList}\small\item\em Set when I\+N\+T\+EN==1 and the transfer has ended, must be cleared (writing 1) \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_ad22cf2bf70dab331950da9254d1b96eb}{C\+N\+T\+R\+L\+\_\+\+S\+T\+T\+S\+\_\+\+E\+N\+D\+\_\+\+M\+A\+SK}~(1$<$1)\hypertarget{dma_8c_ad22cf2bf70dab331950da9254d1b96eb}{}\label{dma_8c_ad22cf2bf70dab331950da9254d1b96eb}
+
+\begin{DoxyCompactList}\small\item\em Set when the transfer of the current control block is complete. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_ab33f9b3004bf498db77675c8d91e03a1}{C\+N\+T\+R\+L\+\_\+\+S\+T\+T\+S\+\_\+\+A\+C\+T\+I\+V\+E\+\_\+\+M\+A\+SK}~(1)\hypertarget{dma_8c_ab33f9b3004bf498db77675c8d91e03a1}{}\label{dma_8c_ab33f9b3004bf498db77675c8d91e03a1}
+
+\begin{DoxyCompactList}\small\item\em Activates or deactivates the D\+MA. Autmatically set to 0 when it loads 0 from nextcontrolblock. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_aed64b6faa908d0a92415a94a18812a23}{D\+B\+G\+\_\+\+L\+I\+T\+E\+\_\+\+M\+A\+SK}~(1$<$$<$28)\hypertarget{dma_8c_aed64b6faa908d0a92415a94a18812a23}{}\label{dma_8c_aed64b6faa908d0a92415a94a18812a23}
+
+\begin{DoxyCompactList}\small\item\em Mask for the D\+MA Lite bit in the debug register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_ab6a61a6651e10e7bb63d82d5f93f2735}{D\+B\+G\+\_\+\+V\+E\+R\+S\+I\+O\+N\+\_\+\+M\+A\+SK}~(7$<$$<$25)\hypertarget{dma_8c_ab6a61a6651e10e7bb63d82d5f93f2735}{}\label{dma_8c_ab6a61a6651e10e7bb63d82d5f93f2735}
+
+\begin{DoxyCompactList}\small\item\em Mask for the D\+MA Version in the debug register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a959b5880f143cb77f01e8ce897352448}{D\+B\+G\+\_\+\+D\+M\+A\+\_\+\+S\+T\+A\+T\+E\+\_\+\+M\+A\+SK}~(511$<$$<$16)\hypertarget{dma_8c_a959b5880f143cb77f01e8ce897352448}{}\label{dma_8c_a959b5880f143cb77f01e8ce897352448}
+
+\begin{DoxyCompactList}\small\item\em Mask for the D\+MA State in the debug register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a4a3c2e557343f36c2a85282d86019310}{D\+B\+G\+\_\+\+D\+M\+A\+\_\+\+I\+D\+\_\+\+M\+A\+SK}~(255$<$$<$8)\hypertarget{dma_8c_a4a3c2e557343f36c2a85282d86019310}{}\label{dma_8c_a4a3c2e557343f36c2a85282d86019310}
+
+\begin{DoxyCompactList}\small\item\em Mask for the D\+MA Axi id in the debug register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_ab826aca0a39ed0e9b8f96bf4f66adff2}{D\+B\+G\+\_\+\+O\+U\+T\+S\+T\+A\+N\+D\+I\+N\+G\+\_\+\+W\+R\+I\+T\+E\+S\+\_\+\+M\+A\+SK}~(15$<$$<$4)\hypertarget{dma_8c_ab826aca0a39ed0e9b8f96bf4f66adff2}{}\label{dma_8c_ab826aca0a39ed0e9b8f96bf4f66adff2}
+
+\begin{DoxyCompactList}\small\item\em Mask for the D\+MA outstanding writes counter in the debug register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a835a9b4b9453c10b7def8fe32a26b219}{D\+B\+G\+\_\+\+R\+E\+A\+D\+\_\+\+E\+R\+R\+O\+R\+\_\+\+M\+A\+SK}~(1$<$$<$2)\hypertarget{dma_8c_a835a9b4b9453c10b7def8fe32a26b219}{}\label{dma_8c_a835a9b4b9453c10b7def8fe32a26b219}
+
+\begin{DoxyCompactList}\small\item\em Mask for the D\+MA read error bit in the debug register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a408aeea85aabbe9eb2b914a2e231ec41}{D\+B\+G\+\_\+\+F\+I\+F\+O\+\_\+\+E\+R\+R\+O\+R\+\_\+\+M\+A\+SK}~(1$<$$<$1)\hypertarget{dma_8c_a408aeea85aabbe9eb2b914a2e231ec41}{}\label{dma_8c_a408aeea85aabbe9eb2b914a2e231ec41}
+
+\begin{DoxyCompactList}\small\item\em Mask for the D\+MA F\+I\+FO error bit in the debug register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a74976d996b1087fd4d0fed16107afe7b}{D\+B\+G\+\_\+\+R\+E\+A\+D\+\_\+\+L\+A\+S\+T\+\_\+\+N\+O\+T\+\_\+\+S\+E\+T\+\_\+\+E\+R\+R\+O\+R\+\_\+\+M\+A\+SK}~(0)\hypertarget{dma_8c_a74976d996b1087fd4d0fed16107afe7b}{}\label{dma_8c_a74976d996b1087fd4d0fed16107afe7b}
+
+\begin{DoxyCompactList}\small\item\em Mask for the D\+MA read last not set error bit in the debug register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a29647d32e8f46147a8db59d8fb5139ee}{I\+N\+T\+\_\+\+S\+T\+T\+S\+\_\+\+I\+N\+T15\+\_\+\+O\+FF}~(1$<$$<$15)\hypertarget{dma_8c_a29647d32e8f46147a8db59d8fb5139ee}{}\label{dma_8c_a29647d32e8f46147a8db59d8fb5139ee}
+
+\begin{DoxyCompactList}\small\item\em Offset of the interrupt status bit for channel 15 in the global interrupt status register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a4e58773e890b8764de4aefb7e708d8f9}{I\+N\+T\+\_\+\+S\+T\+T\+S\+\_\+\+I\+N\+T14\+\_\+\+O\+FF}~(1$<$$<$14)\hypertarget{dma_8c_a4e58773e890b8764de4aefb7e708d8f9}{}\label{dma_8c_a4e58773e890b8764de4aefb7e708d8f9}
+
+\begin{DoxyCompactList}\small\item\em Offset of the interrupt status bit for channel 14 in the global interrupt status register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a7632667e47810a159f63ac1d056ed3aa}{I\+N\+T\+\_\+\+S\+T\+T\+S\+\_\+\+I\+N\+T13\+\_\+\+O\+FF}~(1$<$$<$13)\hypertarget{dma_8c_a7632667e47810a159f63ac1d056ed3aa}{}\label{dma_8c_a7632667e47810a159f63ac1d056ed3aa}
+
+\begin{DoxyCompactList}\small\item\em Offset of the interrupt status bit for channel 13 in the global interrupt status register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_aa2e1e12f3c4e390a8efa9c6d39138a3c}{I\+N\+T\+\_\+\+S\+T\+T\+S\+\_\+\+I\+N\+T12\+\_\+\+O\+FF}~(1$<$$<$12)\hypertarget{dma_8c_aa2e1e12f3c4e390a8efa9c6d39138a3c}{}\label{dma_8c_aa2e1e12f3c4e390a8efa9c6d39138a3c}
+
+\begin{DoxyCompactList}\small\item\em Offset of the interrupt status bit for channel 12 in the global interrupt status register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a50c9679ce89f9458cb1329d46a763fce}{I\+N\+T\+\_\+\+S\+T\+T\+S\+\_\+\+I\+N\+T11\+\_\+\+O\+FF}~(1$<$$<$11)\hypertarget{dma_8c_a50c9679ce89f9458cb1329d46a763fce}{}\label{dma_8c_a50c9679ce89f9458cb1329d46a763fce}
+
+\begin{DoxyCompactList}\small\item\em Offset of the interrupt status bit for channel 11 in the global interrupt status register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_ad30da6c554d94cb6c5cffbcb6898299d}{I\+N\+T\+\_\+\+S\+T\+T\+S\+\_\+\+I\+N\+T10\+\_\+\+O\+FF}~(1$<$$<$10)\hypertarget{dma_8c_ad30da6c554d94cb6c5cffbcb6898299d}{}\label{dma_8c_ad30da6c554d94cb6c5cffbcb6898299d}
+
+\begin{DoxyCompactList}\small\item\em Offset of the interrupt status bit for channel 10 in the global interrupt status register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a5990b52f6033b0fd741a755d5412015e}{I\+N\+T\+\_\+\+S\+T\+T\+S\+\_\+\+I\+N\+T9\+\_\+\+O\+FF}~(1$<$$<$9)\hypertarget{dma_8c_a5990b52f6033b0fd741a755d5412015e}{}\label{dma_8c_a5990b52f6033b0fd741a755d5412015e}
+
+\begin{DoxyCompactList}\small\item\em Offset of the interrupt status bit for channel 9 in the global interrupt status register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a36c068b0d74a444fe07f488500693046}{I\+N\+T\+\_\+\+S\+T\+T\+S\+\_\+\+I\+N\+T8\+\_\+\+O\+FF}~(1$<$$<$8)\hypertarget{dma_8c_a36c068b0d74a444fe07f488500693046}{}\label{dma_8c_a36c068b0d74a444fe07f488500693046}
+
+\begin{DoxyCompactList}\small\item\em Offset of the interrupt status bit for channel 8 in the global interrupt status register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a333a7ebfb8e0dbf282b654e3a7ada305}{I\+N\+T\+\_\+\+S\+T\+T\+S\+\_\+\+I\+N\+T7\+\_\+\+O\+FF}~(1$<$$<$7)\hypertarget{dma_8c_a333a7ebfb8e0dbf282b654e3a7ada305}{}\label{dma_8c_a333a7ebfb8e0dbf282b654e3a7ada305}
+
+\begin{DoxyCompactList}\small\item\em Offset of the interrupt status bit for channel 7 in the global interrupt status register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_ac31079eb95ed022a745c748ffd51e8d1}{I\+N\+T\+\_\+\+S\+T\+T\+S\+\_\+\+I\+N\+T6\+\_\+\+O\+FF}~(1$<$$<$6)\hypertarget{dma_8c_ac31079eb95ed022a745c748ffd51e8d1}{}\label{dma_8c_ac31079eb95ed022a745c748ffd51e8d1}
+
+\begin{DoxyCompactList}\small\item\em Offset of the interrupt status bit for channel 6 in the global interrupt status register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a56d884c9d0656fb5a0e32a3f4226c584}{I\+N\+T\+\_\+\+S\+T\+T\+S\+\_\+\+I\+N\+T5\+\_\+\+O\+FF}~(1$<$$<$5)\hypertarget{dma_8c_a56d884c9d0656fb5a0e32a3f4226c584}{}\label{dma_8c_a56d884c9d0656fb5a0e32a3f4226c584}
+
+\begin{DoxyCompactList}\small\item\em Offset of the interrupt status bit for channel 5 in the global interrupt status register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a84d826eb326cb69f9f45b272ed15579e}{I\+N\+T\+\_\+\+S\+T\+T\+S\+\_\+\+I\+N\+T4\+\_\+\+O\+FF}~(1$<$$<$4)\hypertarget{dma_8c_a84d826eb326cb69f9f45b272ed15579e}{}\label{dma_8c_a84d826eb326cb69f9f45b272ed15579e}
+
+\begin{DoxyCompactList}\small\item\em Offset of the interrupt status bit for channel 4 in the global interrupt status register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a9c8896b67af4a240deb9170a7f332473}{I\+N\+T\+\_\+\+S\+T\+T\+S\+\_\+\+I\+N\+T3\+\_\+\+O\+FF}~(1$<$$<$3)\hypertarget{dma_8c_a9c8896b67af4a240deb9170a7f332473}{}\label{dma_8c_a9c8896b67af4a240deb9170a7f332473}
+
+\begin{DoxyCompactList}\small\item\em Offset of the interrupt status bit for channel 3 in the global interrupt status register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a20437612a3c6474a42528a3689836e25}{I\+N\+T\+\_\+\+S\+T\+T\+S\+\_\+\+I\+N\+T2\+\_\+\+O\+FF}~(1$<$$<$2)\hypertarget{dma_8c_a20437612a3c6474a42528a3689836e25}{}\label{dma_8c_a20437612a3c6474a42528a3689836e25}
+
+\begin{DoxyCompactList}\small\item\em Offset of the interrupt status bit for channel 2 in the global interrupt status register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_aa82dbd0966fce295d4d83f6c9814215b}{I\+N\+T\+\_\+\+S\+T\+T\+S\+\_\+\+I\+N\+T1\+\_\+\+O\+FF}~(1$<$$<$1)\hypertarget{dma_8c_aa82dbd0966fce295d4d83f6c9814215b}{}\label{dma_8c_aa82dbd0966fce295d4d83f6c9814215b}
+
+\begin{DoxyCompactList}\small\item\em Offset of the interrupt status bit for channel 1 in the global interrupt status register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_ad2d27bfba54e453e93d449b20283c942}{I\+N\+T\+\_\+\+S\+T\+T\+S\+\_\+\+I\+N\+T0\+\_\+\+O\+FF}~(1$<$$<$0)\hypertarget{dma_8c_ad2d27bfba54e453e93d449b20283c942}{}\label{dma_8c_ad2d27bfba54e453e93d449b20283c942}
+
+\begin{DoxyCompactList}\small\item\em Offset of the interrupt status bit for channel 0 in the global interrupt status register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a13251a8154c9e61598790a463c743b64}{I\+N\+T\+\_\+\+S\+T\+T\+S\+\_\+\+E\+N15\+\_\+\+O\+FF}~(1$<$$<$15)\hypertarget{dma_8c_a13251a8154c9e61598790a463c743b64}{}\label{dma_8c_a13251a8154c9e61598790a463c743b64}
+
+\begin{DoxyCompactList}\small\item\em Offset of the enable bit for channel 15 in the global enable register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_aece0de03c02e06eaf0bfc1171473181b}{I\+N\+T\+\_\+\+S\+T\+T\+S\+\_\+\+E\+N14\+\_\+\+O\+FF}~(1$<$$<$14)\hypertarget{dma_8c_aece0de03c02e06eaf0bfc1171473181b}{}\label{dma_8c_aece0de03c02e06eaf0bfc1171473181b}
+
+\begin{DoxyCompactList}\small\item\em Offset of the enable bit for channel 14 in the global enable register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a14f611b4704245a6f12b8ca590f0a3db}{I\+N\+T\+\_\+\+S\+T\+T\+S\+\_\+\+E\+N13\+\_\+\+O\+FF}~(1$<$$<$13)\hypertarget{dma_8c_a14f611b4704245a6f12b8ca590f0a3db}{}\label{dma_8c_a14f611b4704245a6f12b8ca590f0a3db}
+
+\begin{DoxyCompactList}\small\item\em Offset of the enable bit for channel 13 in the global enable register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a3a61613f761558f59152f79e7ac9f50a}{I\+N\+T\+\_\+\+S\+T\+T\+S\+\_\+\+E\+N12\+\_\+\+O\+FF}~(1$<$$<$12)\hypertarget{dma_8c_a3a61613f761558f59152f79e7ac9f50a}{}\label{dma_8c_a3a61613f761558f59152f79e7ac9f50a}
+
+\begin{DoxyCompactList}\small\item\em Offset of the enable bit for channel 12 in the global enable register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a8f9c38a649cc2553c4c0eb9553454856}{I\+N\+T\+\_\+\+S\+T\+T\+S\+\_\+\+E\+N11\+\_\+\+O\+FF}~(1$<$$<$11)\hypertarget{dma_8c_a8f9c38a649cc2553c4c0eb9553454856}{}\label{dma_8c_a8f9c38a649cc2553c4c0eb9553454856}
+
+\begin{DoxyCompactList}\small\item\em Offset of the enable bit for channel 11 in the global enable register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a5b25744d5bb6108f81e85827d243c1d1}{I\+N\+T\+\_\+\+S\+T\+T\+S\+\_\+\+E\+N10\+\_\+\+O\+FF}~(1$<$$<$10)\hypertarget{dma_8c_a5b25744d5bb6108f81e85827d243c1d1}{}\label{dma_8c_a5b25744d5bb6108f81e85827d243c1d1}
+
+\begin{DoxyCompactList}\small\item\em Offset of the enable bit for channel 10 in the global enable register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a7cdb227e86127801618b288807997738}{I\+N\+T\+\_\+\+S\+T\+T\+S\+\_\+\+E\+N9\+\_\+\+O\+FF}~(1$<$$<$9)\hypertarget{dma_8c_a7cdb227e86127801618b288807997738}{}\label{dma_8c_a7cdb227e86127801618b288807997738}
+
+\begin{DoxyCompactList}\small\item\em Offset of the enable bit for channel 9 in the global enable register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a4c004ebfe56fa7dbd180f4635590a62e}{I\+N\+T\+\_\+\+S\+T\+T\+S\+\_\+\+E\+N8\+\_\+\+O\+FF}~(1$<$$<$8)\hypertarget{dma_8c_a4c004ebfe56fa7dbd180f4635590a62e}{}\label{dma_8c_a4c004ebfe56fa7dbd180f4635590a62e}
+
+\begin{DoxyCompactList}\small\item\em Offset of the enable bit for channel 8 in the global enable register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a4b10066442b8b9fa92371b886375816d}{I\+N\+T\+\_\+\+S\+T\+T\+S\+\_\+\+E\+N7\+\_\+\+O\+FF}~(1$<$$<$7)\hypertarget{dma_8c_a4b10066442b8b9fa92371b886375816d}{}\label{dma_8c_a4b10066442b8b9fa92371b886375816d}
+
+\begin{DoxyCompactList}\small\item\em Offset of the enable bit for channel 7 in the global enable register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a3e6d80441a76b623dfede9dd99b18288}{I\+N\+T\+\_\+\+S\+T\+T\+S\+\_\+\+E\+N6\+\_\+\+O\+FF}~(1$<$$<$6)\hypertarget{dma_8c_a3e6d80441a76b623dfede9dd99b18288}{}\label{dma_8c_a3e6d80441a76b623dfede9dd99b18288}
+
+\begin{DoxyCompactList}\small\item\em Offset of the enable bit for channel 6 in the global enable register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_afbcc57ebccfa8f89a67365b3b84a6366}{I\+N\+T\+\_\+\+S\+T\+T\+S\+\_\+\+E\+N5\+\_\+\+O\+FF}~(1$<$$<$5)\hypertarget{dma_8c_afbcc57ebccfa8f89a67365b3b84a6366}{}\label{dma_8c_afbcc57ebccfa8f89a67365b3b84a6366}
+
+\begin{DoxyCompactList}\small\item\em Offset of the enable bit for channel 5 in the global enable register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a84aebc3015dba764cb76da16c2da019b}{I\+N\+T\+\_\+\+S\+T\+T\+S\+\_\+\+E\+N4\+\_\+\+O\+FF}~(1$<$$<$4)\hypertarget{dma_8c_a84aebc3015dba764cb76da16c2da019b}{}\label{dma_8c_a84aebc3015dba764cb76da16c2da019b}
+
+\begin{DoxyCompactList}\small\item\em Offset of the enable bit for channel 4 in the global enable register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_abb8950f8ee6f0f7bd442e4536c533a26}{I\+N\+T\+\_\+\+S\+T\+T\+S\+\_\+\+E\+N3\+\_\+\+O\+FF}~(1$<$$<$3)\hypertarget{dma_8c_abb8950f8ee6f0f7bd442e4536c533a26}{}\label{dma_8c_abb8950f8ee6f0f7bd442e4536c533a26}
+
+\begin{DoxyCompactList}\small\item\em Offset of the enable bit for channel 3 in the global enable register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_aeb037df99097418cf70f1c73fb81af89}{I\+N\+T\+\_\+\+S\+T\+T\+S\+\_\+\+E\+N2\+\_\+\+O\+FF}~(1$<$$<$2)\hypertarget{dma_8c_aeb037df99097418cf70f1c73fb81af89}{}\label{dma_8c_aeb037df99097418cf70f1c73fb81af89}
+
+\begin{DoxyCompactList}\small\item\em Offset of the enable bit for channel 2 in the global enable register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_ad9d217c787f188b44bdb238f138e3b14}{I\+N\+T\+\_\+\+S\+T\+T\+S\+\_\+\+E\+N1\+\_\+\+O\+FF}~(1$<$$<$1)\hypertarget{dma_8c_ad9d217c787f188b44bdb238f138e3b14}{}\label{dma_8c_ad9d217c787f188b44bdb238f138e3b14}
+
+\begin{DoxyCompactList}\small\item\em Offset of the enable bit for channel 1 in the global enable register. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_af33d329c3ce5475dd8349fe31e4aa262}{I\+N\+T\+\_\+\+S\+T\+T\+S\+\_\+\+E\+N0\+\_\+\+O\+FF}~(1$<$$<$0)\hypertarget{dma_8c_af33d329c3ce5475dd8349fe31e4aa262}{}\label{dma_8c_af33d329c3ce5475dd8349fe31e4aa262}
+
+\begin{DoxyCompactList}\small\item\em Offset of the enable bit for channel 0 in the global enable register. \end{DoxyCompactList}\end{DoxyCompactItemize}
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{dma_8c_a4bc20d3b78d2e48a37df001d15339994}{C\+N\+T\+R\+L\+\_\+\+S\+T\+T\+S\+\_\+\+P\+A\+N\+I\+C\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+O\+FF}~(20)\hypertarget{dma_8c_a4bc20d3b78d2e48a37df001d15339994}{}\label{dma_8c_a4bc20d3b78d2e48a37df001d15339994}
+
+\begin{DoxyCompactList}\small\item\em Sets the priority of panicking A\+XI bus transactions. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_aa1e4a21fc73c8acd7cda906fd0aa7679}{C\+N\+T\+R\+L\+\_\+\+S\+T\+T\+S\+\_\+\+P\+A\+N\+I\+C\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+M\+A\+SK}~(0xf$<$$<$\+C\+N\+T\+R\+L\+\_\+\+S\+T\+T\+S\+\_\+\+P\+A\+N\+I\+C\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+O\+F\+F)\hypertarget{dma_8c_aa1e4a21fc73c8acd7cda906fd0aa7679}{}\label{dma_8c_aa1e4a21fc73c8acd7cda906fd0aa7679}
+
+\begin{DoxyCompactList}\small\item\em Sets the priority of panicking A\+XI bus transactions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{dma_8c_ae8ef3f56a27a7b5923c4adafb60c0eb5}{C\+N\+T\+R\+L\+\_\+\+S\+T\+T\+S\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+O\+FF}~(16)\hypertarget{dma_8c_ae8ef3f56a27a7b5923c4adafb60c0eb5}{}\label{dma_8c_ae8ef3f56a27a7b5923c4adafb60c0eb5}
+
+\begin{DoxyCompactList}\small\item\em Sets the priority of normal A\+XI bus transactions. \end{DoxyCompactList}\item 
+\#define \hyperlink{dma_8c_a64b2155ca2ee19e8415ae50949712219}{C\+N\+T\+R\+L\+\_\+\+S\+T\+T\+S\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+M\+A\+SK}~(0xf$<$$<$\+C\+N\+T\+R\+L\+\_\+\+S\+T\+T\+S\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+O\+F\+F)\hypertarget{dma_8c_a64b2155ca2ee19e8415ae50949712219}{}\label{dma_8c_a64b2155ca2ee19e8415ae50949712219}
+
+\begin{DoxyCompactList}\small\item\em Sets the priority of normal A\+XI bus transactions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{dma_8c_a5e40ff2f8b9b1111acfc61d86b31ee7c}{dma\+\_\+init} ()
+\begin{DoxyCompactList}\small\item\em Initializes the interface, to be called before any other function in this file. \end{DoxyCompactList}\item 
+int \hyperlink{dma_8c_aee2835f3c06b0717fd366dacfaca1a48}{dma\+\_\+is\+Init} ()
+\begin{DoxyCompactList}\small\item\em Says if dma\+\_\+init has been called with success. \end{DoxyCompactList}\item 
+int \hyperlink{dma_8c_a33c5a4a66cf83bf5f5b305ae3476d4b4}{dma\+\_\+print\+Registers} (int channel)
+\begin{DoxyCompactList}\small\item\em For debug purposes\+: prints the registers\textquotesingle{} contents to standard output. \end{DoxyCompactList}\item 
+int \hyperlink{dma_8c_a6a0e121d9637a51f252405e3345a7d0f}{dma\+\_\+print\+Registers\+Dense} (int channel)
+\begin{DoxyCompactList}\small\item\em For debug purposes\+: prints the registers\textquotesingle{} contents to standard output, in a single line. \end{DoxyCompactList}\item 
+int \hyperlink{dma_8c_a21db7b8aa818aa5e8428c04dface8022}{dma\+\_\+dump\+Registers} (int channel, char $\ast$s)
+\begin{DoxyCompactList}\small\item\em For debug purposes\+: writes the register\textquotesingle{}s contents on the provided string. \end{DoxyCompactList}\item 
+int \hyperlink{dma_8c_a536976a0a0d27e74f82ea4a0ffa4aefe}{dma\+\_\+dump\+Registers\+Dense} (int channel, char $\ast$s)
+\begin{DoxyCompactList}\small\item\em For debug purposes\+: writes the register\textquotesingle{}s contents on the provided string, in a single line. \end{DoxyCompactList}\item 
+int \hyperlink{dma_8c_a5af8ea4dd912774926dcb29b7cfd9e26}{dma\+\_\+print\+Control\+Block} (\hyperlink{dma_8h_ab877da74fbc7118a9846311dc5ea0e06}{Control\+Block} $\ast$cb)
+\begin{DoxyCompactList}\small\item\em For debug purposes\+: prints the control block\textquotesingle{}s contents on standard output. \end{DoxyCompactList}\item 
+int \hyperlink{dma_8c_a03b81015d5ffc8cb5c9e702f61d2db3c}{dma\+\_\+control\+Block\+To\+String} (\hyperlink{dma_8h_ab877da74fbc7118a9846311dc5ea0e06}{Control\+Block} $\ast$cb, char $\ast$s)
+\begin{DoxyCompactList}\small\item\em For debug purposes\+: writes the control block\textquotesingle{}s contents on a string. \end{DoxyCompactList}\item 
+int \hyperlink{dma_8c_a5cee0477bf4935eadad1c5ba36475f41}{dma\+\_\+channel\+Reset\+Init\+Default} (int channel)
+\begin{DoxyCompactList}\small\item\em Resets the channel and sets it to default values. \end{DoxyCompactList}\item 
+int \hyperlink{dma_8c_addd661617f231c59c9da83284a760a84}{dma\+\_\+set\+Channel\+Global\+Enable} (int channel, int value)
+\begin{DoxyCompactList}\small\item\em Set the global enable status for the specified channel. \end{DoxyCompactList}\item 
+int \hyperlink{dma_8c_af17b046f2c6154dc710c7ca884f18390}{dma\+\_\+set\+Channel\+Active} (int channel, int value)
+\begin{DoxyCompactList}\small\item\em Sets the channel active bit, this is automatically cleared at the end of each control block chain. \end{DoxyCompactList}\item 
+int \hyperlink{dma_8c_ac2bbbcf16e07b5c6be88ce19b3661137}{dma\+\_\+is\+Channel\+Active} (int channel)
+\begin{DoxyCompactList}\small\item\em Gets the channel active bit, this is automatically cleared at the end of each control block chain. \end{DoxyCompactList}\item 
+int \hyperlink{dma_8c_a884a9077e708438f1da665e7488dbafa}{dma\+\_\+set\+Control\+Block\+Addr} (int channel, uint32\+\_\+t control\+Block\+Addr\+Phys)
+\begin{DoxyCompactList}\small\item\em Sets the address of the control block to be loaded in the dma engine, to start the transfer you then have to set the active bit. \end{DoxyCompactList}\item 
+int \hyperlink{dma_8c_a17262ae6a0c487efb3098e8474a7f4c1}{dma\+\_\+write\+Control\+Block} (\hyperlink{dma_8h_ab877da74fbc7118a9846311dc5ea0e06}{Control\+Block} $\ast$cb, uintptr\+\_\+t src\+Addr\+Phys, uintptr\+\_\+t dst\+Addr\+Phys, size\+\_\+t transfer\+Length, uintptr\+\_\+t next\+Control\+Block\+Phys, uint32\+\_\+t transfer\+Info, uint32\+\_\+t \+\_\+2\+D\+Stride\+Mode\+Info, size\+\_\+t \+\_\+2\+D\+Stride\+Transfer\+LenX, size\+\_\+t \+\_\+2\+D\+Stride\+Transfer\+LenY)
+\item 
+int \hyperlink{dma_8c_a3c0c9927ac499b9225c81299d82ebf1f}{dma\+\_\+alloc\+Control\+Block\+Phys} (uintptr\+\_\+t src\+Addr\+Phys, uintptr\+\_\+t dst\+Addr\+Phys, size\+\_\+t transfer\+Length, uintptr\+\_\+t next\+Control\+Block\+Phys, uint32\+\_\+t transfer\+Info, uint32\+\_\+t \+\_\+2\+D\+Stride\+Mode\+Info, size\+\_\+t \+\_\+2\+D\+Stride\+Transfer\+LenX, size\+\_\+t \+\_\+2\+D\+Stride\+Transfer\+LenY, \hyperlink{cacheCoherentMemoryProvider_8h_a05057d32e6fd59ce23d78f2f88d68da2}{Ccmb\+\_\+desc} $\ast$area)
+\begin{DoxyCompactList}\small\item\em Builds a control block with the specified characteristics. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{dma_8c_aff570d7c7de37c911c20377448786e03}{dma\+\_\+get\+Usable\+Channels} ()
+\begin{DoxyCompactList}\small\item\em Returns a bit mask indicating the usable channels with 1. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Interface to the dma peripheral. 
+
+If you haven\textquotesingle{}t already, see \hyperlink{dma_8h}{dma.\+h} See documentation at \char`\"{}\+B\+C\+M2835 A\+R\+M peripherals\char`\"{} page 38 
+
+\subsection{Function Documentation}
+\index{dma.\+c@{dma.\+c}!dma\+\_\+alloc\+Control\+Block\+Phys@{dma\+\_\+alloc\+Control\+Block\+Phys}}
+\index{dma\+\_\+alloc\+Control\+Block\+Phys@{dma\+\_\+alloc\+Control\+Block\+Phys}!dma.\+c@{dma.\+c}}
+\subsubsection[{\texorpdfstring{dma\+\_\+alloc\+Control\+Block\+Phys(uintptr\+\_\+t src\+Addr\+Phys, uintptr\+\_\+t dst\+Addr\+Phys, size\+\_\+t transfer\+Length, uintptr\+\_\+t next\+Control\+Block\+Phys, uint32\+\_\+t transfer\+Info, uint32\+\_\+t \+\_\+2\+D\+Stride\+Mode\+Info, size\+\_\+t \+\_\+2\+D\+Stride\+Transfer\+Len\+X, size\+\_\+t \+\_\+2\+D\+Stride\+Transfer\+Len\+Y, Ccmb\+\_\+desc $\ast$area)}{dma_allocControlBlockPhys(uintptr_t srcAddrPhys, uintptr_t dstAddrPhys, size_t transferLength, uintptr_t nextControlBlockPhys, uint32_t transferInfo, uint32_t _2DStrideModeInfo, size_t _2DStrideTransferLenX, size_t _2DStrideTransferLenY, Ccmb_desc *area)}}]{\setlength{\rightskip}{0pt plus 5cm}int dma\+\_\+alloc\+Control\+Block\+Phys (
+\begin{DoxyParamCaption}
+\item[{uintptr\+\_\+t}]{src\+Addr\+Phys, }
+\item[{uintptr\+\_\+t}]{dst\+Addr\+Phys, }
+\item[{size\+\_\+t}]{transfer\+Length, }
+\item[{uintptr\+\_\+t}]{next\+Control\+Block\+Phys, }
+\item[{uint32\+\_\+t}]{transfer\+Info, }
+\item[{uint32\+\_\+t}]{\+\_\+2\+D\+Stride\+Mode\+Info, }
+\item[{size\+\_\+t}]{\+\_\+2\+D\+Stride\+Transfer\+LenX, }
+\item[{size\+\_\+t}]{\+\_\+2\+D\+Stride\+Transfer\+LenY, }
+\item[{{\bf Ccmb\+\_\+desc} $\ast$}]{area}
+\end{DoxyParamCaption}
+)}\hypertarget{dma_8c_a3c0c9927ac499b9225c81299d82ebf1f}{}\label{dma_8c_a3c0c9927ac499b9225c81299d82ebf1f}
+
+
+Builds a control block with the specified characteristics. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em src\+Addr\+Phys} & Source adddress \\
+\hline
+{\em dst\+Addr\+Phys} & Destination address \\
+\hline
+{\em transfer\+Length} & Number of bytes to copy \\
+\hline
+{\em next\+Control\+Block\+Phys} & The next control block to process \\
+\hline
+{\em transfer\+Info} & Use the T\+I\+\_\+$\ast$ macros \\
+\hline
+{\em \+\_\+2\+D\+Stride\+Mode\+Info} & See bcm2835 datasheet \\
+\hline
+{\em \+\_\+2\+D\+Stride\+Transfer\+LenX} & See bcm2835 datasheet \\
+\hline
+{\em \+\_\+2\+D\+Stride\+Transfer\+LenY} & See bcm2835 datasheet \\
+\hline
+{\em area} & The cache\+Coherent\+Memory\+Provider descriptor will be returned here, you\textquotesingle{}ll have to free it using ccmp\+\_\+free(area). You can get the bus and virtual address of the control block from here\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{dma.\+c@{dma.\+c}!dma\+\_\+channel\+Reset\+Init\+Default@{dma\+\_\+channel\+Reset\+Init\+Default}}
+\index{dma\+\_\+channel\+Reset\+Init\+Default@{dma\+\_\+channel\+Reset\+Init\+Default}!dma.\+c@{dma.\+c}}
+\subsubsection[{\texorpdfstring{dma\+\_\+channel\+Reset\+Init\+Default(int channel)}{dma_channelResetInitDefault(int channel)}}]{\setlength{\rightskip}{0pt plus 5cm}int dma\+\_\+channel\+Reset\+Init\+Default (
+\begin{DoxyParamCaption}
+\item[{int}]{channel}
+\end{DoxyParamCaption}
+)}\hypertarget{dma_8c_a5cee0477bf4935eadad1c5ba36475f41}{}\label{dma_8c_a5cee0477bf4935eadad1c5ba36475f41}
+
+
+Resets the channel and sets it to default values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & The channel \\
+\hline
+\end{DoxyParams}
+\index{dma.\+c@{dma.\+c}!dma\+\_\+control\+Block\+To\+String@{dma\+\_\+control\+Block\+To\+String}}
+\index{dma\+\_\+control\+Block\+To\+String@{dma\+\_\+control\+Block\+To\+String}!dma.\+c@{dma.\+c}}
+\subsubsection[{\texorpdfstring{dma\+\_\+control\+Block\+To\+String(\+Control\+Block $\ast$cb, char $\ast$s)}{dma_controlBlockToString(ControlBlock *cb, char *s)}}]{\setlength{\rightskip}{0pt plus 5cm}int dma\+\_\+control\+Block\+To\+String (
+\begin{DoxyParamCaption}
+\item[{{\bf Control\+Block} $\ast$}]{cb, }
+\item[{char $\ast$}]{s}
+\end{DoxyParamCaption}
+)}\hypertarget{dma_8c_a03b81015d5ffc8cb5c9e702f61d2db3c}{}\label{dma_8c_a03b81015d5ffc8cb5c9e702f61d2db3c}
+
+
+For debug purposes\+: writes the control block\textquotesingle{}s contents on a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cb} & The control block \\
+\hline
+{\em s} & The control block\textquotesingle{}s will be written on this string (300 is an appropriate length) \\
+\hline
+\end{DoxyParams}
+\index{dma.\+c@{dma.\+c}!dma\+\_\+dump\+Registers@{dma\+\_\+dump\+Registers}}
+\index{dma\+\_\+dump\+Registers@{dma\+\_\+dump\+Registers}!dma.\+c@{dma.\+c}}
+\subsubsection[{\texorpdfstring{dma\+\_\+dump\+Registers(int channel, char $\ast$s)}{dma_dumpRegisters(int channel, char *s)}}]{\setlength{\rightskip}{0pt plus 5cm}int dma\+\_\+dump\+Registers (
+\begin{DoxyParamCaption}
+\item[{int}]{channel, }
+\item[{char $\ast$}]{s}
+\end{DoxyParamCaption}
+)}\hypertarget{dma_8c_a21db7b8aa818aa5e8428c04dface8022}{}\label{dma_8c_a21db7b8aa818aa5e8428c04dface8022}
+
+
+For debug purposes\+: writes the register\textquotesingle{}s contents on the provided string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & The channel \\
+\hline
+{\em s} & The registers\textquotesingle{} contents will be written on this string (550 is an appropriate length) \\
+\hline
+\end{DoxyParams}
+\index{dma.\+c@{dma.\+c}!dma\+\_\+dump\+Registers\+Dense@{dma\+\_\+dump\+Registers\+Dense}}
+\index{dma\+\_\+dump\+Registers\+Dense@{dma\+\_\+dump\+Registers\+Dense}!dma.\+c@{dma.\+c}}
+\subsubsection[{\texorpdfstring{dma\+\_\+dump\+Registers\+Dense(int channel, char $\ast$s)}{dma_dumpRegistersDense(int channel, char *s)}}]{\setlength{\rightskip}{0pt plus 5cm}int dma\+\_\+dump\+Registers\+Dense (
+\begin{DoxyParamCaption}
+\item[{int}]{channel, }
+\item[{char $\ast$}]{s}
+\end{DoxyParamCaption}
+)}\hypertarget{dma_8c_a536976a0a0d27e74f82ea4a0ffa4aefe}{}\label{dma_8c_a536976a0a0d27e74f82ea4a0ffa4aefe}
+
+
+For debug purposes\+: writes the register\textquotesingle{}s contents on the provided string, in a single line. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & The channel \\
+\hline
+{\em s} & The registers\textquotesingle{} contents will be written on this string (550 is an appropriate length) \\
+\hline
+\end{DoxyParams}
+\index{dma.\+c@{dma.\+c}!dma\+\_\+get\+Usable\+Channels@{dma\+\_\+get\+Usable\+Channels}}
+\index{dma\+\_\+get\+Usable\+Channels@{dma\+\_\+get\+Usable\+Channels}!dma.\+c@{dma.\+c}}
+\subsubsection[{\texorpdfstring{dma\+\_\+get\+Usable\+Channels()}{dma_getUsableChannels()}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t dma\+\_\+get\+Usable\+Channels (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{dma_8c_aff570d7c7de37c911c20377448786e03}{}\label{dma_8c_aff570d7c7de37c911c20377448786e03}
+
+
+Returns a bit mask indicating the usable channels with 1. 
+
+\begin{DoxyReturn}{Returns}
+the bit mask, 0xf0000000 in case of error 
+\end{DoxyReturn}
+\index{dma.\+c@{dma.\+c}!dma\+\_\+init@{dma\+\_\+init}}
+\index{dma\+\_\+init@{dma\+\_\+init}!dma.\+c@{dma.\+c}}
+\subsubsection[{\texorpdfstring{dma\+\_\+init()}{dma_init()}}]{\setlength{\rightskip}{0pt plus 5cm}int dma\+\_\+init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{dma_8c_a5e40ff2f8b9b1111acfc61d86b31ee7c}{}\label{dma_8c_a5e40ff2f8b9b1111acfc61d86b31ee7c}
+
+
+Initializes the interface, to be called before any other function in this file. 
+
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{dma.\+c@{dma.\+c}!dma\+\_\+is\+Channel\+Active@{dma\+\_\+is\+Channel\+Active}}
+\index{dma\+\_\+is\+Channel\+Active@{dma\+\_\+is\+Channel\+Active}!dma.\+c@{dma.\+c}}
+\subsubsection[{\texorpdfstring{dma\+\_\+is\+Channel\+Active(int channel)}{dma_isChannelActive(int channel)}}]{\setlength{\rightskip}{0pt plus 5cm}int dma\+\_\+is\+Channel\+Active (
+\begin{DoxyParamCaption}
+\item[{int}]{channel}
+\end{DoxyParamCaption}
+)}\hypertarget{dma_8c_ac2bbbcf16e07b5c6be88ce19b3661137}{}\label{dma_8c_ac2bbbcf16e07b5c6be88ce19b3661137}
+
+
+Gets the channel active bit, this is automatically cleared at the end of each control block chain. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & The channel\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{dma.\+c@{dma.\+c}!dma\+\_\+is\+Init@{dma\+\_\+is\+Init}}
+\index{dma\+\_\+is\+Init@{dma\+\_\+is\+Init}!dma.\+c@{dma.\+c}}
+\subsubsection[{\texorpdfstring{dma\+\_\+is\+Init()}{dma_isInit()}}]{\setlength{\rightskip}{0pt plus 5cm}int dma\+\_\+is\+Init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{dma_8c_aee2835f3c06b0717fd366dacfaca1a48}{}\label{dma_8c_aee2835f3c06b0717fd366dacfaca1a48}
+
+
+Says if dma\+\_\+init has been called with success. 
+
+\begin{DoxyReturn}{Returns}
+true if dma\+\_\+init has been called with success 
+\end{DoxyReturn}
+\index{dma.\+c@{dma.\+c}!dma\+\_\+print\+Control\+Block@{dma\+\_\+print\+Control\+Block}}
+\index{dma\+\_\+print\+Control\+Block@{dma\+\_\+print\+Control\+Block}!dma.\+c@{dma.\+c}}
+\subsubsection[{\texorpdfstring{dma\+\_\+print\+Control\+Block(\+Control\+Block $\ast$cb)}{dma_printControlBlock(ControlBlock *cb)}}]{\setlength{\rightskip}{0pt plus 5cm}int dma\+\_\+print\+Control\+Block (
+\begin{DoxyParamCaption}
+\item[{{\bf Control\+Block} $\ast$}]{cb}
+\end{DoxyParamCaption}
+)}\hypertarget{dma_8c_a5af8ea4dd912774926dcb29b7cfd9e26}{}\label{dma_8c_a5af8ea4dd912774926dcb29b7cfd9e26}
+
+
+For debug purposes\+: prints the control block\textquotesingle{}s contents on standard output. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cb} & The control block \\
+\hline
+\end{DoxyParams}
+\index{dma.\+c@{dma.\+c}!dma\+\_\+print\+Registers@{dma\+\_\+print\+Registers}}
+\index{dma\+\_\+print\+Registers@{dma\+\_\+print\+Registers}!dma.\+c@{dma.\+c}}
+\subsubsection[{\texorpdfstring{dma\+\_\+print\+Registers(int channel)}{dma_printRegisters(int channel)}}]{\setlength{\rightskip}{0pt plus 5cm}int dma\+\_\+print\+Registers (
+\begin{DoxyParamCaption}
+\item[{int}]{channel}
+\end{DoxyParamCaption}
+)}\hypertarget{dma_8c_a33c5a4a66cf83bf5f5b305ae3476d4b4}{}\label{dma_8c_a33c5a4a66cf83bf5f5b305ae3476d4b4}
+
+
+For debug purposes\+: prints the registers\textquotesingle{} contents to standard output. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & The channel\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{dma.\+c@{dma.\+c}!dma\+\_\+print\+Registers\+Dense@{dma\+\_\+print\+Registers\+Dense}}
+\index{dma\+\_\+print\+Registers\+Dense@{dma\+\_\+print\+Registers\+Dense}!dma.\+c@{dma.\+c}}
+\subsubsection[{\texorpdfstring{dma\+\_\+print\+Registers\+Dense(int channel)}{dma_printRegistersDense(int channel)}}]{\setlength{\rightskip}{0pt plus 5cm}int dma\+\_\+print\+Registers\+Dense (
+\begin{DoxyParamCaption}
+\item[{int}]{channel}
+\end{DoxyParamCaption}
+)}\hypertarget{dma_8c_a6a0e121d9637a51f252405e3345a7d0f}{}\label{dma_8c_a6a0e121d9637a51f252405e3345a7d0f}
+
+
+For debug purposes\+: prints the registers\textquotesingle{} contents to standard output, in a single line. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & The channel\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{dma.\+c@{dma.\+c}!dma\+\_\+set\+Channel\+Active@{dma\+\_\+set\+Channel\+Active}}
+\index{dma\+\_\+set\+Channel\+Active@{dma\+\_\+set\+Channel\+Active}!dma.\+c@{dma.\+c}}
+\subsubsection[{\texorpdfstring{dma\+\_\+set\+Channel\+Active(int channel, int value)}{dma_setChannelActive(int channel, int value)}}]{\setlength{\rightskip}{0pt plus 5cm}int dma\+\_\+set\+Channel\+Active (
+\begin{DoxyParamCaption}
+\item[{int}]{channel, }
+\item[{int}]{value}
+\end{DoxyParamCaption}
+)}\hypertarget{dma_8c_af17b046f2c6154dc710c7ca884f18390}{}\label{dma_8c_af17b046f2c6154dc710c7ca884f18390}
+
+
+Sets the channel active bit, this is automatically cleared at the end of each control block chain. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & The affected channel \\
+\hline
+{\em value} & 0=disabled; anything else= enabled\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{dma.\+c@{dma.\+c}!dma\+\_\+set\+Channel\+Global\+Enable@{dma\+\_\+set\+Channel\+Global\+Enable}}
+\index{dma\+\_\+set\+Channel\+Global\+Enable@{dma\+\_\+set\+Channel\+Global\+Enable}!dma.\+c@{dma.\+c}}
+\subsubsection[{\texorpdfstring{dma\+\_\+set\+Channel\+Global\+Enable(int channel, int value)}{dma_setChannelGlobalEnable(int channel, int value)}}]{\setlength{\rightskip}{0pt plus 5cm}int dma\+\_\+set\+Channel\+Global\+Enable (
+\begin{DoxyParamCaption}
+\item[{int}]{channel, }
+\item[{int}]{value}
+\end{DoxyParamCaption}
+)}\hypertarget{dma_8c_addd661617f231c59c9da83284a760a84}{}\label{dma_8c_addd661617f231c59c9da83284a760a84}
+
+
+Set the global enable status for the specified channel. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & The affected channel \\
+\hline
+{\em value} & 0=disabled; anything else= enabled\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{dma.\+c@{dma.\+c}!dma\+\_\+set\+Control\+Block\+Addr@{dma\+\_\+set\+Control\+Block\+Addr}}
+\index{dma\+\_\+set\+Control\+Block\+Addr@{dma\+\_\+set\+Control\+Block\+Addr}!dma.\+c@{dma.\+c}}
+\subsubsection[{\texorpdfstring{dma\+\_\+set\+Control\+Block\+Addr(int channel, uint32\+\_\+t control\+Block\+Addr\+Phys)}{dma_setControlBlockAddr(int channel, uint32_t controlBlockAddrPhys)}}]{\setlength{\rightskip}{0pt plus 5cm}int dma\+\_\+set\+Control\+Block\+Addr (
+\begin{DoxyParamCaption}
+\item[{int}]{channel, }
+\item[{uint32\+\_\+t}]{control\+Block\+Addr\+Phys}
+\end{DoxyParamCaption}
+)}\hypertarget{dma_8c_a884a9077e708438f1da665e7488dbafa}{}\label{dma_8c_a884a9077e708438f1da665e7488dbafa}
+
+
+Sets the address of the control block to be loaded in the dma engine, to start the transfer you then have to set the active bit. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & The channel \\
+\hline
+{\em control\+Block\+Addr\+Phys} & The physical address of the control block\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{dma.\+c@{dma.\+c}!dma\+\_\+write\+Control\+Block@{dma\+\_\+write\+Control\+Block}}
+\index{dma\+\_\+write\+Control\+Block@{dma\+\_\+write\+Control\+Block}!dma.\+c@{dma.\+c}}
+\subsubsection[{\texorpdfstring{dma\+\_\+write\+Control\+Block(\+Control\+Block $\ast$cb, uintptr\+\_\+t src\+Addr\+Phys, uintptr\+\_\+t dst\+Addr\+Phys, size\+\_\+t transfer\+Length, uintptr\+\_\+t next\+Control\+Block\+Phys, uint32\+\_\+t transfer\+Info, uint32\+\_\+t \+\_\+2\+D\+Stride\+Mode\+Info, size\+\_\+t \+\_\+2\+D\+Stride\+Transfer\+Len\+X, size\+\_\+t \+\_\+2\+D\+Stride\+Transfer\+Len\+Y)}{dma_writeControlBlock(ControlBlock *cb, uintptr_t srcAddrPhys, uintptr_t dstAddrPhys, size_t transferLength, uintptr_t nextControlBlockPhys, uint32_t transferInfo, uint32_t _2DStrideModeInfo, size_t _2DStrideTransferLenX, size_t _2DStrideTransferLenY)}}]{\setlength{\rightskip}{0pt plus 5cm}int dma\+\_\+write\+Control\+Block (
+\begin{DoxyParamCaption}
+\item[{{\bf Control\+Block} $\ast$}]{cb, }
+\item[{uintptr\+\_\+t}]{src\+Addr\+Phys, }
+\item[{uintptr\+\_\+t}]{dst\+Addr\+Phys, }
+\item[{size\+\_\+t}]{transfer\+Length, }
+\item[{uintptr\+\_\+t}]{next\+Control\+Block\+Phys, }
+\item[{uint32\+\_\+t}]{transfer\+Info, }
+\item[{uint32\+\_\+t}]{\+\_\+2\+D\+Stride\+Mode\+Info, }
+\item[{size\+\_\+t}]{\+\_\+2\+D\+Stride\+Transfer\+LenX, }
+\item[{size\+\_\+t}]{\+\_\+2\+D\+Stride\+Transfer\+LenY}
+\end{DoxyParamCaption}
+)}\hypertarget{dma_8c_a17262ae6a0c487efb3098e8474a7f4c1}{}\label{dma_8c_a17262ae6a0c487efb3098e8474a7f4c1}
+Writes the provided values to the provided control block
+
+
+\begin{DoxyParams}{Parameters}
+{\em cb} & The contorl block (virtual) address \\
+\hline
+{\em src\+Addr\+Phys} & Source adddress \\
+\hline
+{\em dst\+Addr\+Phys} & Destination address \\
+\hline
+{\em transfer\+Length} & Number of bytes to copy \\
+\hline
+{\em next\+Control\+Block\+Phys} & The next control block to process \\
+\hline
+{\em transfer\+Info} & Use the T\+I\+\_\+$\ast$ macros \\
+\hline
+{\em \+\_\+2\+D\+Stride\+Mode\+Info} & See bcm2835 datasheet \\
+\hline
+{\em \+\_\+2\+D\+Stride\+Transfer\+LenX} & See bcm2835 datasheet \\
+\hline
+{\em \+\_\+2\+D\+Stride\+Transfer\+LenY} & See bcm2835 datasheet\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Negative in case of error 
+\end{DoxyReturn}

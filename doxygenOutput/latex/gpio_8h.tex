@@ -1,0 +1,143 @@
+\hypertarget{gpio_8h}{}\section{include/peripherals/gpio.h File Reference}
+\label{gpio_8h}\index{include/peripherals/gpio.\+h@{include/peripherals/gpio.\+h}}
+
+
+Interface to the G\+P\+IO peripheral.  
+
+
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{gpio_8h_a69774365f6cd74e0ff3e2155cdaf9fb4}{B\+C\+M\+\_\+\+M\+IN}~0\hypertarget{gpio_8h_a69774365f6cd74e0ff3e2155cdaf9fb4}{}\label{gpio_8h_a69774365f6cd74e0ff3e2155cdaf9fb4}
+
+\begin{DoxyCompactList}\small\item\em The lowest valid bcm port number. \end{DoxyCompactList}\item 
+\#define \hyperlink{gpio_8h_a112a4d21ea40374d695c0bf4e3f2efa7}{B\+C\+M\+\_\+\+M\+AX}~27\hypertarget{gpio_8h_a112a4d21ea40374d695c0bf4e3f2efa7}{}\label{gpio_8h_a112a4d21ea40374d695c0bf4e3f2efa7}
+
+\begin{DoxyCompactList}\small\item\em The highest valid bcm port number. \end{DoxyCompactList}\item 
+\#define \hyperlink{gpio_8h_a115a39d655c852fd8d7210dc30a6df79}{P\+O\+R\+T\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+P\+UT}~0\hypertarget{gpio_8h_a115a39d655c852fd8d7210dc30a6df79}{}\label{gpio_8h_a115a39d655c852fd8d7210dc30a6df79}
+
+\begin{DoxyCompactList}\small\item\em Port function\+: Input. used in \hyperlink{gpio_8h_afd806966a7c76c92a6acf1771741ef57}{gpio\+\_\+set\+Function()} \end{DoxyCompactList}\item 
+\#define \hyperlink{gpio_8h_a3006df2ff87b2ab47033a7dda5f2d8cf}{P\+O\+R\+T\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+O\+U\+T\+P\+UT}~1\hypertarget{gpio_8h_a3006df2ff87b2ab47033a7dda5f2d8cf}{}\label{gpio_8h_a3006df2ff87b2ab47033a7dda5f2d8cf}
+
+\begin{DoxyCompactList}\small\item\em Port function\+: Output. used in \hyperlink{gpio_8h_afd806966a7c76c92a6acf1771741ef57}{gpio\+\_\+set\+Function()} \end{DoxyCompactList}\item 
+\#define \hyperlink{gpio_8h_a627a584ac3f69adabda86870669533b8}{P\+O\+R\+T\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+A\+L\+T\+\_\+0}~4\hypertarget{gpio_8h_a627a584ac3f69adabda86870669533b8}{}\label{gpio_8h_a627a584ac3f69adabda86870669533b8}
+
+\begin{DoxyCompactList}\small\item\em Port function\+: Alternative function 0. used in \hyperlink{gpio_8h_afd806966a7c76c92a6acf1771741ef57}{gpio\+\_\+set\+Function()} \end{DoxyCompactList}\item 
+\#define \hyperlink{gpio_8h_a40fb78a66abfc25cf8d10a47fed3fdee}{P\+O\+R\+T\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+A\+L\+T\+\_\+1}~5\hypertarget{gpio_8h_a40fb78a66abfc25cf8d10a47fed3fdee}{}\label{gpio_8h_a40fb78a66abfc25cf8d10a47fed3fdee}
+
+\begin{DoxyCompactList}\small\item\em Port function\+: Alternative function 1. used in \hyperlink{gpio_8h_afd806966a7c76c92a6acf1771741ef57}{gpio\+\_\+set\+Function()} \end{DoxyCompactList}\item 
+\#define \hyperlink{gpio_8h_ac3300901364f9dae33ee77e391b1bec3}{P\+O\+R\+T\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+A\+L\+T\+\_\+2}~6\hypertarget{gpio_8h_ac3300901364f9dae33ee77e391b1bec3}{}\label{gpio_8h_ac3300901364f9dae33ee77e391b1bec3}
+
+\begin{DoxyCompactList}\small\item\em Port function\+: Alternative function 2. used in \hyperlink{gpio_8h_afd806966a7c76c92a6acf1771741ef57}{gpio\+\_\+set\+Function()} \end{DoxyCompactList}\item 
+\#define \hyperlink{gpio_8h_a96b94f361c93cfc6b8c2bda2ec56d7b3}{P\+O\+R\+T\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+A\+L\+T\+\_\+3}~7\hypertarget{gpio_8h_a96b94f361c93cfc6b8c2bda2ec56d7b3}{}\label{gpio_8h_a96b94f361c93cfc6b8c2bda2ec56d7b3}
+
+\begin{DoxyCompactList}\small\item\em Port function\+: Alternative function 3. used in \hyperlink{gpio_8h_afd806966a7c76c92a6acf1771741ef57}{gpio\+\_\+set\+Function()} \end{DoxyCompactList}\item 
+\#define \hyperlink{gpio_8h_a017b51e15ea99c56d446e0c3cbfffd87}{P\+O\+R\+T\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+A\+L\+T\+\_\+4}~3\hypertarget{gpio_8h_a017b51e15ea99c56d446e0c3cbfffd87}{}\label{gpio_8h_a017b51e15ea99c56d446e0c3cbfffd87}
+
+\begin{DoxyCompactList}\small\item\em Port function\+: Alternative function 4. used in \hyperlink{gpio_8h_afd806966a7c76c92a6acf1771741ef57}{gpio\+\_\+set\+Function()} \end{DoxyCompactList}\item 
+\#define \hyperlink{gpio_8h_af887aaa42732690d352fd481fc5721fa}{P\+O\+R\+T\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+A\+L\+T\+\_\+5}~2\hypertarget{gpio_8h_af887aaa42732690d352fd481fc5721fa}{}\label{gpio_8h_af887aaa42732690d352fd481fc5721fa}
+
+\begin{DoxyCompactList}\small\item\em Port function\+: Alternative function 5. used in \hyperlink{gpio_8h_afd806966a7c76c92a6acf1771741ef57}{gpio\+\_\+set\+Function()} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{gpio_8h_a71cdc8883c43e8ae777fb2b101d52fa1}{gpio\+\_\+init} ()
+\begin{DoxyCompactList}\small\item\em Initializes the interface, to be called before any other function in this file. \end{DoxyCompactList}\item 
+int \hyperlink{gpio_8h_aa650f3d2177e95846ae069e2b6c9206a}{gpio\+\_\+is\+Init} ()\hypertarget{gpio_8h_aa650f3d2177e95846ae069e2b6c9206a}{}\label{gpio_8h_aa650f3d2177e95846ae069e2b6c9206a}
+
+\begin{DoxyCompactList}\small\item\em true if gpio\+\_\+init has been called with success \end{DoxyCompactList}\item 
+int \hyperlink{gpio_8h_afd806966a7c76c92a6acf1771741ef57}{gpio\+\_\+set\+Function} (int bcm\+Port, int function)
+\begin{DoxyCompactList}\small\item\em Sets the function of the specified port. \end{DoxyCompactList}\item 
+int \hyperlink{gpio_8h_a745e6eaf68b5b47f620d1e9e9563963c}{gpio\+\_\+set\+Output} (int bcm\+Port, int value)
+\begin{DoxyCompactList}\small\item\em Sets the output at the specified port. The port will output this value if set to the output function. If you use this function with the port not set to output then the port will remember the value until you set it to the output function. \end{DoxyCompactList}\item 
+int \hyperlink{gpio_8h_a0b575037203e6c08902385caaf12010d}{gpio\+\_\+set\+Output\+All} (uint64\+\_\+t set, uint64\+\_\+t clear)
+\begin{DoxyCompactList}\small\item\em sets all the specified gpios to the specified values \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Interface to the G\+P\+IO peripheral. 
+
+This peripheral is able to set the function of each G\+P\+IO port and it\textquotesingle{}s output status.~\newline
+See documentation at \char`\"{}\+B\+C\+M2835 A\+R\+M peripherals\char`\"{} page 89 
+
+\subsection{Function Documentation}
+\index{gpio.\+h@{gpio.\+h}!gpio\+\_\+init@{gpio\+\_\+init}}
+\index{gpio\+\_\+init@{gpio\+\_\+init}!gpio.\+h@{gpio.\+h}}
+\subsubsection[{\texorpdfstring{gpio\+\_\+init()}{gpio_init()}}]{\setlength{\rightskip}{0pt plus 5cm}int gpio\+\_\+init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{gpio_8h_a71cdc8883c43e8ae777fb2b101d52fa1}{}\label{gpio_8h_a71cdc8883c43e8ae777fb2b101d52fa1}
+
+
+Initializes the interface, to be called before any other function in this file. 
+
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{gpio.\+h@{gpio.\+h}!gpio\+\_\+set\+Function@{gpio\+\_\+set\+Function}}
+\index{gpio\+\_\+set\+Function@{gpio\+\_\+set\+Function}!gpio.\+h@{gpio.\+h}}
+\subsubsection[{\texorpdfstring{gpio\+\_\+set\+Function(int bcm\+Port, int function)}{gpio_setFunction(int bcmPort, int function)}}]{\setlength{\rightskip}{0pt plus 5cm}int gpio\+\_\+set\+Function (
+\begin{DoxyParamCaption}
+\item[{int}]{bcm\+Port, }
+\item[{int}]{function}
+\end{DoxyParamCaption}
+)}\hypertarget{gpio_8h_afd806966a7c76c92a6acf1771741ef57}{}\label{gpio_8h_afd806966a7c76c92a6acf1771741ef57}
+
+
+Sets the function of the specified port. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bcm\+Port} & The port bcm number \\
+\hline
+{\em function} & The desired function (P\+O\+R\+T\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+P\+UT, P\+O\+R\+T\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+O\+U\+T\+P\+UT, P\+O\+R\+T\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+A\+L\+T\+\_\+x)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{gpio.\+h@{gpio.\+h}!gpio\+\_\+set\+Output@{gpio\+\_\+set\+Output}}
+\index{gpio\+\_\+set\+Output@{gpio\+\_\+set\+Output}!gpio.\+h@{gpio.\+h}}
+\subsubsection[{\texorpdfstring{gpio\+\_\+set\+Output(int bcm\+Port, int value)}{gpio_setOutput(int bcmPort, int value)}}]{\setlength{\rightskip}{0pt plus 5cm}int gpio\+\_\+set\+Output (
+\begin{DoxyParamCaption}
+\item[{int}]{bcm\+Port, }
+\item[{int}]{value}
+\end{DoxyParamCaption}
+)}\hypertarget{gpio_8h_a745e6eaf68b5b47f620d1e9e9563963c}{}\label{gpio_8h_a745e6eaf68b5b47f620d1e9e9563963c}
+
+
+Sets the output at the specified port. The port will output this value if set to the output function. If you use this function with the port not set to output then the port will remember the value until you set it to the output function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bcm\+Port} & The port bcm number \\
+\hline
+{\em value} & 0 means low, any other number means high\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{gpio.\+h@{gpio.\+h}!gpio\+\_\+set\+Output\+All@{gpio\+\_\+set\+Output\+All}}
+\index{gpio\+\_\+set\+Output\+All@{gpio\+\_\+set\+Output\+All}!gpio.\+h@{gpio.\+h}}
+\subsubsection[{\texorpdfstring{gpio\+\_\+set\+Output\+All(uint64\+\_\+t set, uint64\+\_\+t clear)}{gpio_setOutputAll(uint64_t set, uint64_t clear)}}]{\setlength{\rightskip}{0pt plus 5cm}int gpio\+\_\+set\+Output\+All (
+\begin{DoxyParamCaption}
+\item[{uint64\+\_\+t}]{set, }
+\item[{uint64\+\_\+t}]{clear}
+\end{DoxyParamCaption}
+)}\hypertarget{gpio_8h_a0b575037203e6c08902385caaf12010d}{}\label{gpio_8h_a0b575037203e6c08902385caaf12010d}
+
+
+sets all the specified gpios to the specified values 
+
+
+\begin{DoxyParams}{Parameters}
+{\em set} & The gpios to set to 1 \\
+\hline
+{\em clear} & The values to set to 0\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}

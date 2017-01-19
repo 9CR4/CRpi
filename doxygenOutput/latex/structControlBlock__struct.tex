@@ -1,0 +1,46 @@
+\hypertarget{structControlBlock__struct}{}\section{Control\+Block\+\_\+struct Struct Reference}
+\label{structControlBlock__struct}\index{Control\+Block\+\_\+struct@{Control\+Block\+\_\+struct}}
+
+
+Describes a control block, contorl blocks are needed to load the registers of the D\+MA engine and start a transfer.  
+
+
+
+
+{\ttfamily \#include $<$dma.\+h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \hyperlink{structControlBlock__struct_ab8ff6b85cb102ef270411fed5080a161}{transfer\+Info}\hypertarget{structControlBlock__struct_ab8ff6b85cb102ef270411fed5080a161}{}\label{structControlBlock__struct_ab8ff6b85cb102ef270411fed5080a161}
+
+\begin{DoxyCompactList}\small\item\em The tranfer info register\+: fill using the T\+I\+\_\+$\ast$ macros. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{structControlBlock__struct_a4086d1e8c9c670cbe655edaca7873082}{src\+Addr\+Phys}\hypertarget{structControlBlock__struct_a4086d1e8c9c670cbe655edaca7873082}{}\label{structControlBlock__struct_a4086d1e8c9c670cbe655edaca7873082}
+
+\begin{DoxyCompactList}\small\item\em The physical source address. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{structControlBlock__struct_aa24e1afa56f4f0fbc4aac9e8919eef5a}{dst\+Addr\+Phys}\hypertarget{structControlBlock__struct_aa24e1afa56f4f0fbc4aac9e8919eef5a}{}\label{structControlBlock__struct_aa24e1afa56f4f0fbc4aac9e8919eef5a}
+
+\begin{DoxyCompactList}\small\item\em The physical destination address. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{structControlBlock__struct_ab63d26648bdb996d136f2e25bd383a76}{transfer\+Length}\hypertarget{structControlBlock__struct_ab63d26648bdb996d136f2e25bd383a76}{}\label{structControlBlock__struct_ab63d26648bdb996d136f2e25bd383a76}
+
+\begin{DoxyCompactList}\small\item\em The transfer length register, fill using the T\+L\+\_\+$\ast$ macros. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{structControlBlock__struct_ad39585a7dc99fd43c6084fa02c42a575}{\+\_\+2\+D\+Stride\+Mode}\hypertarget{structControlBlock__struct_ad39585a7dc99fd43c6084fa02c42a575}{}\label{structControlBlock__struct_ad39585a7dc99fd43c6084fa02c42a575}
+
+\begin{DoxyCompactList}\small\item\em The 2\+D\+Stride register, fill using the R\+E\+G\+\_\+2\+D\+\_\+$\ast$ macros. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{structControlBlock__struct_ab333b143b88ca4fd4570671cc5bf8688}{next\+Control\+Block\+Addr\+Phys}\hypertarget{structControlBlock__struct_ab333b143b88ca4fd4570671cc5bf8688}{}\label{structControlBlock__struct_ab333b143b88ca4fd4570671cc5bf8688}
+
+\begin{DoxyCompactList}\small\item\em The physical address of the next control block, 0 if there isn\textquotesingle{}t a next control block. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{structControlBlock__struct_a787cf262b46cd017a01e718f3c278f82}{zero1}\hypertarget{structControlBlock__struct_a787cf262b46cd017a01e718f3c278f82}{}\label{structControlBlock__struct_a787cf262b46cd017a01e718f3c278f82}
+
+\begin{DoxyCompactList}\small\item\em This must be zero. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{structControlBlock__struct_a84856e5370201ce8b29e199eb34c6baf}{zero2}\hypertarget{structControlBlock__struct_a84856e5370201ce8b29e199eb34c6baf}{}\label{structControlBlock__struct_a84856e5370201ce8b29e199eb34c6baf}
+
+\begin{DoxyCompactList}\small\item\em This must be zero. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Describes a control block, contorl blocks are needed to load the registers of the D\+MA engine and start a transfer. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/peripherals/\hyperlink{dma_8h}{dma.\+h}\end{DoxyCompactItemize}

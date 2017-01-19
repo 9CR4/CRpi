@@ -1,0 +1,145 @@
+\hypertarget{demo_8c}{}\section{src/demo/demo.c File Reference}
+\label{demo_8c}\index{src/demo/demo.\+c@{src/demo/demo.\+c}}
+
+
+This files provides some demo/test functions.  
+
+
+{\ttfamily \#include $<$coding\+Utils/utils.\+h$>$}\\*
+{\ttfamily \#include $<$coding\+Utils/error\+Management.\+h$>$}\\*
+{\ttfamily \#include $<$peripherals/gpio.\+h$>$}\\*
+{\ttfamily \#include $<$peripherals/dma.\+h$>$}\\*
+{\ttfamily \#include $<$peripherals/pwm.\+h$>$}\\*
+{\ttfamily \#include $<$peripherals/clock\+Manager.\+h$>$}\\*
+{\ttfamily \#include $<$memory\+Management/addressing.\+h$>$}\\*
+{\ttfamily \#include $<$memory\+Management/cache\+Coherent\+Memory\+Provider.\+h$>$}\\*
+{\ttfamily \#include $<$utils/pwm\+By\+Dma.\+h$>$}\\*
+{\ttfamily \#include $<$unistd.\+h$>$}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$stdint.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$sys/mman.\+h$>$}\\*
+{\ttfamily \#include $<$time.\+h$>$}\\*
+{\ttfamily \#include $<$signal.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}../lib/peripherals/gpio\+\_\+internal.\+h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{demo_8c_a13fe91d4b4dcef3a17ebffe90a369f74}{dma\+To\+Gpio\+Test} ()
+\item 
+int \hyperlink{demo_8c_ae5991106ccba656e4803ac461a527cc4}{dma\+To\+Gpio\+Paced\+Test} ()
+\item 
+int \hyperlink{demo_8c_a9c35296cd8b106ba1a5a3feb12ea3e35}{dma\+Test} ()
+\item 
+int \hyperlink{demo_8c_a7e79a462369bd146e82c5a6ca86febc2}{gpio\+Test} ()
+\item 
+int \hyperlink{demo_8c_ac885a0029b8071860ade47ebea5133ae}{pwm\+Test} ()
+\item 
+int \hyperlink{demo_8c_a90e4064cdd3ede718ea2230cbdbb90bc}{pwm\+Serializer\+Test} ()
+\item 
+int \hyperlink{demo_8c_a7b20ed605e2ce381aa95a972337e3f44}{simple\+Pulse\+Test} ()
+\item 
+int \hyperlink{demo_8c_ac6b2a77d3febbbd07c665a97eb9b5d0d}{pwm\+By\+Dma\+Test} (unsigned int p)
+\item 
+int \hyperlink{demo_8c_a5624b7b8eaca0606a13eb194b00653c5}{pwm\+By\+Dma\+Test\+Servo} ()
+\item 
+int \hyperlink{demo_8c_a07749342ede511c919d44141cdfd3d55}{pwm\+By\+Dma\+Test\+Servo\+And\+Motor} ()
+\item 
+int \hyperlink{demo_8c_ac851f13245e516bdadc00687aa652418}{demo1} ()\hypertarget{demo_8c_ac851f13245e516bdadc00687aa652418}{}\label{demo_8c_ac851f13245e516bdadc00687aa652418}
+
+\begin{DoxyCompactList}\small\item\em Similar to pwm\+By\+Dma\+Test\+Servo\+And\+Motor but wit a predefined sequence of commands. \end{DoxyCompactList}\item 
+int \hyperlink{demo_8c_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{demo_8c_aec9e8d550f26e29ff4ec539683f0c816}{rnd\+Intitialized} = 0\hypertarget{demo_8c_aec9e8d550f26e29ff4ec539683f0c816}{}\label{demo_8c_aec9e8d550f26e29ff4ec539683f0c816}
+
+\begin{DoxyCompactList}\small\item\em This variable is used to signal that the seed for the random number generator has been set. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This files provides some demo/test functions. 
+
+
+
+\subsection{Function Documentation}
+\index{demo.\+c@{demo.\+c}!dma\+Test@{dma\+Test}}
+\index{dma\+Test@{dma\+Test}!demo.\+c@{demo.\+c}}
+\subsubsection[{\texorpdfstring{dma\+Test()}{dmaTest()}}]{\setlength{\rightskip}{0pt plus 5cm}int dma\+Test (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{demo_8c_a9c35296cd8b106ba1a5a3feb12ea3e35}{}\label{demo_8c_a9c35296cd8b106ba1a5a3feb12ea3e35}
+This test uses te dma to copy a memory region \index{demo.\+c@{demo.\+c}!dma\+To\+Gpio\+Paced\+Test@{dma\+To\+Gpio\+Paced\+Test}}
+\index{dma\+To\+Gpio\+Paced\+Test@{dma\+To\+Gpio\+Paced\+Test}!demo.\+c@{demo.\+c}}
+\subsubsection[{\texorpdfstring{dma\+To\+Gpio\+Paced\+Test()}{dmaToGpioPacedTest()}}]{\setlength{\rightskip}{0pt plus 5cm}int dma\+To\+Gpio\+Paced\+Test (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{demo_8c_ae5991106ccba656e4803ac461a527cc4}{}\label{demo_8c_ae5991106ccba656e4803ac461a527cc4}
+This test turns a gpio output on and off using the dma and delays it\textquotesingle{}s effect using the dreq signal from the pwm \index{demo.\+c@{demo.\+c}!dma\+To\+Gpio\+Test@{dma\+To\+Gpio\+Test}}
+\index{dma\+To\+Gpio\+Test@{dma\+To\+Gpio\+Test}!demo.\+c@{demo.\+c}}
+\subsubsection[{\texorpdfstring{dma\+To\+Gpio\+Test()}{dmaToGpioTest()}}]{\setlength{\rightskip}{0pt plus 5cm}int dma\+To\+Gpio\+Test (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{demo_8c_a13fe91d4b4dcef3a17ebffe90a369f74}{}\label{demo_8c_a13fe91d4b4dcef3a17ebffe90a369f74}
+This test tunrs on and off gpio port bcm9 output using the dma \index{demo.\+c@{demo.\+c}!gpio\+Test@{gpio\+Test}}
+\index{gpio\+Test@{gpio\+Test}!demo.\+c@{demo.\+c}}
+\subsubsection[{\texorpdfstring{gpio\+Test()}{gpioTest()}}]{\setlength{\rightskip}{0pt plus 5cm}int gpio\+Test (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{demo_8c_a7e79a462369bd146e82c5a6ca86febc2}{}\label{demo_8c_a7e79a462369bd146e82c5a6ca86febc2}
+This test turns the gpio port 9 on and the disables it \index{demo.\+c@{demo.\+c}!main@{main}}
+\index{main@{main}!demo.\+c@{demo.\+c}}
+\subsubsection[{\texorpdfstring{main(int argc, char $\ast$argv[])}{main(int argc, char *argv[])}}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}\hypertarget{demo_8c_a0ddf1224851353fc92bfbff6f499fa97}{}\label{demo_8c_a0ddf1224851353fc92bfbff6f499fa97}
+the starting point for the demos \index{demo.\+c@{demo.\+c}!pwm\+By\+Dma\+Test@{pwm\+By\+Dma\+Test}}
+\index{pwm\+By\+Dma\+Test@{pwm\+By\+Dma\+Test}!demo.\+c@{demo.\+c}}
+\subsubsection[{\texorpdfstring{pwm\+By\+Dma\+Test(unsigned int p)}{pwmByDmaTest(unsigned int p)}}]{\setlength{\rightskip}{0pt plus 5cm}int pwm\+By\+Dma\+Test (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{p}
+\end{DoxyParamCaption}
+)}\hypertarget{demo_8c_ac6b2a77d3febbbd07c665a97eb9b5d0d}{}\label{demo_8c_ac6b2a77d3febbbd07c665a97eb9b5d0d}
+This function outputs a pwm signal with the requested precision and duty cycle 10\%, genereted with the D\+MA \index{demo.\+c@{demo.\+c}!pwm\+By\+Dma\+Test\+Servo@{pwm\+By\+Dma\+Test\+Servo}}
+\index{pwm\+By\+Dma\+Test\+Servo@{pwm\+By\+Dma\+Test\+Servo}!demo.\+c@{demo.\+c}}
+\subsubsection[{\texorpdfstring{pwm\+By\+Dma\+Test\+Servo()}{pwmByDmaTestServo()}}]{\setlength{\rightskip}{0pt plus 5cm}int pwm\+By\+Dma\+Test\+Servo (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{demo_8c_a5624b7b8eaca0606a13eb194b00653c5}{}\label{demo_8c_a5624b7b8eaca0606a13eb194b00653c5}
+This test controls a servomotor on port bcm26 using a pwm signal generated with the D\+MA \index{demo.\+c@{demo.\+c}!pwm\+By\+Dma\+Test\+Servo\+And\+Motor@{pwm\+By\+Dma\+Test\+Servo\+And\+Motor}}
+\index{pwm\+By\+Dma\+Test\+Servo\+And\+Motor@{pwm\+By\+Dma\+Test\+Servo\+And\+Motor}!demo.\+c@{demo.\+c}}
+\subsubsection[{\texorpdfstring{pwm\+By\+Dma\+Test\+Servo\+And\+Motor()}{pwmByDmaTestServoAndMotor()}}]{\setlength{\rightskip}{0pt plus 5cm}int pwm\+By\+Dma\+Test\+Servo\+And\+Motor (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{demo_8c_a07749342ede511c919d44141cdfd3d55}{}\label{demo_8c_a07749342ede511c919d44141cdfd3d55}
+This test controls a servomotor and a motor (in both directions). This can control an rc car, not very comfortably but it can. \index{demo.\+c@{demo.\+c}!pwm\+Serializer\+Test@{pwm\+Serializer\+Test}}
+\index{pwm\+Serializer\+Test@{pwm\+Serializer\+Test}!demo.\+c@{demo.\+c}}
+\subsubsection[{\texorpdfstring{pwm\+Serializer\+Test()}{pwmSerializerTest()}}]{\setlength{\rightskip}{0pt plus 5cm}int pwm\+Serializer\+Test (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{demo_8c_a90e4064cdd3ede718ea2230cbdbb90bc}{}\label{demo_8c_a90e4064cdd3ede718ea2230cbdbb90bc}
+This test outputs the 32 bit word 0x53 from port bcm18 serially at 37,5\+K\+Hz \index{demo.\+c@{demo.\+c}!pwm\+Test@{pwm\+Test}}
+\index{pwm\+Test@{pwm\+Test}!demo.\+c@{demo.\+c}}
+\subsubsection[{\texorpdfstring{pwm\+Test()}{pwmTest()}}]{\setlength{\rightskip}{0pt plus 5cm}int pwm\+Test (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{demo_8c_ac885a0029b8071860ade47ebea5133ae}{}\label{demo_8c_ac885a0029b8071860ade47ebea5133ae}
+This test outputs a P\+WM signal at 4688\+Hz from pin 18 \index{demo.\+c@{demo.\+c}!simple\+Pulse\+Test@{simple\+Pulse\+Test}}
+\index{simple\+Pulse\+Test@{simple\+Pulse\+Test}!demo.\+c@{demo.\+c}}
+\subsubsection[{\texorpdfstring{simple\+Pulse\+Test()}{simplePulseTest()}}]{\setlength{\rightskip}{0pt plus 5cm}int simple\+Pulse\+Test (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{demo_8c_a7b20ed605e2ce381aa95a972337e3f44}{}\label{demo_8c_a7b20ed605e2ce381aa95a972337e3f44}
+This test outputs a pulse of around 1 millisecond from port 18 

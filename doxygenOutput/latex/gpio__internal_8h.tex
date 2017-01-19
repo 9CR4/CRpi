@@ -1,0 +1,260 @@
+\hypertarget{gpio__internal_8h}{}\section{src/lib/peripherals/gpio\+\_\+internal.h File Reference}
+\label{gpio__internal_8h}\index{src/lib/peripherals/gpio\+\_\+internal.\+h@{src/lib/peripherals/gpio\+\_\+internal.\+h}}
+
+
+Helper macros for the gpio peripheral. Used internally by the library.  
+
+
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{gpio__internal_8h_a1eec879d7dba3961e231918564a4b160}{G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}~(\hyperlink{addressing_8h_a245eee72d3b42da5ce640ea1be193edb}{peripherals\+Base\+Address\+Phys}+0x200000)\hypertarget{gpio__internal_8h_a1eec879d7dba3961e231918564a4b160}{}\label{gpio__internal_8h_a1eec879d7dba3961e231918564a4b160}
+
+\begin{DoxyCompactList}\small\item\em Physical base address of the gpio peripheral. \end{DoxyCompactList}\item 
+\#define \hyperlink{gpio__internal_8h_a39e6e43598172a9a1eea12071f77d463}{G\+P\+I\+O\+\_\+\+A\+R\+E\+A\+\_\+\+L\+EN}~0x\+C0\hypertarget{gpio__internal_8h_a39e6e43598172a9a1eea12071f77d463}{}\label{gpio__internal_8h_a39e6e43598172a9a1eea12071f77d463}
+
+\begin{DoxyCompactList}\small\item\em Size in bytes of the memory area dedicated to the gpio peripheral. \end{DoxyCompactList}\item 
+\#define \hyperlink{gpio__internal_8h_aeeeea5d94c444a277670a11108b683ea}{G\+P\+F\+S\+E\+L\+\_\+\+O\+FF}~0\hypertarget{gpio__internal_8h_aeeeea5d94c444a277670a11108b683ea}{}\label{gpio__internal_8h_aeeeea5d94c444a277670a11108b683ea}
+
+\begin{DoxyCompactList}\small\item\em Offset of the function select registers. \end{DoxyCompactList}\item 
+\#define \hyperlink{gpio__internal_8h_a5b770eb8baa5f1b6c36616ce3119b63e}{G\+P\+F\+S\+E\+L\+\_\+\+L\+EN}~4\hypertarget{gpio__internal_8h_a5b770eb8baa5f1b6c36616ce3119b63e}{}\label{gpio__internal_8h_a5b770eb8baa5f1b6c36616ce3119b63e}
+
+\begin{DoxyCompactList}\small\item\em Size in bytes of a function select register. \end{DoxyCompactList}\item 
+\#define \hyperlink{gpio__internal_8h_a1297b77a97fbd7a8c95234c90e4d9eca}{G\+P\+F\+S\+E\+Lx\+\_\+\+O\+FF}(n)~(\hyperlink{gpio__internal_8h_aeeeea5d94c444a277670a11108b683ea}{G\+P\+F\+S\+E\+L\+\_\+\+O\+FF}+\hyperlink{gpio__internal_8h_a5b770eb8baa5f1b6c36616ce3119b63e}{G\+P\+F\+S\+E\+L\+\_\+\+L\+EN}$\ast$n)\hypertarget{gpio__internal_8h_a1297b77a97fbd7a8c95234c90e4d9eca}{}\label{gpio__internal_8h_a1297b77a97fbd7a8c95234c90e4d9eca}
+
+\begin{DoxyCompactList}\small\item\em Offset of the specified function select register. \end{DoxyCompactList}\end{DoxyCompactItemize}
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{gpio__internal_8h_add3ef8e5fe837f9825b698893af1045d}{G\+P\+S\+E\+T0\+\_\+\+O\+FF}~0x1c\hypertarget{gpio__internal_8h_add3ef8e5fe837f9825b698893af1045d}{}\label{gpio__internal_8h_add3ef8e5fe837f9825b698893af1045d}
+
+\begin{DoxyCompactList}\small\item\em Set register 0 (ports 0-\/31)\+: setting a bit to 1 sets the corresponding port to high. \end{DoxyCompactList}\item 
+\#define \hyperlink{gpio__internal_8h_ae3289db576b9a82e9a84851d5575bbad}{G\+P\+S\+E\+T0\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}~(\hyperlink{gpio__internal_8h_a1eec879d7dba3961e231918564a4b160}{G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}+\hyperlink{gpio__internal_8h_add3ef8e5fe837f9825b698893af1045d}{G\+P\+S\+E\+T0\+\_\+\+O\+FF})\hypertarget{gpio__internal_8h_ae3289db576b9a82e9a84851d5575bbad}{}\label{gpio__internal_8h_ae3289db576b9a82e9a84851d5575bbad}
+
+\begin{DoxyCompactList}\small\item\em Set register 0 (ports 0-\/31)\+: setting a bit to 1 sets the corresponding port to high. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{gpio__internal_8h_aab9d2f6a44a3ee3e50b22141b45b7afd}{G\+P\+S\+E\+T1\+\_\+\+O\+FF}~0x20\hypertarget{gpio__internal_8h_aab9d2f6a44a3ee3e50b22141b45b7afd}{}\label{gpio__internal_8h_aab9d2f6a44a3ee3e50b22141b45b7afd}
+
+\begin{DoxyCompactList}\small\item\em Set register 0 (ports 32-\/53)\+: setting a bit to 1 sets the corresponding port to high. \end{DoxyCompactList}\item 
+\#define \hyperlink{gpio__internal_8h_a4544b8c8f7321d1701263db7da43739d}{G\+P\+S\+E\+T1\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}~(\hyperlink{gpio__internal_8h_a1eec879d7dba3961e231918564a4b160}{G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}+\hyperlink{gpio__internal_8h_aab9d2f6a44a3ee3e50b22141b45b7afd}{G\+P\+S\+E\+T1\+\_\+\+O\+FF})\hypertarget{gpio__internal_8h_a4544b8c8f7321d1701263db7da43739d}{}\label{gpio__internal_8h_a4544b8c8f7321d1701263db7da43739d}
+
+\begin{DoxyCompactList}\small\item\em Set register 0 (ports 32-\/53)\+: setting a bit to 1 sets the corresponding port to high. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{gpio__internal_8h_a0d5e0b17cbf445b7bb29071ea5735b99}{G\+P\+C\+L\+E\+A\+R0\+\_\+\+O\+FF}~0x28\hypertarget{gpio__internal_8h_a0d5e0b17cbf445b7bb29071ea5735b99}{}\label{gpio__internal_8h_a0d5e0b17cbf445b7bb29071ea5735b99}
+
+\begin{DoxyCompactList}\small\item\em Clear register 0 (ports 0-\/31)\+: setting a bit to 1 sets the corresponding port to low. \end{DoxyCompactList}\item 
+\#define \hyperlink{gpio__internal_8h_aa318d0ce67f70da4d121dfb7d1b110e4}{G\+P\+C\+L\+E\+A\+R0\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}~(\hyperlink{gpio__internal_8h_a1eec879d7dba3961e231918564a4b160}{G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}+\hyperlink{gpio__internal_8h_a0d5e0b17cbf445b7bb29071ea5735b99}{G\+P\+C\+L\+E\+A\+R0\+\_\+\+O\+FF})\hypertarget{gpio__internal_8h_aa318d0ce67f70da4d121dfb7d1b110e4}{}\label{gpio__internal_8h_aa318d0ce67f70da4d121dfb7d1b110e4}
+
+\begin{DoxyCompactList}\small\item\em Clear register 0 (ports 0-\/31)\+: setting a bit to 1 sets the corresponding port to low. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{gpio__internal_8h_ac2fcfaef1a80637b35c3cb056c19579d}{G\+P\+C\+L\+E\+A\+R1\+\_\+\+O\+FF}~0x2C\hypertarget{gpio__internal_8h_ac2fcfaef1a80637b35c3cb056c19579d}{}\label{gpio__internal_8h_ac2fcfaef1a80637b35c3cb056c19579d}
+
+\begin{DoxyCompactList}\small\item\em Clear register 0 (ports 32-\/53)\+: setting a bit to 1 sets the corresponding port to low. \end{DoxyCompactList}\item 
+\#define \hyperlink{gpio__internal_8h_a4fa529f9fa83401e11d303bb88bbe2b9}{G\+P\+C\+L\+E\+A\+R1\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}~(\hyperlink{gpio__internal_8h_a1eec879d7dba3961e231918564a4b160}{G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}+\hyperlink{gpio__internal_8h_ac2fcfaef1a80637b35c3cb056c19579d}{G\+P\+C\+L\+E\+A\+R1\+\_\+\+O\+FF})\hypertarget{gpio__internal_8h_a4fa529f9fa83401e11d303bb88bbe2b9}{}\label{gpio__internal_8h_a4fa529f9fa83401e11d303bb88bbe2b9}
+
+\begin{DoxyCompactList}\small\item\em Clear register 0 (ports 32-\/53)\+: setting a bit to 1 sets the corresponding port to low. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{gpio__internal_8h_a007579e9c2d6f22482da9a69e01428c8}{G\+P\+L\+E\+V0\+\_\+\+O\+FF}~0x34\hypertarget{gpio__internal_8h_a007579e9c2d6f22482da9a69e01428c8}{}\label{gpio__internal_8h_a007579e9c2d6f22482da9a69e01428c8}
+
+\begin{DoxyCompactList}\small\item\em Level Register 0 (ports 0-\/31)\+: each bit reflects the high/low status of the corresponding port in input mode. \end{DoxyCompactList}\item 
+\#define \hyperlink{gpio__internal_8h_afe1af7a1fc8f7d09f9146ed784dc07bf}{G\+P\+L\+E\+V0\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}~(\hyperlink{gpio__internal_8h_a1eec879d7dba3961e231918564a4b160}{G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}+\hyperlink{gpio__internal_8h_a007579e9c2d6f22482da9a69e01428c8}{G\+P\+L\+E\+V0\+\_\+\+O\+FF})\hypertarget{gpio__internal_8h_afe1af7a1fc8f7d09f9146ed784dc07bf}{}\label{gpio__internal_8h_afe1af7a1fc8f7d09f9146ed784dc07bf}
+
+\begin{DoxyCompactList}\small\item\em Level Register 0 (ports 0-\/31)\+: each bit reflects the high/low status of the corresponding port in input mode. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{gpio__internal_8h_a4ad703c249edff585c1dea94e677d77e}{G\+P\+L\+E\+V1\+\_\+\+O\+FF}~0x38\hypertarget{gpio__internal_8h_a4ad703c249edff585c1dea94e677d77e}{}\label{gpio__internal_8h_a4ad703c249edff585c1dea94e677d77e}
+
+\begin{DoxyCompactList}\small\item\em Level Register 1 (ports 32-\/53)\+: each bit reflects the high/low status of the corresponding port in input mode. \end{DoxyCompactList}\item 
+\#define \hyperlink{gpio__internal_8h_ac3ea57608fc0ea4a3c20494d6a65cf12}{G\+P\+L\+E\+V1\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}~(\hyperlink{gpio__internal_8h_a1eec879d7dba3961e231918564a4b160}{G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}+\hyperlink{gpio__internal_8h_a4ad703c249edff585c1dea94e677d77e}{G\+P\+L\+E\+V1\+\_\+\+O\+FF})\hypertarget{gpio__internal_8h_ac3ea57608fc0ea4a3c20494d6a65cf12}{}\label{gpio__internal_8h_ac3ea57608fc0ea4a3c20494d6a65cf12}
+
+\begin{DoxyCompactList}\small\item\em Level Register 1 (ports 32-\/53)\+: each bit reflects the high/low status of the corresponding port in input mode. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{gpio__internal_8h_af3fae1d9c38f56d82a6927b2ec3cd62c}{G\+P\+E\+D\+S0\+\_\+\+O\+FF}~0x40\hypertarget{gpio__internal_8h_af3fae1d9c38f56d82a6927b2ec3cd62c}{}\label{gpio__internal_8h_af3fae1d9c38f56d82a6927b2ec3cd62c}
+
+\begin{DoxyCompactList}\small\item\em Event detect status register 0 (ports 0-\/31)\+: each bit says if an event has been detectd on the corresponding port. \end{DoxyCompactList}\item 
+\#define \hyperlink{gpio__internal_8h_aac730894c9e66741568c931f69e79972}{G\+P\+E\+D\+S0\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}~(\hyperlink{gpio__internal_8h_a1eec879d7dba3961e231918564a4b160}{G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}+\hyperlink{gpio__internal_8h_af3fae1d9c38f56d82a6927b2ec3cd62c}{G\+P\+E\+D\+S0\+\_\+\+O\+FF})\hypertarget{gpio__internal_8h_aac730894c9e66741568c931f69e79972}{}\label{gpio__internal_8h_aac730894c9e66741568c931f69e79972}
+
+\begin{DoxyCompactList}\small\item\em Event detect status register 0 (ports 0-\/31)\+: each bit says if an event has been detectd on the corresponding port. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{gpio__internal_8h_ac1f7e03a20eb90122eccafb9f47c7787}{G\+P\+E\+D\+S1\+\_\+\+O\+FF}~0x44\hypertarget{gpio__internal_8h_ac1f7e03a20eb90122eccafb9f47c7787}{}\label{gpio__internal_8h_ac1f7e03a20eb90122eccafb9f47c7787}
+
+\begin{DoxyCompactList}\small\item\em Event detect status register 1 (ports 32-\/53)\+: each bit says if an event has been detectd on the corresponding port. \end{DoxyCompactList}\item 
+\#define \hyperlink{gpio__internal_8h_a610634041258aa3fed4d3284999ccf55}{G\+P\+E\+D\+S1\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}~(\hyperlink{gpio__internal_8h_a1eec879d7dba3961e231918564a4b160}{G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}+\hyperlink{gpio__internal_8h_ac1f7e03a20eb90122eccafb9f47c7787}{G\+P\+E\+D\+S1\+\_\+\+O\+FF})\hypertarget{gpio__internal_8h_a610634041258aa3fed4d3284999ccf55}{}\label{gpio__internal_8h_a610634041258aa3fed4d3284999ccf55}
+
+\begin{DoxyCompactList}\small\item\em Event detect status register 1 (ports 32-\/53)\+: each bit says if an event has been detectd on the corresponding port. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{gpio__internal_8h_ac2bb4bb7b89a89c25768aae3d4eb7cdf}{G\+P\+R\+E\+N0\+\_\+\+O\+FF}~0x4C\hypertarget{gpio__internal_8h_ac2bb4bb7b89a89c25768aae3d4eb7cdf}{}\label{gpio__internal_8h_ac2bb4bb7b89a89c25768aae3d4eb7cdf}
+
+\begin{DoxyCompactList}\small\item\em pin rising edge detect enable registers (ports 0-\/31) \end{DoxyCompactList}\item 
+\#define \hyperlink{gpio__internal_8h_a03c0e8f0e064e6a9aa5f12b00f2086fa}{G\+P\+R\+E\+N0\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}~(\hyperlink{gpio__internal_8h_a1eec879d7dba3961e231918564a4b160}{G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}+\hyperlink{gpio__internal_8h_ac2bb4bb7b89a89c25768aae3d4eb7cdf}{G\+P\+R\+E\+N0\+\_\+\+O\+FF})\hypertarget{gpio__internal_8h_a03c0e8f0e064e6a9aa5f12b00f2086fa}{}\label{gpio__internal_8h_a03c0e8f0e064e6a9aa5f12b00f2086fa}
+
+\begin{DoxyCompactList}\small\item\em pin rising edge detect enable registers (ports 0-\/31) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{gpio__internal_8h_a75087ec23d9f6fd3c0ba5e386a5569bb}{G\+P\+R\+E\+N1\+\_\+\+O\+FF}~0x50\hypertarget{gpio__internal_8h_a75087ec23d9f6fd3c0ba5e386a5569bb}{}\label{gpio__internal_8h_a75087ec23d9f6fd3c0ba5e386a5569bb}
+
+\begin{DoxyCompactList}\small\item\em pin rising edge detect enable registers (ports 32-\/53) \end{DoxyCompactList}\item 
+\#define \hyperlink{gpio__internal_8h_ab620b0344b6c724f072318efe8e78769}{G\+P\+R\+E\+N1\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}~(\hyperlink{gpio__internal_8h_a1eec879d7dba3961e231918564a4b160}{G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}+\hyperlink{gpio__internal_8h_a75087ec23d9f6fd3c0ba5e386a5569bb}{G\+P\+R\+E\+N1\+\_\+\+O\+FF})\hypertarget{gpio__internal_8h_ab620b0344b6c724f072318efe8e78769}{}\label{gpio__internal_8h_ab620b0344b6c724f072318efe8e78769}
+
+\begin{DoxyCompactList}\small\item\em pin rising edge detect enable registers (ports 32-\/53) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{gpio__internal_8h_aa431fc03de203ba101f38a3902b1c46d}{G\+P\+F\+E\+N0\+\_\+\+O\+FF}~0x58\hypertarget{gpio__internal_8h_aa431fc03de203ba101f38a3902b1c46d}{}\label{gpio__internal_8h_aa431fc03de203ba101f38a3902b1c46d}
+
+\begin{DoxyCompactList}\small\item\em pin falling edge detect enable registers (ports 0-\/31) \end{DoxyCompactList}\item 
+\#define \hyperlink{gpio__internal_8h_a0ca7dfeade73ae041ba397b98ea0fcf7}{G\+P\+F\+E\+N0\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}~(\hyperlink{gpio__internal_8h_a1eec879d7dba3961e231918564a4b160}{G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}+\hyperlink{gpio__internal_8h_aa431fc03de203ba101f38a3902b1c46d}{G\+P\+F\+E\+N0\+\_\+\+O\+FF})\hypertarget{gpio__internal_8h_a0ca7dfeade73ae041ba397b98ea0fcf7}{}\label{gpio__internal_8h_a0ca7dfeade73ae041ba397b98ea0fcf7}
+
+\begin{DoxyCompactList}\small\item\em pin falling edge detect enable registers (ports 0-\/31) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{gpio__internal_8h_a0047a35da24a5e8afc64cd43f48ebf09}{G\+P\+F\+E\+N1\+\_\+\+O\+FF}~0x5C\hypertarget{gpio__internal_8h_a0047a35da24a5e8afc64cd43f48ebf09}{}\label{gpio__internal_8h_a0047a35da24a5e8afc64cd43f48ebf09}
+
+\begin{DoxyCompactList}\small\item\em pin falling edge detect enable registers (ports 32-\/53) \end{DoxyCompactList}\item 
+\#define \hyperlink{gpio__internal_8h_a0eb8948a30b9f087a18a85eceafe060a}{G\+P\+F\+E\+N1\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}~(\hyperlink{gpio__internal_8h_a1eec879d7dba3961e231918564a4b160}{G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}+\hyperlink{gpio__internal_8h_a0047a35da24a5e8afc64cd43f48ebf09}{G\+P\+F\+E\+N1\+\_\+\+O\+FF})\hypertarget{gpio__internal_8h_a0eb8948a30b9f087a18a85eceafe060a}{}\label{gpio__internal_8h_a0eb8948a30b9f087a18a85eceafe060a}
+
+\begin{DoxyCompactList}\small\item\em pin falling edge detect enable registers (ports 32-\/53) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{gpio__internal_8h_a6000aba653b31c29ee1984f8d35d2dc2}{G\+P\+H\+E\+N0\+\_\+\+O\+FF}~0x64\hypertarget{gpio__internal_8h_a6000aba653b31c29ee1984f8d35d2dc2}{}\label{gpio__internal_8h_a6000aba653b31c29ee1984f8d35d2dc2}
+
+\begin{DoxyCompactList}\small\item\em pin high detect registers (ports 0-\/31) \end{DoxyCompactList}\item 
+\#define \hyperlink{gpio__internal_8h_a361081dcd1932a04444193da655ed47a}{G\+P\+H\+E\+N0\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}~(\hyperlink{gpio__internal_8h_a1eec879d7dba3961e231918564a4b160}{G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}+\hyperlink{gpio__internal_8h_a6000aba653b31c29ee1984f8d35d2dc2}{G\+P\+H\+E\+N0\+\_\+\+O\+FF})\hypertarget{gpio__internal_8h_a361081dcd1932a04444193da655ed47a}{}\label{gpio__internal_8h_a361081dcd1932a04444193da655ed47a}
+
+\begin{DoxyCompactList}\small\item\em pin high detect registers (ports 0-\/31) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{gpio__internal_8h_a031a6125841d8b6dc086ae2c860fe9be}{G\+P\+H\+E\+N1\+\_\+\+O\+FF}~0x68\hypertarget{gpio__internal_8h_a031a6125841d8b6dc086ae2c860fe9be}{}\label{gpio__internal_8h_a031a6125841d8b6dc086ae2c860fe9be}
+
+\begin{DoxyCompactList}\small\item\em pin high detect registers (ports 32-\/53) \end{DoxyCompactList}\item 
+\#define \hyperlink{gpio__internal_8h_a5f04eb3b27895ff02c6cd195bfb18d20}{G\+P\+H\+E\+N1\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}~(\hyperlink{gpio__internal_8h_a1eec879d7dba3961e231918564a4b160}{G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}+\hyperlink{gpio__internal_8h_a031a6125841d8b6dc086ae2c860fe9be}{G\+P\+H\+E\+N1\+\_\+\+O\+FF})\hypertarget{gpio__internal_8h_a5f04eb3b27895ff02c6cd195bfb18d20}{}\label{gpio__internal_8h_a5f04eb3b27895ff02c6cd195bfb18d20}
+
+\begin{DoxyCompactList}\small\item\em pin high detect registers (ports 32-\/53) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{gpio__internal_8h_a1188605c9bc16f9fd59563e0d2a3c7b9}{G\+P\+L\+E\+N0\+\_\+\+O\+FF}~0x70\hypertarget{gpio__internal_8h_a1188605c9bc16f9fd59563e0d2a3c7b9}{}\label{gpio__internal_8h_a1188605c9bc16f9fd59563e0d2a3c7b9}
+
+\begin{DoxyCompactList}\small\item\em pin low detect registers (ports 0-\/31) \end{DoxyCompactList}\item 
+\#define \hyperlink{gpio__internal_8h_a8dd17cccb574acb281a5140a0ca7300a}{G\+P\+L\+E\+N0\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}~(\hyperlink{gpio__internal_8h_a1eec879d7dba3961e231918564a4b160}{G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}+\hyperlink{gpio__internal_8h_a1188605c9bc16f9fd59563e0d2a3c7b9}{G\+P\+L\+E\+N0\+\_\+\+O\+FF})\hypertarget{gpio__internal_8h_a8dd17cccb574acb281a5140a0ca7300a}{}\label{gpio__internal_8h_a8dd17cccb574acb281a5140a0ca7300a}
+
+\begin{DoxyCompactList}\small\item\em pin low detect registers (ports 0-\/31) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{gpio__internal_8h_aca5cb6075f32c20a533657349ddf4ed6}{G\+P\+L\+E\+N1\+\_\+\+O\+FF}~0x74\hypertarget{gpio__internal_8h_aca5cb6075f32c20a533657349ddf4ed6}{}\label{gpio__internal_8h_aca5cb6075f32c20a533657349ddf4ed6}
+
+\begin{DoxyCompactList}\small\item\em pin low detect registers (ports 32-\/53) \end{DoxyCompactList}\item 
+\#define \hyperlink{gpio__internal_8h_a6811e3edd861279438adbd850b87f0ff}{G\+P\+L\+E\+N1\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}~(\hyperlink{gpio__internal_8h_a1eec879d7dba3961e231918564a4b160}{G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}+\hyperlink{gpio__internal_8h_aca5cb6075f32c20a533657349ddf4ed6}{G\+P\+L\+E\+N1\+\_\+\+O\+FF})\hypertarget{gpio__internal_8h_a6811e3edd861279438adbd850b87f0ff}{}\label{gpio__internal_8h_a6811e3edd861279438adbd850b87f0ff}
+
+\begin{DoxyCompactList}\small\item\em pin low detect registers (ports 32-\/53) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{gpio__internal_8h_a6112e62c0b5aea3c362751720cc7bd4f}{G\+P\+A\+R\+E\+N0\+\_\+\+O\+FF}~0x7C\hypertarget{gpio__internal_8h_a6112e62c0b5aea3c362751720cc7bd4f}{}\label{gpio__internal_8h_a6112e62c0b5aea3c362751720cc7bd4f}
+
+\begin{DoxyCompactList}\small\item\em pin async rising edge detect registers (ports 0-\/31) \end{DoxyCompactList}\item 
+\#define \hyperlink{gpio__internal_8h_a686a393c71e4ca69ad619270c9a5125b}{G\+P\+A\+R\+E\+N0\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}~(\hyperlink{gpio__internal_8h_a1eec879d7dba3961e231918564a4b160}{G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}+\hyperlink{gpio__internal_8h_a6112e62c0b5aea3c362751720cc7bd4f}{G\+P\+A\+R\+E\+N0\+\_\+\+O\+FF})\hypertarget{gpio__internal_8h_a686a393c71e4ca69ad619270c9a5125b}{}\label{gpio__internal_8h_a686a393c71e4ca69ad619270c9a5125b}
+
+\begin{DoxyCompactList}\small\item\em pin async rising edge detect registers (ports 0-\/31) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{gpio__internal_8h_a56858608915a864622e9051739809c96}{G\+P\+A\+R\+E\+N1\+\_\+\+O\+FF}~0x80\hypertarget{gpio__internal_8h_a56858608915a864622e9051739809c96}{}\label{gpio__internal_8h_a56858608915a864622e9051739809c96}
+
+\begin{DoxyCompactList}\small\item\em pin async rising edge detect registers (ports 32-\/53) \end{DoxyCompactList}\item 
+\#define \hyperlink{gpio__internal_8h_a0d7a6e7878c2d5ca8103514ea18a2168}{G\+P\+A\+R\+E\+N1\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}~(\hyperlink{gpio__internal_8h_a1eec879d7dba3961e231918564a4b160}{G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}+\hyperlink{gpio__internal_8h_a56858608915a864622e9051739809c96}{G\+P\+A\+R\+E\+N1\+\_\+\+O\+FF})\hypertarget{gpio__internal_8h_a0d7a6e7878c2d5ca8103514ea18a2168}{}\label{gpio__internal_8h_a0d7a6e7878c2d5ca8103514ea18a2168}
+
+\begin{DoxyCompactList}\small\item\em pin async rising edge detect registers (ports 32-\/53) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{gpio__internal_8h_a848bd7974642861f6fa60f4ed9a01630}{G\+P\+A\+F\+E\+N0\+\_\+\+O\+FF}~0x88\hypertarget{gpio__internal_8h_a848bd7974642861f6fa60f4ed9a01630}{}\label{gpio__internal_8h_a848bd7974642861f6fa60f4ed9a01630}
+
+\begin{DoxyCompactList}\small\item\em pin async falling edge detect registers (ports 0-\/31) \end{DoxyCompactList}\item 
+\#define \hyperlink{gpio__internal_8h_a4eedcde4491e0e09271a9ff6368621e1}{G\+P\+A\+F\+E\+N0\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}~(\hyperlink{gpio__internal_8h_a1eec879d7dba3961e231918564a4b160}{G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}+\hyperlink{gpio__internal_8h_a848bd7974642861f6fa60f4ed9a01630}{G\+P\+A\+F\+E\+N0\+\_\+\+O\+FF})\hypertarget{gpio__internal_8h_a4eedcde4491e0e09271a9ff6368621e1}{}\label{gpio__internal_8h_a4eedcde4491e0e09271a9ff6368621e1}
+
+\begin{DoxyCompactList}\small\item\em pin async falling edge detect registers (ports 0-\/31) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{gpio__internal_8h_a42c0681068708b362a8fe7cc44b39335}{G\+P\+A\+F\+E\+N1\+\_\+\+O\+FF}~0x8C\hypertarget{gpio__internal_8h_a42c0681068708b362a8fe7cc44b39335}{}\label{gpio__internal_8h_a42c0681068708b362a8fe7cc44b39335}
+
+\begin{DoxyCompactList}\small\item\em pin async falling edge detect registers (ports 32-\/53) \end{DoxyCompactList}\item 
+\#define \hyperlink{gpio__internal_8h_aec897505ded843899f22e64ce062928a}{G\+P\+A\+F\+E\+N1\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}~(\hyperlink{gpio__internal_8h_a1eec879d7dba3961e231918564a4b160}{G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}+\hyperlink{gpio__internal_8h_a42c0681068708b362a8fe7cc44b39335}{G\+P\+A\+F\+E\+N1\+\_\+\+O\+FF})\hypertarget{gpio__internal_8h_aec897505ded843899f22e64ce062928a}{}\label{gpio__internal_8h_aec897505ded843899f22e64ce062928a}
+
+\begin{DoxyCompactList}\small\item\em pin async falling edge detect registers (ports 32-\/53) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{gpio__internal_8h_a2ca23ef3801ec5a9984386bffb967cec}{G\+P\+P\+U\+D\+\_\+\+O\+FF}~0x94\hypertarget{gpio__internal_8h_a2ca23ef3801ec5a9984386bffb967cec}{}\label{gpio__internal_8h_a2ca23ef3801ec5a9984386bffb967cec}
+
+\begin{DoxyCompactList}\small\item\em pullup pulldown enable registers (see documentation\+: B\+C\+M2835 arm peripherals page 101) \end{DoxyCompactList}\item 
+\#define \hyperlink{gpio__internal_8h_ac13a3d06290d0f5916e0f6845ccfcb68}{G\+P\+P\+U\+D\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}~(\hyperlink{gpio__internal_8h_a1eec879d7dba3961e231918564a4b160}{G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}+\hyperlink{gpio__internal_8h_a2ca23ef3801ec5a9984386bffb967cec}{G\+P\+P\+U\+D\+\_\+\+O\+FF})\hypertarget{gpio__internal_8h_ac13a3d06290d0f5916e0f6845ccfcb68}{}\label{gpio__internal_8h_ac13a3d06290d0f5916e0f6845ccfcb68}
+
+\begin{DoxyCompactList}\small\item\em pullup pulldown enable registers (see documentation\+: B\+C\+M2835 arm peripherals page 101) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{gpio__internal_8h_a87b36b91b97d3289ea8211b4a6d6617e}{G\+P\+P\+U\+D\+C\+L\+K0\+\_\+\+O\+FF}~0x98\hypertarget{gpio__internal_8h_a87b36b91b97d3289ea8211b4a6d6617e}{}\label{gpio__internal_8h_a87b36b91b97d3289ea8211b4a6d6617e}
+
+\begin{DoxyCompactList}\small\item\em pullup pulldown enable clock registers (ports 0-\/31) (see documentation\+: B\+C\+M2835 arm peripherals page 101) \end{DoxyCompactList}\item 
+\#define \hyperlink{gpio__internal_8h_aa6b5ff91af8f6eb41e682eff12ea89b0}{G\+P\+P\+U\+D\+C\+L\+K0\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}~(\hyperlink{gpio__internal_8h_a1eec879d7dba3961e231918564a4b160}{G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}+\hyperlink{gpio__internal_8h_a87b36b91b97d3289ea8211b4a6d6617e}{G\+P\+P\+U\+D\+C\+L\+K0\+\_\+\+O\+FF})\hypertarget{gpio__internal_8h_aa6b5ff91af8f6eb41e682eff12ea89b0}{}\label{gpio__internal_8h_aa6b5ff91af8f6eb41e682eff12ea89b0}
+
+\begin{DoxyCompactList}\small\item\em pullup pulldown enable clock registers (ports 0-\/31) (see documentation\+: B\+C\+M2835 arm peripherals page 101) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{gpio__internal_8h_aa815865688a05c4ab08b49c12d2b3aee}{G\+P\+P\+U\+D\+C\+L\+K1\+\_\+\+O\+FF}~0x9C\hypertarget{gpio__internal_8h_aa815865688a05c4ab08b49c12d2b3aee}{}\label{gpio__internal_8h_aa815865688a05c4ab08b49c12d2b3aee}
+
+\begin{DoxyCompactList}\small\item\em pullup pulldown enable clock registers (ports 32-\/53) (see documentation\+: B\+C\+M2835 arm peripherals page 101) \end{DoxyCompactList}\item 
+\#define \hyperlink{gpio__internal_8h_aaabcaab49224ad611cf95492b3681f96}{G\+P\+P\+U\+D\+C\+L\+K1\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}~(\hyperlink{gpio__internal_8h_a1eec879d7dba3961e231918564a4b160}{G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+YS}+\hyperlink{gpio__internal_8h_aa815865688a05c4ab08b49c12d2b3aee}{G\+P\+P\+U\+D\+C\+L\+K1\+\_\+\+O\+FF})\hypertarget{gpio__internal_8h_aaabcaab49224ad611cf95492b3681f96}{}\label{gpio__internal_8h_aaabcaab49224ad611cf95492b3681f96}
+
+\begin{DoxyCompactList}\small\item\em pullup pulldown enable clock registers (ports 32-\/53) (see documentation\+: B\+C\+M2835 arm peripherals page 101) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+
+\subsection{Detailed Description}
+Helper macros for the gpio peripheral. Used internally by the library. 
+

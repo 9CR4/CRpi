@@ -1,0 +1,200 @@
+\hypertarget{clockManager_8h}{}\section{include/peripherals/clock\+Manager.h File Reference}
+\label{clockManager_8h}\index{include/peripherals/clock\+Manager.\+h@{include/peripherals/clock\+Manager.\+h}}
+
+
+Interface to the clock manager peripheral.  
+
+
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{clockManager_8h_adce8887bfd865ace747fe338ce59cf6b}{C\+L\+K\+\_\+\+S\+R\+C\+\_\+\+G\+ND}~0\hypertarget{clockManager_8h_adce8887bfd865ace747fe338ce59cf6b}{}\label{clockManager_8h_adce8887bfd865ace747fe338ce59cf6b}
+
+\begin{DoxyCompactList}\small\item\em Clock source\+: Ground\+: 0\+Hz. \end{DoxyCompactList}\item 
+\#define \hyperlink{clockManager_8h_af8aa7a3b2cdb0206f10db20fb21d335c}{C\+L\+K\+\_\+\+S\+R\+C\+\_\+\+O\+S\+C\+I\+L\+L\+A\+T\+OR}~1\hypertarget{clockManager_8h_af8aa7a3b2cdb0206f10db20fb21d335c}{}\label{clockManager_8h_af8aa7a3b2cdb0206f10db20fb21d335c}
+
+\begin{DoxyCompactList}\small\item\em Clock source\+: Oscillator\+: 19.\+2\+M\+Hz. \end{DoxyCompactList}\item 
+\#define \hyperlink{clockManager_8h_a70904d542bcf4d10d691d2c4b4ce1fb0}{C\+L\+K\+\_\+\+S\+R\+C\+\_\+\+T\+E\+S\+T\+D\+B\+G0}~2\hypertarget{clockManager_8h_a70904d542bcf4d10d691d2c4b4ce1fb0}{}\label{clockManager_8h_a70904d542bcf4d10d691d2c4b4ce1fb0}
+
+\begin{DoxyCompactList}\small\item\em Clock source\+: Testdebug0\+: 0\+Hz. \end{DoxyCompactList}\item 
+\#define \hyperlink{clockManager_8h_ad293cd3ba50c0795d88c37ea82e357fd}{C\+L\+K\+\_\+\+S\+R\+C\+\_\+\+T\+E\+S\+T\+D\+B\+G1}~3\hypertarget{clockManager_8h_ad293cd3ba50c0795d88c37ea82e357fd}{}\label{clockManager_8h_ad293cd3ba50c0795d88c37ea82e357fd}
+
+\begin{DoxyCompactList}\small\item\em Clock source\+: Test\+Debug1\+: 0\+Hz. \end{DoxyCompactList}\item 
+\#define \hyperlink{clockManager_8h_a1a57311ab3d93e6b50e12e8f06b06a9f}{C\+L\+K\+\_\+\+S\+R\+C\+\_\+\+P\+L\+LA}~4\hypertarget{clockManager_8h_a1a57311ab3d93e6b50e12e8f06b06a9f}{}\label{clockManager_8h_a1a57311ab3d93e6b50e12e8f06b06a9f}
+
+\begin{DoxyCompactList}\small\item\em Clock source\+: P\+L\+LA\+: 0\+Hz. \end{DoxyCompactList}\item 
+\#define \hyperlink{clockManager_8h_ac4664248c5fc3d150f22dbca929c32f0}{C\+L\+K\+\_\+\+S\+R\+C\+\_\+\+P\+L\+LC}~5\hypertarget{clockManager_8h_ac4664248c5fc3d150f22dbca929c32f0}{}\label{clockManager_8h_ac4664248c5fc3d150f22dbca929c32f0}
+
+\begin{DoxyCompactList}\small\item\em Clock source\+: P\+L\+LC\+: 1000\+M\+Hz (changes with overclock) \end{DoxyCompactList}\item 
+\#define \hyperlink{clockManager_8h_a633c5d08dc743a8cd6f579d9a9689768}{C\+L\+K\+\_\+\+S\+R\+C\+\_\+\+P\+L\+LD}~6\hypertarget{clockManager_8h_a633c5d08dc743a8cd6f579d9a9689768}{}\label{clockManager_8h_a633c5d08dc743a8cd6f579d9a9689768}
+
+\begin{DoxyCompactList}\small\item\em Clock source\+: P\+L\+LD\+: 500\+M\+Hz. \end{DoxyCompactList}\item 
+\#define \hyperlink{clockManager_8h_ae0b6260ba6469212b14dfc8f1fa34485}{C\+L\+K\+\_\+\+S\+R\+C\+\_\+\+H\+D\+MI}~7\hypertarget{clockManager_8h_ae0b6260ba6469212b14dfc8f1fa34485}{}\label{clockManager_8h_ae0b6260ba6469212b14dfc8f1fa34485}
+
+\begin{DoxyCompactList}\small\item\em Clock source\+: H\+D\+MI\+: 216\+M\+HZ. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{clockManager_8h_a1b0d3de3410077b3b5ab08b076dd656a}{clk\+Man\+\_\+init} ()
+\begin{DoxyCompactList}\small\item\em Initializes this peripheral interface, to use before any other function in this file. \end{DoxyCompactList}\item 
+int \hyperlink{clockManager_8h_a18b7c5873a02912516a9e4f070b0e3eb}{clk\+Man\+\_\+is\+Init} ()\hypertarget{clockManager_8h_a18b7c5873a02912516a9e4f070b0e3eb}{}\label{clockManager_8h_a18b7c5873a02912516a9e4f070b0e3eb}
+
+\begin{DoxyCompactList}\small\item\em true if clk\+Man\+\_\+init has been called with success \end{DoxyCompactList}\item 
+int \hyperlink{clockManager_8h_a616c14e6f1f975e9f57e5ed690ef0540}{clk\+Man\+\_\+set\+Clock\+\_\+gp0} (int clock\+Src, int divisor\+Int, int divisor\+Frac)
+\begin{DoxyCompactList}\small\item\em sets the clock for the general purpouse clock 0 \end{DoxyCompactList}\item 
+int \hyperlink{clockManager_8h_a240f8fdc6ca3a116d65d84f861b88add}{clk\+Man\+\_\+set\+Clock\+\_\+gp1} (int clock\+Src, int divisor\+Int, int divisor\+Frac)
+\begin{DoxyCompactList}\small\item\em sets the clock for the general purpouse clock 1 \end{DoxyCompactList}\item 
+int \hyperlink{clockManager_8h_a05a684ca6d9991843d0e7acd4c98bee3}{clk\+Man\+\_\+set\+Clock\+\_\+gp2} (int clock\+Src, int divisor\+Int, int divisor\+Frac)
+\begin{DoxyCompactList}\small\item\em sets the clock for the general purpouse clock 2 \end{DoxyCompactList}\item 
+int \hyperlink{clockManager_8h_a1d4d5740dde63f1e51d7a27e263ab17a}{clk\+Man\+\_\+set\+Clock\+\_\+pcm} (int clock\+Src, int divisor\+Int, int divisor\+Frac)
+\begin{DoxyCompactList}\small\item\em sets the clock for the pcm peripheral \end{DoxyCompactList}\item 
+int \hyperlink{clockManager_8h_ac6e6716de6ee08ed60b8b18b0585694a}{clk\+Man\+\_\+set\+Clock\+\_\+pwm} (int clock\+Src, int divisor\+Int, int divisor\+Frac)
+\begin{DoxyCompactList}\small\item\em sets the clock for the pwm peripheral \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Interface to the clock manager peripheral. 
+
+This peripheral controls various clocks in the B\+C\+M283x So\+Cs, for each of these clocks you can set a clock source and a frequency divider.~\newline
+See the C\+L\+K\+\_\+\+S\+R\+C\+\_\+$\ast$ macros for the available clock sources and their speed. 
+
+\subsection{Function Documentation}
+\index{clock\+Manager.\+h@{clock\+Manager.\+h}!clk\+Man\+\_\+init@{clk\+Man\+\_\+init}}
+\index{clk\+Man\+\_\+init@{clk\+Man\+\_\+init}!clock\+Manager.\+h@{clock\+Manager.\+h}}
+\subsubsection[{\texorpdfstring{clk\+Man\+\_\+init()}{clkMan_init()}}]{\setlength{\rightskip}{0pt plus 5cm}int clk\+Man\+\_\+init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{clockManager_8h_a1b0d3de3410077b3b5ab08b076dd656a}{}\label{clockManager_8h_a1b0d3de3410077b3b5ab08b076dd656a}
+
+
+Initializes this peripheral interface, to use before any other function in this file. 
+
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{clock\+Manager.\+h@{clock\+Manager.\+h}!clk\+Man\+\_\+set\+Clock\+\_\+gp0@{clk\+Man\+\_\+set\+Clock\+\_\+gp0}}
+\index{clk\+Man\+\_\+set\+Clock\+\_\+gp0@{clk\+Man\+\_\+set\+Clock\+\_\+gp0}!clock\+Manager.\+h@{clock\+Manager.\+h}}
+\subsubsection[{\texorpdfstring{clk\+Man\+\_\+set\+Clock\+\_\+gp0(int clock\+Src, int divisor\+Int, int divisor\+Frac)}{clkMan_setClock_gp0(int clockSrc, int divisorInt, int divisorFrac)}}]{\setlength{\rightskip}{0pt plus 5cm}int clk\+Man\+\_\+set\+Clock\+\_\+gp0 (
+\begin{DoxyParamCaption}
+\item[{int}]{clock\+Src, }
+\item[{int}]{divisor\+Int, }
+\item[{int}]{divisor\+Frac}
+\end{DoxyParamCaption}
+)}\hypertarget{clockManager_8h_a616c14e6f1f975e9f57e5ed690ef0540}{}\label{clockManager_8h_a616c14e6f1f975e9f57e5ed690ef0540}
+
+
+sets the clock for the general purpouse clock 0 
+
+
+\begin{DoxyParams}{Parameters}
+{\em clock\+Src} & The desired clock source (use the C\+L\+K\+\_\+\+S\+R\+C\+\_\+$\ast$ macros) \\
+\hline
+{\em divisor\+Int} & Integer part of the divisor \\
+\hline
+{\em divisor\+Frac} & Fractional part of the divisor\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{clock\+Manager.\+h@{clock\+Manager.\+h}!clk\+Man\+\_\+set\+Clock\+\_\+gp1@{clk\+Man\+\_\+set\+Clock\+\_\+gp1}}
+\index{clk\+Man\+\_\+set\+Clock\+\_\+gp1@{clk\+Man\+\_\+set\+Clock\+\_\+gp1}!clock\+Manager.\+h@{clock\+Manager.\+h}}
+\subsubsection[{\texorpdfstring{clk\+Man\+\_\+set\+Clock\+\_\+gp1(int clock\+Src, int divisor\+Int, int divisor\+Frac)}{clkMan_setClock_gp1(int clockSrc, int divisorInt, int divisorFrac)}}]{\setlength{\rightskip}{0pt plus 5cm}int clk\+Man\+\_\+set\+Clock\+\_\+gp1 (
+\begin{DoxyParamCaption}
+\item[{int}]{clock\+Src, }
+\item[{int}]{divisor\+Int, }
+\item[{int}]{divisor\+Frac}
+\end{DoxyParamCaption}
+)}\hypertarget{clockManager_8h_a240f8fdc6ca3a116d65d84f861b88add}{}\label{clockManager_8h_a240f8fdc6ca3a116d65d84f861b88add}
+
+
+sets the clock for the general purpouse clock 1 
+
+
+\begin{DoxyParams}{Parameters}
+{\em clock\+Src} & The desired clock source (use the C\+L\+K\+\_\+\+S\+R\+C\+\_\+$\ast$ macros) \\
+\hline
+{\em divisor\+Int} & Integer part of the divisor \\
+\hline
+{\em divisor\+Frac} & Fractional part of the divisor\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{clock\+Manager.\+h@{clock\+Manager.\+h}!clk\+Man\+\_\+set\+Clock\+\_\+gp2@{clk\+Man\+\_\+set\+Clock\+\_\+gp2}}
+\index{clk\+Man\+\_\+set\+Clock\+\_\+gp2@{clk\+Man\+\_\+set\+Clock\+\_\+gp2}!clock\+Manager.\+h@{clock\+Manager.\+h}}
+\subsubsection[{\texorpdfstring{clk\+Man\+\_\+set\+Clock\+\_\+gp2(int clock\+Src, int divisor\+Int, int divisor\+Frac)}{clkMan_setClock_gp2(int clockSrc, int divisorInt, int divisorFrac)}}]{\setlength{\rightskip}{0pt plus 5cm}int clk\+Man\+\_\+set\+Clock\+\_\+gp2 (
+\begin{DoxyParamCaption}
+\item[{int}]{clock\+Src, }
+\item[{int}]{divisor\+Int, }
+\item[{int}]{divisor\+Frac}
+\end{DoxyParamCaption}
+)}\hypertarget{clockManager_8h_a05a684ca6d9991843d0e7acd4c98bee3}{}\label{clockManager_8h_a05a684ca6d9991843d0e7acd4c98bee3}
+
+
+sets the clock for the general purpouse clock 2 
+
+
+\begin{DoxyParams}{Parameters}
+{\em clock\+Src} & The desired clock source (use the C\+L\+K\+\_\+\+S\+R\+C\+\_\+$\ast$ macros) \\
+\hline
+{\em divisor\+Int} & Integer part of the divisor \\
+\hline
+{\em divisor\+Frac} & Fractional part of the divisor\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{clock\+Manager.\+h@{clock\+Manager.\+h}!clk\+Man\+\_\+set\+Clock\+\_\+pcm@{clk\+Man\+\_\+set\+Clock\+\_\+pcm}}
+\index{clk\+Man\+\_\+set\+Clock\+\_\+pcm@{clk\+Man\+\_\+set\+Clock\+\_\+pcm}!clock\+Manager.\+h@{clock\+Manager.\+h}}
+\subsubsection[{\texorpdfstring{clk\+Man\+\_\+set\+Clock\+\_\+pcm(int clock\+Src, int divisor\+Int, int divisor\+Frac)}{clkMan_setClock_pcm(int clockSrc, int divisorInt, int divisorFrac)}}]{\setlength{\rightskip}{0pt plus 5cm}int clk\+Man\+\_\+set\+Clock\+\_\+pcm (
+\begin{DoxyParamCaption}
+\item[{int}]{clock\+Src, }
+\item[{int}]{divisor\+Int, }
+\item[{int}]{divisor\+Frac}
+\end{DoxyParamCaption}
+)}\hypertarget{clockManager_8h_a1d4d5740dde63f1e51d7a27e263ab17a}{}\label{clockManager_8h_a1d4d5740dde63f1e51d7a27e263ab17a}
+
+
+sets the clock for the pcm peripheral 
+
+
+\begin{DoxyParams}{Parameters}
+{\em clock\+Src} & The desired clock source (use the C\+L\+K\+\_\+\+S\+R\+C\+\_\+$\ast$ macros) \\
+\hline
+{\em divisor\+Int} & Integer part of the divisor \\
+\hline
+{\em divisor\+Frac} & Fractional part of the divisor\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{clock\+Manager.\+h@{clock\+Manager.\+h}!clk\+Man\+\_\+set\+Clock\+\_\+pwm@{clk\+Man\+\_\+set\+Clock\+\_\+pwm}}
+\index{clk\+Man\+\_\+set\+Clock\+\_\+pwm@{clk\+Man\+\_\+set\+Clock\+\_\+pwm}!clock\+Manager.\+h@{clock\+Manager.\+h}}
+\subsubsection[{\texorpdfstring{clk\+Man\+\_\+set\+Clock\+\_\+pwm(int clock\+Src, int divisor\+Int, int divisor\+Frac)}{clkMan_setClock_pwm(int clockSrc, int divisorInt, int divisorFrac)}}]{\setlength{\rightskip}{0pt plus 5cm}int clk\+Man\+\_\+set\+Clock\+\_\+pwm (
+\begin{DoxyParamCaption}
+\item[{int}]{clock\+Src, }
+\item[{int}]{divisor\+Int, }
+\item[{int}]{divisor\+Frac}
+\end{DoxyParamCaption}
+)}\hypertarget{clockManager_8h_ac6e6716de6ee08ed60b8b18b0585694a}{}\label{clockManager_8h_ac6e6716de6ee08ed60b8b18b0585694a}
+
+
+sets the clock for the pwm peripheral 
+
+
+\begin{DoxyParams}{Parameters}
+{\em clock\+Src} & The desired clock source (use the C\+L\+K\+\_\+\+S\+R\+C\+\_\+$\ast$ macros) \\
+\hline
+{\em divisor\+Int} & Integer part of the divisor \\
+\hline
+{\em divisor\+Frac} & Fractional part of the divisor\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}

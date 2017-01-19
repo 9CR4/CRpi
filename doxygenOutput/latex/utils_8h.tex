@@ -1,0 +1,37 @@
+\hypertarget{utils_8h}{}\section{include/coding\+Utils/utils.h File Reference}
+\label{utils_8h}\index{include/coding\+Utils/utils.\+h@{include/coding\+Utils/utils.\+h}}
+
+
+Some utilities for coding.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{utils_8h_a33d653cf8b93cb2fca1e9e4b4ed12e52}{B\+L\+D\+\_\+\+B\+I\+T\+F\+I\+E\+LD}(x,  bit\+Off,  bit\+Mask)~((x$<$$<$bit\+Off)\&bit\+Mask)\hypertarget{utils_8h_a33d653cf8b93cb2fca1e9e4b4ed12e52}{}\label{utils_8h_a33d653cf8b93cb2fca1e9e4b4ed12e52}
+
+\begin{DoxyCompactList}\small\item\em positions the value at the right offset to build a bitfield \end{DoxyCompactList}\item 
+\#define \hyperlink{utils_8h_ad53eefe536d88742ca637f635fd9b3b3}{R\+E\+A\+D\+\_\+\+B\+I\+T\+F\+I\+E\+LD}(x,  bit\+Off,  bit\+Mask)~((x \& ($\sim$bit\+Mask)) $>$$>$ bit\+Off)\hypertarget{utils_8h_ad53eefe536d88742ca637f635fd9b3b3}{}\label{utils_8h_ad53eefe536d88742ca637f635fd9b3b3}
+
+\begin{DoxyCompactList}\small\item\em Reads from a bitfield. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef uint64\+\_\+t \hyperlink{utils_8h_af633347532fc5b8774e511397dd58fb1}{time\+Nano\+\_\+t}\hypertarget{utils_8h_af633347532fc5b8774e511397dd58fb1}{}\label{utils_8h_af633347532fc5b8774e511397dd58fb1}
+
+\begin{DoxyCompactList}\small\item\em A type to hold the time in nanoseconds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{utils_8h_af633347532fc5b8774e511397dd58fb1}{time\+Nano\+\_\+t} \hyperlink{utils_8h_a02e04b437351cec951b3662a2f1bb729}{get\+Time\+Nano\+Monotonic} ()\hypertarget{utils_8h_a02e04b437351cec951b3662a2f1bb729}{}\label{utils_8h_a02e04b437351cec951b3662a2f1bb729}
+
+\begin{DoxyCompactList}\small\item\em monotonic timer in nanoseconds \end{DoxyCompactList}\item 
+void \hyperlink{utils_8h_a3ad52e12013f7cc304fca2f57ab17cac}{uint32\+\_\+t\+To\+Bit\+String} (uint32\+\_\+t num, char $\ast$str)\hypertarget{utils_8h_a3ad52e12013f7cc304fca2f57ab17cac}{}\label{utils_8h_a3ad52e12013f7cc304fca2f57ab17cac}
+
+\begin{DoxyCompactList}\small\item\em Returns a string containing the number in binary format. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Some utilities for coding. 
+

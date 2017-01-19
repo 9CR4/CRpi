@@ -1,0 +1,374 @@
+\hypertarget{pwmByDma_8h}{}\section{include/utils/pwm\+By\+Dma.h File Reference}
+\label{pwmByDma_8h}\index{include/utils/pwm\+By\+Dma.\+h@{include/utils/pwm\+By\+Dma.\+h}}
+
+
+Generates pwm outputs on the gpio pins using the dma engine.  
+
+
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{pwmByDma_8h_af1e4e19586f90d36bad4c295ea042ae6}{pwm\+Dma\+\_\+init} (unsigned int pulse\+Duration\+\_\+us)
+\begin{DoxyCompactList}\small\item\em Initialize\+: call this before any other function in this file. This sets up the pwm to use it as a timer, so don\textquotesingle{}t mess with it after calling this function. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{pwmByDma_8h_a43066903c97e9b6934cf2363d8d852f9}{pwm\+Dma\+\_\+get\+\_\+pulse\+Duration\+\_\+us} ()
+\begin{DoxyCompactList}\small\item\em Returns the duration in microseconds of a single pulse, you can set this duration in pwm\+Dma\+\_\+init(...) \end{DoxyCompactList}\item 
+int \hyperlink{pwmByDma_8h_a3d9ca65bdda46fa1991c6fd0e698485b}{pwm\+Dma\+\_\+is\+Channel\+Initialized} (int channel)
+\begin{DoxyCompactList}\small\item\em Tells if a channel is initialized. \end{DoxyCompactList}\item 
+int \hyperlink{pwmByDma_8h_af90d8dc584c06583afe1e3d1fdbd3758}{pwm\+Dma\+\_\+get\+Channel\+Period\+Us} (int channel)
+\begin{DoxyCompactList}\small\item\em Return the duration in microseconds of a cycle for the specified channel. \end{DoxyCompactList}\item 
+int \hyperlink{pwmByDma_8h_a0fb45244b9ae950e7aa60d1bf13d4182}{pwm\+Dma\+\_\+init\+Channel\+\_\+period\+In\+Pulses} (int channel, unsigned int pulses\+Per\+Period)
+\begin{DoxyCompactList}\small\item\em Sets up the channel to output pwm, you can use only a channel at a time. \end{DoxyCompactList}\item 
+int \hyperlink{pwmByDma_8h_adcc4f31a0b62fe334c0a1aad15c19640}{pwm\+Dma\+\_\+init\+Channel} (int channel, unsigned int period\+\_\+us)
+\begin{DoxyCompactList}\small\item\em Sets up the channel to output pwm. \end{DoxyCompactList}\item 
+int \hyperlink{pwmByDma_8h_a43ce520a1f7cff79498d171fbbe83500}{pwm\+Dma\+\_\+free\+Channel} (int channel)
+\begin{DoxyCompactList}\small\item\em Frees a channel initialized with pwm\+Dma\+\_\+init\+Channel or pwm\+Dma\+\_\+init\+Channel\+\_\+period\+In\+Pulses. \end{DoxyCompactList}\item 
+int \hyperlink{pwmByDma_8h_a01e59a06503d566aad6da45296a9d4ae}{pwm\+Dma\+\_\+start\+Channel} (int channel)
+\begin{DoxyCompactList}\small\item\em Starts a stopped channel. \end{DoxyCompactList}\item 
+int \hyperlink{pwmByDma_8h_aa8d0fc000fbada4df9aeb3369ad2a77d}{pwm\+Dma\+\_\+stop\+Channel\+Wait\+Cycle\+End} (int channel)
+\begin{DoxyCompactList}\small\item\em Stops channel waiting for the current cycle to finish. \end{DoxyCompactList}\item 
+int \hyperlink{pwmByDma_8h_a60cd3800e77cc96202cfa4624d405a23}{pwm\+Dma\+\_\+stop\+Channel} (int channel)
+\begin{DoxyCompactList}\small\item\em Stops channel. \end{DoxyCompactList}\item 
+int \hyperlink{pwmByDma_8h_a98fd2ef532e5e966a7e9e3ee69b022bd}{pwm\+Dma\+\_\+add\+Pulse} (int channel, int bcm\+Port, unsigned int start\+\_\+us, unsigned int length\+\_\+us)
+\begin{DoxyCompactList}\small\item\em Sets a pulse on the specified channel and gpio. \end{DoxyCompactList}\item 
+int \hyperlink{pwmByDma_8h_a4750017c4a04abf0df7e9922f2b23d99}{pwm\+Dma\+\_\+print\+Words} (int channel)
+\begin{DoxyCompactList}\small\item\em For debugging purposes\+: prints all the set/clear words. \end{DoxyCompactList}\item 
+int \hyperlink{pwmByDma_8h_a1734be65708d503c67b44c15b034d56a}{pwm\+Dma\+\_\+print\+Control\+Blocks} (int channel)
+\begin{DoxyCompactList}\small\item\em For debugging purposes\+: prints all the control blocks. \end{DoxyCompactList}\item 
+int \hyperlink{pwmByDma_8h_a623218011d12638edff77fab8939f7ba}{pwm\+Dma\+\_\+set\+M\+S\+Ratio} (int channel, int bcm\+Port, double ratio)
+\begin{DoxyCompactList}\small\item\em Set the port to output a square wave with the specified duty cycle. Will be high for the first ratio$\ast$period microseconds and then low. \end{DoxyCompactList}\item 
+int \hyperlink{pwmByDma_8h_abacb90246d75155b15090e446183a70f}{pwm\+Dma\+\_\+clear\+Port} (int channel, int bcm\+Port)
+\begin{DoxyCompactList}\small\item\em Removes any pulse on this port at the specified channel. \end{DoxyCompactList}\item 
+int \hyperlink{pwmByDma_8h_a14578e3f6bcdf9db871ef7530941fa97}{pwm\+Dma\+\_\+add\+Multiple\+Pulse} (int channel, int bcm\+Port, unsigned int start\+\_\+us, unsigned int length\+\_\+us, unsigned int sub\+Period\+\_\+us)
+\begin{DoxyCompactList}\small\item\em Adds multiple pulses to the channel at the specified port. The pulse will be repeated every sub\+Period\+\_\+us microseconds. In this way you can simulate a channel initialized with period=sub\+Period\+\_\+us. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Generates pwm outputs on the gpio pins using the dma engine. 
+
+To generate a pwm output you first have to call \hyperlink{pwmByDma_8h_af1e4e19586f90d36bad4c295ea042ae6}{pwm\+Dma\+\_\+init()}.~\newline
+Then you can initilize a channel with \hyperlink{pwmByDma_8h_adcc4f31a0b62fe334c0a1aad15c19640}{pwm\+Dma\+\_\+init\+Channel()}.~\newline
+After this you can add pulses to the channel using \hyperlink{pwmByDma_8h_a98fd2ef532e5e966a7e9e3ee69b022bd}{pwm\+Dma\+\_\+add\+Pulse()}, \hyperlink{pwmByDma_8h_a14578e3f6bcdf9db871ef7530941fa97}{pwm\+Dma\+\_\+add\+Multiple\+Pulse()} or \hyperlink{pwmByDma_8h_a623218011d12638edff77fab8939f7ba}{pwm\+Dma\+\_\+set\+M\+S\+Ratio()}.~\newline
+You can clear the output on a port using \hyperlink{pwmByDma_8h_abacb90246d75155b15090e446183a70f}{pwm\+Dma\+\_\+clear\+Port()}~\newline
+When you finish you H\+A\+VE TO call \hyperlink{pwmByDma_8h_a43ce520a1f7cff79498d171fbbe83500}{pwm\+Dma\+\_\+free\+Channel()} on the channel you initialized.~\newline
+ See \hyperlink{pwmByDma_8c}{pwm\+By\+Dma.\+c} for more details. 
+
+\subsection{Function Documentation}
+\index{pwm\+By\+Dma.\+h@{pwm\+By\+Dma.\+h}!pwm\+Dma\+\_\+add\+Multiple\+Pulse@{pwm\+Dma\+\_\+add\+Multiple\+Pulse}}
+\index{pwm\+Dma\+\_\+add\+Multiple\+Pulse@{pwm\+Dma\+\_\+add\+Multiple\+Pulse}!pwm\+By\+Dma.\+h@{pwm\+By\+Dma.\+h}}
+\subsubsection[{\texorpdfstring{pwm\+Dma\+\_\+add\+Multiple\+Pulse(int channel, int bcm\+Port, unsigned int start\+\_\+us, unsigned int length\+\_\+us, unsigned int sub\+Period\+\_\+us)}{pwmDma_addMultiplePulse(int channel, int bcmPort, unsigned int start_us, unsigned int length_us, unsigned int subPeriod_us)}}]{\setlength{\rightskip}{0pt plus 5cm}int pwm\+Dma\+\_\+add\+Multiple\+Pulse (
+\begin{DoxyParamCaption}
+\item[{int}]{channel, }
+\item[{int}]{bcm\+Port, }
+\item[{unsigned int}]{start\+\_\+us, }
+\item[{unsigned int}]{length\+\_\+us, }
+\item[{unsigned int}]{sub\+Period\+\_\+us}
+\end{DoxyParamCaption}
+)}\hypertarget{pwmByDma_8h_a14578e3f6bcdf9db871ef7530941fa97}{}\label{pwmByDma_8h_a14578e3f6bcdf9db871ef7530941fa97}
+
+
+Adds multiple pulses to the channel at the specified port. The pulse will be repeated every sub\+Period\+\_\+us microseconds. In this way you can simulate a channel initialized with period=sub\+Period\+\_\+us. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & The channel number \\
+\hline
+{\em bcm\+Port} & The port broadcom number, only ports 0-\/31 are available \\
+\hline
+{\em start\+\_\+us} & The start time of the pulse in microseconds, has to be a multiple of the pulse duration, and between 0 and the sub\+Period\+\_\+us \\
+\hline
+{\em length\+\_\+us} & The length of the pulse in microseconds, has to be a multiple of the pulse duration and not bigger than sub\+Period\+\_\+us \\
+\hline
+{\em sub\+Period\+\_\+us} & The period at which the pulse will be repeated. Has to be a divisor of the period of the channel \\
+\hline
+\end{DoxyParams}
+\index{pwm\+By\+Dma.\+h@{pwm\+By\+Dma.\+h}!pwm\+Dma\+\_\+add\+Pulse@{pwm\+Dma\+\_\+add\+Pulse}}
+\index{pwm\+Dma\+\_\+add\+Pulse@{pwm\+Dma\+\_\+add\+Pulse}!pwm\+By\+Dma.\+h@{pwm\+By\+Dma.\+h}}
+\subsubsection[{\texorpdfstring{pwm\+Dma\+\_\+add\+Pulse(int channel, int bcm\+Port, unsigned int start\+\_\+us, unsigned int length\+\_\+us)}{pwmDma_addPulse(int channel, int bcmPort, unsigned int start_us, unsigned int length_us)}}]{\setlength{\rightskip}{0pt plus 5cm}int pwm\+Dma\+\_\+add\+Pulse (
+\begin{DoxyParamCaption}
+\item[{int}]{channel, }
+\item[{int}]{bcm\+Port, }
+\item[{unsigned int}]{start\+\_\+us, }
+\item[{unsigned int}]{length\+\_\+us}
+\end{DoxyParamCaption}
+)}\hypertarget{pwmByDma_8h_a98fd2ef532e5e966a7e9e3ee69b022bd}{}\label{pwmByDma_8h_a98fd2ef532e5e966a7e9e3ee69b022bd}
+
+
+Sets a pulse on the specified channel and gpio. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & The channel number \\
+\hline
+{\em bcm\+Port} & The port broadcom number, only ports 0-\/31 are available \\
+\hline
+{\em start\+\_\+us} & The start time of the pulse in microseconds, has to be a multiple of the pulse duration, and between 0 and the period duration of this channel \\
+\hline
+{\em length\+\_\+us} & The length of the pulse in microseconds, has to be a multiple of the pulse duration\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{pwm\+By\+Dma.\+h@{pwm\+By\+Dma.\+h}!pwm\+Dma\+\_\+clear\+Port@{pwm\+Dma\+\_\+clear\+Port}}
+\index{pwm\+Dma\+\_\+clear\+Port@{pwm\+Dma\+\_\+clear\+Port}!pwm\+By\+Dma.\+h@{pwm\+By\+Dma.\+h}}
+\subsubsection[{\texorpdfstring{pwm\+Dma\+\_\+clear\+Port(int channel, int bcm\+Port)}{pwmDma_clearPort(int channel, int bcmPort)}}]{\setlength{\rightskip}{0pt plus 5cm}int pwm\+Dma\+\_\+clear\+Port (
+\begin{DoxyParamCaption}
+\item[{int}]{channel, }
+\item[{int}]{bcm\+Port}
+\end{DoxyParamCaption}
+)}\hypertarget{pwmByDma_8h_abacb90246d75155b15090e446183a70f}{}\label{pwmByDma_8h_abacb90246d75155b15090e446183a70f}
+
+
+Removes any pulse on this port at the specified channel. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & The channel \\
+\hline
+{\em bcm\+Port} & The port\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{pwm\+By\+Dma.\+h@{pwm\+By\+Dma.\+h}!pwm\+Dma\+\_\+free\+Channel@{pwm\+Dma\+\_\+free\+Channel}}
+\index{pwm\+Dma\+\_\+free\+Channel@{pwm\+Dma\+\_\+free\+Channel}!pwm\+By\+Dma.\+h@{pwm\+By\+Dma.\+h}}
+\subsubsection[{\texorpdfstring{pwm\+Dma\+\_\+free\+Channel(int channel)}{pwmDma_freeChannel(int channel)}}]{\setlength{\rightskip}{0pt plus 5cm}int pwm\+Dma\+\_\+free\+Channel (
+\begin{DoxyParamCaption}
+\item[{int}]{channel}
+\end{DoxyParamCaption}
+)}\hypertarget{pwmByDma_8h_a43ce520a1f7cff79498d171fbbe83500}{}\label{pwmByDma_8h_a43ce520a1f7cff79498d171fbbe83500}
+
+
+Frees a channel initialized with pwm\+Dma\+\_\+init\+Channel or pwm\+Dma\+\_\+init\+Channel\+\_\+period\+In\+Pulses. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & The channel number\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{pwm\+By\+Dma.\+h@{pwm\+By\+Dma.\+h}!pwm\+Dma\+\_\+get\+\_\+pulse\+Duration\+\_\+us@{pwm\+Dma\+\_\+get\+\_\+pulse\+Duration\+\_\+us}}
+\index{pwm\+Dma\+\_\+get\+\_\+pulse\+Duration\+\_\+us@{pwm\+Dma\+\_\+get\+\_\+pulse\+Duration\+\_\+us}!pwm\+By\+Dma.\+h@{pwm\+By\+Dma.\+h}}
+\subsubsection[{\texorpdfstring{pwm\+Dma\+\_\+get\+\_\+pulse\+Duration\+\_\+us()}{pwmDma_get_pulseDuration_us()}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int pwm\+Dma\+\_\+get\+\_\+pulse\+Duration\+\_\+us (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{pwmByDma_8h_a43066903c97e9b6934cf2363d8d852f9}{}\label{pwmByDma_8h_a43066903c97e9b6934cf2363d8d852f9}
+
+
+Returns the duration in microseconds of a single pulse, you can set this duration in pwm\+Dma\+\_\+init(...) 
+
+\begin{DoxyReturn}{Returns}
+The duration, zero if pwm\+Dma\+\_\+init hasn\textquotesingle{}t been called 
+\end{DoxyReturn}
+\index{pwm\+By\+Dma.\+h@{pwm\+By\+Dma.\+h}!pwm\+Dma\+\_\+get\+Channel\+Period\+Us@{pwm\+Dma\+\_\+get\+Channel\+Period\+Us}}
+\index{pwm\+Dma\+\_\+get\+Channel\+Period\+Us@{pwm\+Dma\+\_\+get\+Channel\+Period\+Us}!pwm\+By\+Dma.\+h@{pwm\+By\+Dma.\+h}}
+\subsubsection[{\texorpdfstring{pwm\+Dma\+\_\+get\+Channel\+Period\+Us(int channel)}{pwmDma_getChannelPeriodUs(int channel)}}]{\setlength{\rightskip}{0pt plus 5cm}int pwm\+Dma\+\_\+get\+Channel\+Period\+Us (
+\begin{DoxyParamCaption}
+\item[{int}]{channel}
+\end{DoxyParamCaption}
+)}\hypertarget{pwmByDma_8h_af90d8dc584c06583afe1e3d1fdbd3758}{}\label{pwmByDma_8h_af90d8dc584c06583afe1e3d1fdbd3758}
+
+
+Return the duration in microseconds of a cycle for the specified channel. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & The channel number\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the duration, 0 in case of error 
+\end{DoxyReturn}
+\index{pwm\+By\+Dma.\+h@{pwm\+By\+Dma.\+h}!pwm\+Dma\+\_\+init@{pwm\+Dma\+\_\+init}}
+\index{pwm\+Dma\+\_\+init@{pwm\+Dma\+\_\+init}!pwm\+By\+Dma.\+h@{pwm\+By\+Dma.\+h}}
+\subsubsection[{\texorpdfstring{pwm\+Dma\+\_\+init(unsigned int pulse\+Duration\+\_\+us)}{pwmDma_init(unsigned int pulseDuration_us)}}]{\setlength{\rightskip}{0pt plus 5cm}int pwm\+Dma\+\_\+init (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{pulse\+Duration\+\_\+us}
+\end{DoxyParamCaption}
+)}\hypertarget{pwmByDma_8h_af1e4e19586f90d36bad4c295ea042ae6}{}\label{pwmByDma_8h_af1e4e19586f90d36bad4c295ea042ae6}
+
+
+Initialize\+: call this before any other function in this file. This sets up the pwm to use it as a timer, so don\textquotesingle{}t mess with it after calling this function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pulse\+Duration\+\_\+us} & The duration of a single pulse in microseconds, in other words\+: the granularity, the precision. All prime numbers over 4095 and all the numbers over 33546 aren\textquotesingle{}t acceptable. \\
+\hline
+\end{DoxyParams}
+\index{pwm\+By\+Dma.\+h@{pwm\+By\+Dma.\+h}!pwm\+Dma\+\_\+init\+Channel@{pwm\+Dma\+\_\+init\+Channel}}
+\index{pwm\+Dma\+\_\+init\+Channel@{pwm\+Dma\+\_\+init\+Channel}!pwm\+By\+Dma.\+h@{pwm\+By\+Dma.\+h}}
+\subsubsection[{\texorpdfstring{pwm\+Dma\+\_\+init\+Channel(int channel, unsigned int period\+\_\+us)}{pwmDma_initChannel(int channel, unsigned int period_us)}}]{\setlength{\rightskip}{0pt plus 5cm}int pwm\+Dma\+\_\+init\+Channel (
+\begin{DoxyParamCaption}
+\item[{int}]{channel, }
+\item[{unsigned int}]{period\+\_\+us}
+\end{DoxyParamCaption}
+)}\hypertarget{pwmByDma_8h_adcc4f31a0b62fe334c0a1aad15c19640}{}\label{pwmByDma_8h_adcc4f31a0b62fe334c0a1aad15c19640}
+
+
+Sets up the channel to output pwm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & The channel to use \\
+\hline
+{\em period\+\_\+us} & Duration of a cycle in microseconds\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{pwm\+By\+Dma.\+h@{pwm\+By\+Dma.\+h}!pwm\+Dma\+\_\+init\+Channel\+\_\+period\+In\+Pulses@{pwm\+Dma\+\_\+init\+Channel\+\_\+period\+In\+Pulses}}
+\index{pwm\+Dma\+\_\+init\+Channel\+\_\+period\+In\+Pulses@{pwm\+Dma\+\_\+init\+Channel\+\_\+period\+In\+Pulses}!pwm\+By\+Dma.\+h@{pwm\+By\+Dma.\+h}}
+\subsubsection[{\texorpdfstring{pwm\+Dma\+\_\+init\+Channel\+\_\+period\+In\+Pulses(int channel, unsigned int pulses\+Per\+Period)}{pwmDma_initChannel_periodInPulses(int channel, unsigned int pulsesPerPeriod)}}]{\setlength{\rightskip}{0pt plus 5cm}int pwm\+Dma\+\_\+init\+Channel\+\_\+period\+In\+Pulses (
+\begin{DoxyParamCaption}
+\item[{int}]{channel, }
+\item[{unsigned int}]{pulses\+Per\+Period}
+\end{DoxyParamCaption}
+)}\hypertarget{pwmByDma_8h_a0fb45244b9ae950e7aa60d1bf13d4182}{}\label{pwmByDma_8h_a0fb45244b9ae950e7aa60d1bf13d4182}
+
+
+Sets up the channel to output pwm, you can use only a channel at a time. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & The channel to use \\
+\hline
+{\em pulses\+Per\+Period} & Number of pulses in a cycle. The resulting period duration is\+: period\+\_\+us = pulses\+Per\+Period$\ast$pulse\+Duration\+\_\+us. Where pulse\+Duration\+\_\+us is specified in pwm\+Dma\+\_\+init(...)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{pwm\+By\+Dma.\+h@{pwm\+By\+Dma.\+h}!pwm\+Dma\+\_\+is\+Channel\+Initialized@{pwm\+Dma\+\_\+is\+Channel\+Initialized}}
+\index{pwm\+Dma\+\_\+is\+Channel\+Initialized@{pwm\+Dma\+\_\+is\+Channel\+Initialized}!pwm\+By\+Dma.\+h@{pwm\+By\+Dma.\+h}}
+\subsubsection[{\texorpdfstring{pwm\+Dma\+\_\+is\+Channel\+Initialized(int channel)}{pwmDma_isChannelInitialized(int channel)}}]{\setlength{\rightskip}{0pt plus 5cm}int pwm\+Dma\+\_\+is\+Channel\+Initialized (
+\begin{DoxyParamCaption}
+\item[{int}]{channel}
+\end{DoxyParamCaption}
+)}\hypertarget{pwmByDma_8h_a3d9ca65bdda46fa1991c6fd0e698485b}{}\label{pwmByDma_8h_a3d9ca65bdda46fa1991c6fd0e698485b}
+
+
+Tells if a channel is initialized. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & The channel number\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+If the channel has been initialized, 0 in case of error 
+\end{DoxyReturn}
+\index{pwm\+By\+Dma.\+h@{pwm\+By\+Dma.\+h}!pwm\+Dma\+\_\+print\+Control\+Blocks@{pwm\+Dma\+\_\+print\+Control\+Blocks}}
+\index{pwm\+Dma\+\_\+print\+Control\+Blocks@{pwm\+Dma\+\_\+print\+Control\+Blocks}!pwm\+By\+Dma.\+h@{pwm\+By\+Dma.\+h}}
+\subsubsection[{\texorpdfstring{pwm\+Dma\+\_\+print\+Control\+Blocks(int channel)}{pwmDma_printControlBlocks(int channel)}}]{\setlength{\rightskip}{0pt plus 5cm}int pwm\+Dma\+\_\+print\+Control\+Blocks (
+\begin{DoxyParamCaption}
+\item[{int}]{channel}
+\end{DoxyParamCaption}
+)}\hypertarget{pwmByDma_8h_a1734be65708d503c67b44c15b034d56a}{}\label{pwmByDma_8h_a1734be65708d503c67b44c15b034d56a}
+
+
+For debugging purposes\+: prints all the control blocks. 
+
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{pwm\+By\+Dma.\+h@{pwm\+By\+Dma.\+h}!pwm\+Dma\+\_\+print\+Words@{pwm\+Dma\+\_\+print\+Words}}
+\index{pwm\+Dma\+\_\+print\+Words@{pwm\+Dma\+\_\+print\+Words}!pwm\+By\+Dma.\+h@{pwm\+By\+Dma.\+h}}
+\subsubsection[{\texorpdfstring{pwm\+Dma\+\_\+print\+Words(int channel)}{pwmDma_printWords(int channel)}}]{\setlength{\rightskip}{0pt plus 5cm}int pwm\+Dma\+\_\+print\+Words (
+\begin{DoxyParamCaption}
+\item[{int}]{channel}
+\end{DoxyParamCaption}
+)}\hypertarget{pwmByDma_8h_a4750017c4a04abf0df7e9922f2b23d99}{}\label{pwmByDma_8h_a4750017c4a04abf0df7e9922f2b23d99}
+
+
+For debugging purposes\+: prints all the set/clear words. 
+
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{pwm\+By\+Dma.\+h@{pwm\+By\+Dma.\+h}!pwm\+Dma\+\_\+set\+M\+S\+Ratio@{pwm\+Dma\+\_\+set\+M\+S\+Ratio}}
+\index{pwm\+Dma\+\_\+set\+M\+S\+Ratio@{pwm\+Dma\+\_\+set\+M\+S\+Ratio}!pwm\+By\+Dma.\+h@{pwm\+By\+Dma.\+h}}
+\subsubsection[{\texorpdfstring{pwm\+Dma\+\_\+set\+M\+S\+Ratio(int channel, int bcm\+Port, double ratio)}{pwmDma_setMSRatio(int channel, int bcmPort, double ratio)}}]{\setlength{\rightskip}{0pt plus 5cm}int pwm\+Dma\+\_\+set\+M\+S\+Ratio (
+\begin{DoxyParamCaption}
+\item[{int}]{channel, }
+\item[{int}]{bcm\+Port, }
+\item[{double}]{ratio}
+\end{DoxyParamCaption}
+)}\hypertarget{pwmByDma_8h_a623218011d12638edff77fab8939f7ba}{}\label{pwmByDma_8h_a623218011d12638edff77fab8939f7ba}
+
+
+Set the port to output a square wave with the specified duty cycle. Will be high for the first ratio$\ast$period microseconds and then low. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & The channel to use \\
+\hline
+{\em bcm\+Port} & The port to use \\
+\hline
+{\em ratio} & The duty cycle ratio\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{pwm\+By\+Dma.\+h@{pwm\+By\+Dma.\+h}!pwm\+Dma\+\_\+start\+Channel@{pwm\+Dma\+\_\+start\+Channel}}
+\index{pwm\+Dma\+\_\+start\+Channel@{pwm\+Dma\+\_\+start\+Channel}!pwm\+By\+Dma.\+h@{pwm\+By\+Dma.\+h}}
+\subsubsection[{\texorpdfstring{pwm\+Dma\+\_\+start\+Channel(int channel)}{pwmDma_startChannel(int channel)}}]{\setlength{\rightskip}{0pt plus 5cm}int pwm\+Dma\+\_\+start\+Channel (
+\begin{DoxyParamCaption}
+\item[{int}]{channel}
+\end{DoxyParamCaption}
+)}\hypertarget{pwmByDma_8h_a01e59a06503d566aad6da45296a9d4ae}{}\label{pwmByDma_8h_a01e59a06503d566aad6da45296a9d4ae}
+
+
+Starts a stopped channel. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & The channel number\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{pwm\+By\+Dma.\+h@{pwm\+By\+Dma.\+h}!pwm\+Dma\+\_\+stop\+Channel@{pwm\+Dma\+\_\+stop\+Channel}}
+\index{pwm\+Dma\+\_\+stop\+Channel@{pwm\+Dma\+\_\+stop\+Channel}!pwm\+By\+Dma.\+h@{pwm\+By\+Dma.\+h}}
+\subsubsection[{\texorpdfstring{pwm\+Dma\+\_\+stop\+Channel(int channel)}{pwmDma_stopChannel(int channel)}}]{\setlength{\rightskip}{0pt plus 5cm}int pwm\+Dma\+\_\+stop\+Channel (
+\begin{DoxyParamCaption}
+\item[{int}]{channel}
+\end{DoxyParamCaption}
+)}\hypertarget{pwmByDma_8h_a60cd3800e77cc96202cfa4624d405a23}{}\label{pwmByDma_8h_a60cd3800e77cc96202cfa4624d405a23}
+
+
+Stops channel. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & The channel number\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{pwm\+By\+Dma.\+h@{pwm\+By\+Dma.\+h}!pwm\+Dma\+\_\+stop\+Channel\+Wait\+Cycle\+End@{pwm\+Dma\+\_\+stop\+Channel\+Wait\+Cycle\+End}}
+\index{pwm\+Dma\+\_\+stop\+Channel\+Wait\+Cycle\+End@{pwm\+Dma\+\_\+stop\+Channel\+Wait\+Cycle\+End}!pwm\+By\+Dma.\+h@{pwm\+By\+Dma.\+h}}
+\subsubsection[{\texorpdfstring{pwm\+Dma\+\_\+stop\+Channel\+Wait\+Cycle\+End(int channel)}{pwmDma_stopChannelWaitCycleEnd(int channel)}}]{\setlength{\rightskip}{0pt plus 5cm}int pwm\+Dma\+\_\+stop\+Channel\+Wait\+Cycle\+End (
+\begin{DoxyParamCaption}
+\item[{int}]{channel}
+\end{DoxyParamCaption}
+)}\hypertarget{pwmByDma_8h_aa8d0fc000fbada4df9aeb3369ad2a77d}{}\label{pwmByDma_8h_aa8d0fc000fbada4df9aeb3369ad2a77d}
+
+
+Stops channel waiting for the current cycle to finish. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & The channel number\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}

@@ -1,0 +1,91 @@
+\hypertarget{cacheCoherentMemoryProvider_8h}{}\section{include/memory\+Management/cache\+Coherent\+Memory\+Provider.h File Reference}
+\label{cacheCoherentMemoryProvider_8h}\index{include/memory\+Management/cache\+Coherent\+Memory\+Provider.\+h@{include/memory\+Management/cache\+Coherent\+Memory\+Provider.\+h}}
+
+
+Provides a way to easily allocate memory areas that are coherent between C\+PU and D\+MA.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\\*
+{\ttfamily \#include $<$stddef.\+h$>$}\\*
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structccmb__desc__struct}{ccmb\+\_\+desc\+\_\+struct}
+\begin{DoxyCompactList}\small\item\em Describes a Cache Coherent Memory Block allocated by \hyperlink{cacheCoherentMemoryProvider_8c_a72b3227fd1265a06a6b65e36b4c370ee}{ccmp\+\_\+malloc()} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structccmb__desc__struct}{ccmb\+\_\+desc\+\_\+struct} \hyperlink{cacheCoherentMemoryProvider_8h_a05057d32e6fd59ce23d78f2f88d68da2}{Ccmb\+\_\+desc}\hypertarget{cacheCoherentMemoryProvider_8h_a05057d32e6fd59ce23d78f2f88d68da2}{}\label{cacheCoherentMemoryProvider_8h_a05057d32e6fd59ce23d78f2f88d68da2}
+
+\begin{DoxyCompactList}\small\item\em Describes a Cache Coherent Memory Block allocated by \hyperlink{cacheCoherentMemoryProvider_8c_a72b3227fd1265a06a6b65e36b4c370ee}{ccmp\+\_\+malloc()} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{cacheCoherentMemoryProvider_8h_a72b3227fd1265a06a6b65e36b4c370ee}{ccmp\+\_\+malloc} (size\+\_\+t req\+Size, \hyperlink{cacheCoherentMemoryProvider_8h_a05057d32e6fd59ce23d78f2f88d68da2}{Ccmb\+\_\+desc} $\ast$allocated\+Area\+Desc, unsigned int byte\+Alignment)
+\begin{DoxyCompactList}\small\item\em Provides a way to easily allocate memory areas that are coherent between C\+PU and D\+MA. \end{DoxyCompactList}\item 
+int \hyperlink{cacheCoherentMemoryProvider_8h_a302470ace4f6aef718d5e017181e733e}{ccmp\+\_\+free} (\hyperlink{cacheCoherentMemoryProvider_8h_a05057d32e6fd59ce23d78f2f88d68da2}{Ccmb\+\_\+desc} $\ast$allocated\+Area\+Desc)
+\begin{DoxyCompactList}\small\item\em Frees a block allocated with \hyperlink{cacheCoherentMemoryProvider_8c_a72b3227fd1265a06a6b65e36b4c370ee}{ccmp\+\_\+malloc()} \end{DoxyCompactList}\item 
+uintptr\+\_\+t \hyperlink{cacheCoherentMemoryProvider_8h_a6001c94574407f5d0f222bcc057d9d9c}{ccmp\+\_\+virt\+Addr\+To\+Bus\+Addr} (\hyperlink{cacheCoherentMemoryProvider_8h_a05057d32e6fd59ce23d78f2f88d68da2}{Ccmb\+\_\+desc} $\ast$desc, void $\ast$virt\+Addr)
+\begin{DoxyCompactList}\small\item\em Converts a virtual address inside the block described by desc to it\textquotesingle{}s bus address. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Provides a way to easily allocate memory areas that are coherent between C\+PU and D\+MA. 
+
+This files provides functions to get blocks of memory with known associated physical address that are cache coherent. This is useful when interfacing with peripherals that access memory directly, bypassing the L1 or L2 caches, like the D\+MA. 
+
+\subsection{Function Documentation}
+\index{cache\+Coherent\+Memory\+Provider.\+h@{cache\+Coherent\+Memory\+Provider.\+h}!ccmp\+\_\+free@{ccmp\+\_\+free}}
+\index{ccmp\+\_\+free@{ccmp\+\_\+free}!cache\+Coherent\+Memory\+Provider.\+h@{cache\+Coherent\+Memory\+Provider.\+h}}
+\subsubsection[{\texorpdfstring{ccmp\+\_\+free(\+Ccmb\+\_\+desc $\ast$allocated\+Area\+Desc)}{ccmp_free(Ccmb_desc *allocatedAreaDesc)}}]{\setlength{\rightskip}{0pt plus 5cm}int ccmp\+\_\+free (
+\begin{DoxyParamCaption}
+\item[{{\bf Ccmb\+\_\+desc} $\ast$}]{allocated\+Area\+Desc}
+\end{DoxyParamCaption}
+)}\hypertarget{cacheCoherentMemoryProvider_8h_a302470ace4f6aef718d5e017181e733e}{}\label{cacheCoherentMemoryProvider_8h_a302470ace4f6aef718d5e017181e733e}
+
+
+Frees a block allocated with \hyperlink{cacheCoherentMemoryProvider_8c_a72b3227fd1265a06a6b65e36b4c370ee}{ccmp\+\_\+malloc()} 
+
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{cache\+Coherent\+Memory\+Provider.\+h@{cache\+Coherent\+Memory\+Provider.\+h}!ccmp\+\_\+malloc@{ccmp\+\_\+malloc}}
+\index{ccmp\+\_\+malloc@{ccmp\+\_\+malloc}!cache\+Coherent\+Memory\+Provider.\+h@{cache\+Coherent\+Memory\+Provider.\+h}}
+\subsubsection[{\texorpdfstring{ccmp\+\_\+malloc(size\+\_\+t req\+Size, Ccmb\+\_\+desc $\ast$allocated\+Area\+Desc, unsigned int byte\+Alignment)}{ccmp_malloc(size_t reqSize, Ccmb_desc *allocatedAreaDesc, unsigned int byteAlignment)}}]{\setlength{\rightskip}{0pt plus 5cm}int ccmp\+\_\+malloc (
+\begin{DoxyParamCaption}
+\item[{size\+\_\+t}]{req\+Size, }
+\item[{{\bf Ccmb\+\_\+desc} $\ast$}]{allocated\+Area\+Desc, }
+\item[{unsigned int}]{byte\+Alignment}
+\end{DoxyParamCaption}
+)}\hypertarget{cacheCoherentMemoryProvider_8h_a72b3227fd1265a06a6b65e36b4c370ee}{}\label{cacheCoherentMemoryProvider_8h_a72b3227fd1265a06a6b65e36b4c370ee}
+
+
+Provides a way to easily allocate memory areas that are coherent between C\+PU and D\+MA. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em req\+Size} & The size of the block to be allocated. \\
+\hline
+{\em allocated\+Area\+Desc} & Here will be returned the descriptor for the allocated block \\
+\hline
+{\em byte\+Alignment} & The allocated block will be aligned to this value\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{cache\+Coherent\+Memory\+Provider.\+h@{cache\+Coherent\+Memory\+Provider.\+h}!ccmp\+\_\+virt\+Addr\+To\+Bus\+Addr@{ccmp\+\_\+virt\+Addr\+To\+Bus\+Addr}}
+\index{ccmp\+\_\+virt\+Addr\+To\+Bus\+Addr@{ccmp\+\_\+virt\+Addr\+To\+Bus\+Addr}!cache\+Coherent\+Memory\+Provider.\+h@{cache\+Coherent\+Memory\+Provider.\+h}}
+\subsubsection[{\texorpdfstring{ccmp\+\_\+virt\+Addr\+To\+Bus\+Addr(\+Ccmb\+\_\+desc $\ast$desc, void $\ast$virt\+Addr)}{ccmp_virtAddrToBusAddr(Ccmb_desc *desc, void *virtAddr)}}]{\setlength{\rightskip}{0pt plus 5cm}uintptr\+\_\+t ccmp\+\_\+virt\+Addr\+To\+Bus\+Addr (
+\begin{DoxyParamCaption}
+\item[{{\bf Ccmb\+\_\+desc} $\ast$}]{desc, }
+\item[{void $\ast$}]{virt\+Addr}
+\end{DoxyParamCaption}
+)}\hypertarget{cacheCoherentMemoryProvider_8h_a6001c94574407f5d0f222bcc057d9d9c}{}\label{cacheCoherentMemoryProvider_8h_a6001c94574407f5d0f222bcc057d9d9c}
+
+
+Converts a virtual address inside the block described by desc to it\textquotesingle{}s bus address. 
+
+\begin{DoxyReturn}{Returns}
+the bus address 
+\end{DoxyReturn}

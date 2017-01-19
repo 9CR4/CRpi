@@ -1,0 +1,33 @@
+\hypertarget{structchannelSetup__struct}{}\section{channel\+Setup\+\_\+struct Struct Reference}
+\label{structchannelSetup__struct}\index{channel\+Setup\+\_\+struct@{channel\+Setup\+\_\+struct}}
+
+
+Describes the setup of a channel.  
+
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{cacheCoherentMemoryProvider_8h_a05057d32e6fd59ce23d78f2f88d68da2}{Ccmb\+\_\+desc} \hyperlink{structchannelSetup__struct_a07e1a7099e0c476f21dbea53574e1f52}{data\+Area}
+\item 
+unsigned int \hyperlink{structchannelSetup__struct_a20356f808e59b5e3a0678493fb71ddef}{pulses\+Per\+Cycle}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Describes the setup of a channel. 
+
+\subsection{Field Documentation}
+\index{channel\+Setup\+\_\+struct@{channel\+Setup\+\_\+struct}!data\+Area@{data\+Area}}
+\index{data\+Area@{data\+Area}!channel\+Setup\+\_\+struct@{channel\+Setup\+\_\+struct}}
+\subsubsection[{\texorpdfstring{data\+Area}{dataArea}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Ccmb\+\_\+desc} channel\+Setup\+\_\+struct\+::data\+Area}\hypertarget{structchannelSetup__struct_a07e1a7099e0c476f21dbea53574e1f52}{}\label{structchannelSetup__struct_a07e1a7099e0c476f21dbea53574e1f52}
+This data area contains first the control blocks (in order), then the words to be copied to the set/clear registers of the gpio, set/clear words are alternated (eg\+: set0,clear0,set1,clear1,set2,clear2,...) So it can be divided in these memory regions\+: 0 -\/ pulses\+Per\+Cycle$\ast$sizeof(Control\+Block)$\ast$3 \+: Control\+Blocks pulses\+Per\+Cycle$\ast$sizeof(Control\+Block) -\/ pulses\+Per\+Cycle$\ast$32$\ast$2 \+: Set/\+Clear words
+
+set this field to zero when resetting the channel to mark it as not initialized \index{channel\+Setup\+\_\+struct@{channel\+Setup\+\_\+struct}!pulses\+Per\+Cycle@{pulses\+Per\+Cycle}}
+\index{pulses\+Per\+Cycle@{pulses\+Per\+Cycle}!channel\+Setup\+\_\+struct@{channel\+Setup\+\_\+struct}}
+\subsubsection[{\texorpdfstring{pulses\+Per\+Cycle}{pulsesPerCycle}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int channel\+Setup\+\_\+struct\+::pulses\+Per\+Cycle}\hypertarget{structchannelSetup__struct_a20356f808e59b5e3a0678493fb71ddef}{}\label{structchannelSetup__struct_a20356f808e59b5e3a0678493fb71ddef}
+number of pulses in a period 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/lib/utils/\hyperlink{pwmByDma_8c}{pwm\+By\+Dma.\+c}\end{DoxyCompactItemize}

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="CRpi" />
+		<Option makefile_is_custom="1" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="all">
+				<Option output="car" prefix_auto="1" extension_auto="1" />
+				<Option object_output="all/obj/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename=".gitignore" />
+		<Unit filename="CMakeLists.txt" />
+		<Unit filename="Doxyfile" />
+		<Unit filename="include/memoryManagement/addressing.h" />
+		<Unit filename="include/memoryManagement/cacheCoherentMemoryProvider.h" />
+		<Unit filename="include/memoryManagement/physMemoryManagement.h" />
+		<Unit filename="include/peripherals/clockManager.h" />
+		<Unit filename="include/peripherals/dma.h" />
+		<Unit filename="include/peripherals/gpio.h" />
+		<Unit filename="include/peripherals/pwm.h" />
+		<Unit filename="include/utils/pwmByDma.h" />
+		<Unit filename="makefile_old" />
+		<Unit filename="src/demo/demo.cpp" />
+		<Unit filename="src/doxygenMainPage.dox" />
+		<Unit filename="src/lib/memoryManagement/addressing.cpp" />
+		<Unit filename="src/lib/memoryManagement/cacheCoherentMemoryProvider.cpp" />
+		<Unit filename="src/lib/memoryManagement/physMemoryManagement.cpp" />
+		<Unit filename="src/lib/notMine/mailbox.cpp" />
+		<Unit filename="src/lib/notMine/mailbox.h" />
+		<Unit filename="src/lib/peripherals/clockManager.cpp" />
+		<Unit filename="src/lib/peripherals/dma.cpp" />
+		<Unit filename="src/lib/peripherals/gpio.cpp" />
+		<Unit filename="src/lib/peripherals/gpio_internal.h" />
+		<Unit filename="src/lib/peripherals/pwm.cpp" />
+		<Unit filename="src/lib/peripherals/pwm_internal.h" />
+		<Unit filename="src/lib/utils/portsManager.cpp" />
+		<Unit filename="src/lib/utils/portsManager.hpp" />
+		<Unit filename="src/lib/utils/pwmByDma.cpp" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
