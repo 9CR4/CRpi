@@ -13,4 +13,4 @@ It also includes some utilies, most notably cacheCoherentMemoryProvider.h
 
 It currently supports **Raspberry Pi 2 and 3 model B**, it's tested only on the RPI 3 but should work also on the 2.
 
-A more in-depth description can be found in the **doxygen documentation**
+A more in-depth description can be found in the [**doxygen documentation**](https://9cr4.github.io/CRpi/html/index.html)
