@@ -1,0 +1,136 @@
+\hypertarget{gpio_8cpp}{}\section{src/lib/peripherals/gpio.cpp File Reference}
+\label{gpio_8cpp}\index{src/lib/peripherals/gpio.\+cpp@{src/lib/peripherals/gpio.\+cpp}}
+
+
+Interface to the G\+P\+IO peripheral.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$memory\+Management/addressing.\+h$>$}\\*
+{\ttfamily \#include $<$memory\+Management/phys\+Memory\+Management.\+h$>$}\\*
+{\ttfamily \#include $<$C\+C\+R\+Coding\+Utils/include/error\+Management.\+h$>$}\\*
+{\ttfamily \#include $<$peripherals/gpio.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}gpio\+\_\+internal.\+h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{gpio_8cpp_a71cdc8883c43e8ae777fb2b101d52fa1}{gpio\+\_\+init} ()
+\begin{DoxyCompactList}\small\item\em Initializes the interface, to be called before any other function in this file. \end{DoxyCompactList}\item 
+int \hyperlink{gpio_8cpp_aa650f3d2177e95846ae069e2b6c9206a}{gpio\+\_\+is\+Init} ()\hypertarget{gpio_8cpp_aa650f3d2177e95846ae069e2b6c9206a}{}\label{gpio_8cpp_aa650f3d2177e95846ae069e2b6c9206a}
+
+\begin{DoxyCompactList}\small\item\em true if gpio\+\_\+init has been called with success \end{DoxyCompactList}\item 
+int \hyperlink{gpio_8cpp_afd806966a7c76c92a6acf1771741ef57}{gpio\+\_\+set\+Function} (int bcm\+Port, int function)
+\begin{DoxyCompactList}\small\item\em Sets the function of the specified port. \end{DoxyCompactList}\item 
+int \hyperlink{gpio_8cpp_a745e6eaf68b5b47f620d1e9e9563963c}{gpio\+\_\+set\+Output} (int bcm\+Port, int value)
+\begin{DoxyCompactList}\small\item\em Sets the output at the specified port. The port will output this value if set to the output function. If you use this function with the port not set to output then the port will remember the value until you set it to the output function. \end{DoxyCompactList}\item 
+int \hyperlink{gpio_8cpp_a0b575037203e6c08902385caaf12010d}{gpio\+\_\+set\+Output\+All} (uint64\+\_\+t set, uint64\+\_\+t clear)
+\begin{DoxyCompactList}\small\item\em sets all the specified gpios to the specified values \end{DoxyCompactList}\item 
+int \hyperlink{gpio_8cpp_ac6f4b2893579538e84f96421c5c433a7}{gpio\+\_\+get\+Input} (int bcm\+Port)
+\begin{DoxyCompactList}\small\item\em Gets the detected value of the port in input mode. Obviously you can use this only in input mode, you wold kill your rpi otherwise. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Interface to the G\+P\+IO peripheral. 
+
+If you haven\textquotesingle{}t already, see \hyperlink{gpio_8h}{gpio.\+h} See documentation at \char`\"{}\+B\+C\+M2835 A\+R\+M peripherals\char`\"{} page 89 
+
+\subsection{Function Documentation}
+\index{gpio.\+cpp@{gpio.\+cpp}!gpio\+\_\+get\+Input@{gpio\+\_\+get\+Input}}
+\index{gpio\+\_\+get\+Input@{gpio\+\_\+get\+Input}!gpio.\+cpp@{gpio.\+cpp}}
+\subsubsection[{\texorpdfstring{gpio\+\_\+get\+Input(int bcm\+Port)}{gpio_getInput(int bcmPort)}}]{\setlength{\rightskip}{0pt plus 5cm}int gpio\+\_\+get\+Input (
+\begin{DoxyParamCaption}
+\item[{int}]{bcm\+Port}
+\end{DoxyParamCaption}
+)}\hypertarget{gpio_8cpp_ac6f4b2893579538e84f96421c5c433a7}{}\label{gpio_8cpp_ac6f4b2893579538e84f96421c5c433a7}
+
+
+Gets the detected value of the port in input mode. Obviously you can use this only in input mode, you wold kill your rpi otherwise. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bcm\+Port} & The port.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The level\+: 1 or 0. 
+\end{DoxyReturn}
+\index{gpio.\+cpp@{gpio.\+cpp}!gpio\+\_\+init@{gpio\+\_\+init}}
+\index{gpio\+\_\+init@{gpio\+\_\+init}!gpio.\+cpp@{gpio.\+cpp}}
+\subsubsection[{\texorpdfstring{gpio\+\_\+init()}{gpio_init()}}]{\setlength{\rightskip}{0pt plus 5cm}int gpio\+\_\+init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{gpio_8cpp_a71cdc8883c43e8ae777fb2b101d52fa1}{}\label{gpio_8cpp_a71cdc8883c43e8ae777fb2b101d52fa1}
+
+
+Initializes the interface, to be called before any other function in this file. 
+
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{gpio.\+cpp@{gpio.\+cpp}!gpio\+\_\+set\+Function@{gpio\+\_\+set\+Function}}
+\index{gpio\+\_\+set\+Function@{gpio\+\_\+set\+Function}!gpio.\+cpp@{gpio.\+cpp}}
+\subsubsection[{\texorpdfstring{gpio\+\_\+set\+Function(int bcm\+Port, int function)}{gpio_setFunction(int bcmPort, int function)}}]{\setlength{\rightskip}{0pt plus 5cm}int gpio\+\_\+set\+Function (
+\begin{DoxyParamCaption}
+\item[{int}]{bcm\+Port, }
+\item[{int}]{function}
+\end{DoxyParamCaption}
+)}\hypertarget{gpio_8cpp_afd806966a7c76c92a6acf1771741ef57}{}\label{gpio_8cpp_afd806966a7c76c92a6acf1771741ef57}
+
+
+Sets the function of the specified port. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bcm\+Port} & The port bcm number \\
+\hline
+{\em function} & The desired function (P\+O\+R\+T\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+P\+UT, P\+O\+R\+T\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+O\+U\+T\+P\+UT, P\+O\+R\+T\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+A\+L\+T\+\_\+x)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{gpio.\+cpp@{gpio.\+cpp}!gpio\+\_\+set\+Output@{gpio\+\_\+set\+Output}}
+\index{gpio\+\_\+set\+Output@{gpio\+\_\+set\+Output}!gpio.\+cpp@{gpio.\+cpp}}
+\subsubsection[{\texorpdfstring{gpio\+\_\+set\+Output(int bcm\+Port, int value)}{gpio_setOutput(int bcmPort, int value)}}]{\setlength{\rightskip}{0pt plus 5cm}int gpio\+\_\+set\+Output (
+\begin{DoxyParamCaption}
+\item[{int}]{bcm\+Port, }
+\item[{int}]{value}
+\end{DoxyParamCaption}
+)}\hypertarget{gpio_8cpp_a745e6eaf68b5b47f620d1e9e9563963c}{}\label{gpio_8cpp_a745e6eaf68b5b47f620d1e9e9563963c}
+
+
+Sets the output at the specified port. The port will output this value if set to the output function. If you use this function with the port not set to output then the port will remember the value until you set it to the output function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bcm\+Port} & The port bcm number \\
+\hline
+{\em value} & 0 means low, any other number means high\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{gpio.\+cpp@{gpio.\+cpp}!gpio\+\_\+set\+Output\+All@{gpio\+\_\+set\+Output\+All}}
+\index{gpio\+\_\+set\+Output\+All@{gpio\+\_\+set\+Output\+All}!gpio.\+cpp@{gpio.\+cpp}}
+\subsubsection[{\texorpdfstring{gpio\+\_\+set\+Output\+All(uint64\+\_\+t set, uint64\+\_\+t clear)}{gpio_setOutputAll(uint64_t set, uint64_t clear)}}]{\setlength{\rightskip}{0pt plus 5cm}int gpio\+\_\+set\+Output\+All (
+\begin{DoxyParamCaption}
+\item[{uint64\+\_\+t}]{set, }
+\item[{uint64\+\_\+t}]{clear}
+\end{DoxyParamCaption}
+)}\hypertarget{gpio_8cpp_a0b575037203e6c08902385caaf12010d}{}\label{gpio_8cpp_a0b575037203e6c08902385caaf12010d}
+
+
+sets all the specified gpios to the specified values 
+
+
+\begin{DoxyParams}{Parameters}
+{\em set} & The gpios to set to 1 \\
+\hline
+{\em clear} & The values to set to 0\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}

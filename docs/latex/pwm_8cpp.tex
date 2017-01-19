@@ -1,0 +1,334 @@
+\hypertarget{pwm_8cpp}{}\section{src/lib/peripherals/pwm.cpp File Reference}
+\label{pwm_8cpp}\index{src/lib/peripherals/pwm.\+cpp@{src/lib/peripherals/pwm.\+cpp}}
+
+
+Interface to the P\+WM peripheral.  
+
+
+{\ttfamily \#include $<$peripherals/clock\+Manager.\+h$>$}\\*
+{\ttfamily \#include $<$memory\+Management/phys\+Memory\+Management.\+h$>$}\\*
+{\ttfamily \#include $<$peripherals/pwm.\+h$>$}\\*
+{\ttfamily \#include $<$memory\+Management/addressing.\+h$>$}\\*
+{\ttfamily \#include $<$C\+C\+R\+Coding\+Utils/include/error\+Management.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$unistd.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}pwm\+\_\+internal.\+h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{pwm_8cpp_ae3d148f659679557b399c8831089550f}{pwm\+\_\+init} ()
+\begin{DoxyCompactList}\small\item\em Initializes this peripheral interface, to use before any other function in this file. \end{DoxyCompactList}\item 
+int \hyperlink{pwm_8cpp_a52f5174363a01f4559f9d841ec7ce2e8}{pwm\+\_\+is\+Init} ()\hypertarget{pwm_8cpp_a52f5174363a01f4559f9d841ec7ce2e8}{}\label{pwm_8cpp_a52f5174363a01f4559f9d841ec7ce2e8}
+
+\begin{DoxyCompactList}\small\item\em true if pwm\+\_\+init has been called with success \end{DoxyCompactList}\item 
+int \hyperlink{pwm_8cpp_aba6570f6f254d9972fcd0eab50aaa8f5}{pwm\+\_\+set\+Clock} (int clk\+Src, int divisor\+Int, int divisor\+Frac)
+\begin{DoxyCompactList}\small\item\em sets the clock divisor for the pwm (the base frequency is 19.\+2 M\+Hz) \end{DoxyCompactList}\item 
+int \hyperlink{pwm_8cpp_a0eaa72a889721656a770e9e87059a6da}{pwm\+\_\+reset\+Channel} (int channel)
+\begin{DoxyCompactList}\small\item\em Resets the specified channel to\+: disabled, pwm mode, don\textquotesingle{}t repeat last, silence=0, normal polarity, don\textquotesingle{}t use fifo, don\textquotesingle{}t use M/S Warning\+: the pwm peripheral likes to ignore the C\+T\+L\+\_\+\+R\+P\+T\+L1\+\_\+\+M\+A\+SK and repeat the last word even if you say it not to. \end{DoxyCompactList}\item 
+int \hyperlink{pwm_8cpp_a97006093a77dac67344cc29eb59aedac}{pwm\+\_\+set\+Repeat\+Last\+Word} (int channel, unsigned int value)
+\begin{DoxyCompactList}\small\item\em Sets the repetition of the last word in the fifo on serializer mode Warning\+: the pwm peripheral likes to ignore this setting and repeat the last word even if you say it not to. \end{DoxyCompactList}\item 
+int \hyperlink{pwm_8cpp_a67fa13fae2958673218993d994a2a7d2}{pwm\+\_\+clear\+Fifo} ()
+\begin{DoxyCompactList}\small\item\em clears the fifo \end{DoxyCompactList}\item 
+int \hyperlink{pwm_8cpp_a590cef59bf808e5446e3022b437313cf}{pwm\+\_\+set\+Enable} (int channel, unsigned int value)
+\begin{DoxyCompactList}\small\item\em Sets the enabled status of the specified channel. After the dma completes a transfer (a chain of control blocks) and 0 gets loaded as control block this is resetted to 0. \end{DoxyCompactList}\item 
+int \hyperlink{pwm_8cpp_a1f3eb668e4be48c513fac9a62f61e484}{pwm\+\_\+set\+Mode} (int channel, unsigned int mode)
+\begin{DoxyCompactList}\small\item\em Sets the mode of the specified channel to P\+WM or Serializer. \end{DoxyCompactList}\item 
+int \hyperlink{pwm_8cpp_a5b5f5fd0879c469710b57b02a245ed76}{pwm\+\_\+set\+Serializer\+Mode} (int channel, unsigned int mode)
+\begin{DoxyCompactList}\small\item\em Set the serialized mode to use the fifo or the data register. \end{DoxyCompactList}\item 
+int \hyperlink{pwm_8cpp_abfd010adbd0198be4ab4fc993270ae27}{pwm\+\_\+set\+M\+Senable} (int channel, unsigned int mode)
+\begin{DoxyCompactList}\small\item\em Sets the pwm mode\+: M/S or the algorithm (see datasheet pag 139) \end{DoxyCompactList}\item 
+int \hyperlink{pwm_8cpp_aac18bfaf5cf32dca4cfa3e9c9169d25d}{pwm\+\_\+set\+Range} (int channel, uint32\+\_\+t range)
+\begin{DoxyCompactList}\small\item\em Sets the range of the specified channel counter. \end{DoxyCompactList}\item 
+int \hyperlink{pwm_8cpp_ac67457a6454e6aae95b1685e549fb667}{pwm\+\_\+set\+Data} (int channel, uint32\+\_\+t data)
+\begin{DoxyCompactList}\small\item\em Sets the data for the specified channel\+: in Serializer mode (if not using fifo) it will be sent as pulses, in P\+WM mode it\textquotesingle{}s the number of pulses in a period. \end{DoxyCompactList}\item 
+int \hyperlink{pwm_8cpp_ad495fd44164a36a58c3442dd94e5c484}{pwm\+\_\+write\+To\+Fifo} (unsigned int data)
+\begin{DoxyCompactList}\small\item\em Write the provided data word to the fifo. \end{DoxyCompactList}\item 
+int \hyperlink{pwm_8cpp_a5d304634bf3f03767bdd8ba596bea493}{pwm\+\_\+set\+Dreq\+Threshold} (unsigned int threshold)
+\begin{DoxyCompactList}\small\item\em Sets the threshold under which the dreq signal is raised. \end{DoxyCompactList}\item 
+int \hyperlink{pwm_8cpp_ac1f62e9b201f7a5bafa8dd57fb01b114}{pwm\+\_\+set\+Dma\+Enable} (unsigned int value)
+\begin{DoxyCompactList}\small\item\em Enables or disables the generation of the dma signals D\+R\+EQ and P\+A\+N\+IC. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Interface to the P\+WM peripheral. 
+
+If you haven\textquotesingle{}t already, see \hyperlink{pwm_8h}{pwm.\+h} See documentation at \char`\"{}\+B\+C\+M2835 A\+R\+M peripherals\char`\"{} pag 138d 
+
+\subsection{Function Documentation}
+\index{pwm.\+cpp@{pwm.\+cpp}!pwm\+\_\+clear\+Fifo@{pwm\+\_\+clear\+Fifo}}
+\index{pwm\+\_\+clear\+Fifo@{pwm\+\_\+clear\+Fifo}!pwm.\+cpp@{pwm.\+cpp}}
+\subsubsection[{\texorpdfstring{pwm\+\_\+clear\+Fifo()}{pwm_clearFifo()}}]{\setlength{\rightskip}{0pt plus 5cm}int pwm\+\_\+clear\+Fifo (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{pwm_8cpp_a67fa13fae2958673218993d994a2a7d2}{}\label{pwm_8cpp_a67fa13fae2958673218993d994a2a7d2}
+
+
+clears the fifo 
+
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{pwm.\+cpp@{pwm.\+cpp}!pwm\+\_\+init@{pwm\+\_\+init}}
+\index{pwm\+\_\+init@{pwm\+\_\+init}!pwm.\+cpp@{pwm.\+cpp}}
+\subsubsection[{\texorpdfstring{pwm\+\_\+init()}{pwm_init()}}]{\setlength{\rightskip}{0pt plus 5cm}int pwm\+\_\+init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{pwm_8cpp_ae3d148f659679557b399c8831089550f}{}\label{pwm_8cpp_ae3d148f659679557b399c8831089550f}
+
+
+Initializes this peripheral interface, to use before any other function in this file. 
+
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{pwm.\+cpp@{pwm.\+cpp}!pwm\+\_\+reset\+Channel@{pwm\+\_\+reset\+Channel}}
+\index{pwm\+\_\+reset\+Channel@{pwm\+\_\+reset\+Channel}!pwm.\+cpp@{pwm.\+cpp}}
+\subsubsection[{\texorpdfstring{pwm\+\_\+reset\+Channel(int channel)}{pwm_resetChannel(int channel)}}]{\setlength{\rightskip}{0pt plus 5cm}int pwm\+\_\+reset\+Channel (
+\begin{DoxyParamCaption}
+\item[{int}]{channel}
+\end{DoxyParamCaption}
+)}\hypertarget{pwm_8cpp_a0eaa72a889721656a770e9e87059a6da}{}\label{pwm_8cpp_a0eaa72a889721656a770e9e87059a6da}
+
+
+Resets the specified channel to\+: disabled, pwm mode, don\textquotesingle{}t repeat last, silence=0, normal polarity, don\textquotesingle{}t use fifo, don\textquotesingle{}t use M/S Warning\+: the pwm peripheral likes to ignore the C\+T\+L\+\_\+\+R\+P\+T\+L1\+\_\+\+M\+A\+SK and repeat the last word even if you say it not to. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & The channel\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{pwm.\+cpp@{pwm.\+cpp}!pwm\+\_\+set\+Clock@{pwm\+\_\+set\+Clock}}
+\index{pwm\+\_\+set\+Clock@{pwm\+\_\+set\+Clock}!pwm.\+cpp@{pwm.\+cpp}}
+\subsubsection[{\texorpdfstring{pwm\+\_\+set\+Clock(int clk\+Src, int divisor\+Int, int divisor\+Frac)}{pwm_setClock(int clkSrc, int divisorInt, int divisorFrac)}}]{\setlength{\rightskip}{0pt plus 5cm}int pwm\+\_\+set\+Clock (
+\begin{DoxyParamCaption}
+\item[{int}]{clk\+Src, }
+\item[{int}]{divisor\+Int, }
+\item[{int}]{divisor\+Frac}
+\end{DoxyParamCaption}
+)}\hypertarget{pwm_8cpp_aba6570f6f254d9972fcd0eab50aaa8f5}{}\label{pwm_8cpp_aba6570f6f254d9972fcd0eab50aaa8f5}
+
+
+sets the clock divisor for the pwm (the base frequency is 19.\+2 M\+Hz) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em clk\+Src} & Clock source, see the macros in clock\+Manager. Normally you want C\+L\+K\+\_\+\+S\+R\+C\+\_\+\+O\+S\+C\+I\+L\+L\+A\+T\+OR (19.\+2\+M\+Hz) \\
+\hline
+{\em divisor\+Int} & Integer part of the divisor \\
+\hline
+{\em divisor\+Frac} & Fractional part of the divisor \\
+\hline
+\end{DoxyParams}
+\index{pwm.\+cpp@{pwm.\+cpp}!pwm\+\_\+set\+Data@{pwm\+\_\+set\+Data}}
+\index{pwm\+\_\+set\+Data@{pwm\+\_\+set\+Data}!pwm.\+cpp@{pwm.\+cpp}}
+\subsubsection[{\texorpdfstring{pwm\+\_\+set\+Data(int channel, uint32\+\_\+t data)}{pwm_setData(int channel, uint32_t data)}}]{\setlength{\rightskip}{0pt plus 5cm}int pwm\+\_\+set\+Data (
+\begin{DoxyParamCaption}
+\item[{int}]{channel, }
+\item[{uint32\+\_\+t}]{data}
+\end{DoxyParamCaption}
+)}\hypertarget{pwm_8cpp_ac67457a6454e6aae95b1685e549fb667}{}\label{pwm_8cpp_ac67457a6454e6aae95b1685e549fb667}
+
+
+Sets the data for the specified channel\+: in Serializer mode (if not using fifo) it will be sent as pulses, in P\+WM mode it\textquotesingle{}s the number of pulses in a period. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & The channel\+: 1 or 2 \\
+\hline
+{\em data} & The data value\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{pwm.\+cpp@{pwm.\+cpp}!pwm\+\_\+set\+Dma\+Enable@{pwm\+\_\+set\+Dma\+Enable}}
+\index{pwm\+\_\+set\+Dma\+Enable@{pwm\+\_\+set\+Dma\+Enable}!pwm.\+cpp@{pwm.\+cpp}}
+\subsubsection[{\texorpdfstring{pwm\+\_\+set\+Dma\+Enable(unsigned int value)}{pwm_setDmaEnable(unsigned int value)}}]{\setlength{\rightskip}{0pt plus 5cm}int pwm\+\_\+set\+Dma\+Enable (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{value}
+\end{DoxyParamCaption}
+)}\hypertarget{pwm_8cpp_ac1f62e9b201f7a5bafa8dd57fb01b114}{}\label{pwm_8cpp_ac1f62e9b201f7a5bafa8dd57fb01b114}
+
+
+Enables or disables the generation of the dma signals D\+R\+EQ and P\+A\+N\+IC. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & 0=disabled, any other value=enabled \\
+\hline
+\end{DoxyParams}
+\index{pwm.\+cpp@{pwm.\+cpp}!pwm\+\_\+set\+Dreq\+Threshold@{pwm\+\_\+set\+Dreq\+Threshold}}
+\index{pwm\+\_\+set\+Dreq\+Threshold@{pwm\+\_\+set\+Dreq\+Threshold}!pwm.\+cpp@{pwm.\+cpp}}
+\subsubsection[{\texorpdfstring{pwm\+\_\+set\+Dreq\+Threshold(unsigned int threshold)}{pwm_setDreqThreshold(unsigned int threshold)}}]{\setlength{\rightskip}{0pt plus 5cm}int pwm\+\_\+set\+Dreq\+Threshold (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{threshold}
+\end{DoxyParamCaption}
+)}\hypertarget{pwm_8cpp_a5d304634bf3f03767bdd8ba596bea493}{}\label{pwm_8cpp_a5d304634bf3f03767bdd8ba596bea493}
+
+
+Sets the threshold under which the dreq signal is raised. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em threshold} & The threshold\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{pwm.\+cpp@{pwm.\+cpp}!pwm\+\_\+set\+Enable@{pwm\+\_\+set\+Enable}}
+\index{pwm\+\_\+set\+Enable@{pwm\+\_\+set\+Enable}!pwm.\+cpp@{pwm.\+cpp}}
+\subsubsection[{\texorpdfstring{pwm\+\_\+set\+Enable(int channel, unsigned int value)}{pwm_setEnable(int channel, unsigned int value)}}]{\setlength{\rightskip}{0pt plus 5cm}int pwm\+\_\+set\+Enable (
+\begin{DoxyParamCaption}
+\item[{int}]{channel, }
+\item[{unsigned int}]{value}
+\end{DoxyParamCaption}
+)}\hypertarget{pwm_8cpp_a590cef59bf808e5446e3022b437313cf}{}\label{pwm_8cpp_a590cef59bf808e5446e3022b437313cf}
+
+
+Sets the enabled status of the specified channel. After the dma completes a transfer (a chain of control blocks) and 0 gets loaded as control block this is resetted to 0. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & The channel\+: 1 or 2 \\
+\hline
+{\em value} & It\textquotesingle{}s a boolean\+: 0=disabled, 1=enabled\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{pwm.\+cpp@{pwm.\+cpp}!pwm\+\_\+set\+Mode@{pwm\+\_\+set\+Mode}}
+\index{pwm\+\_\+set\+Mode@{pwm\+\_\+set\+Mode}!pwm.\+cpp@{pwm.\+cpp}}
+\subsubsection[{\texorpdfstring{pwm\+\_\+set\+Mode(int channel, unsigned int mode)}{pwm_setMode(int channel, unsigned int mode)}}]{\setlength{\rightskip}{0pt plus 5cm}int pwm\+\_\+set\+Mode (
+\begin{DoxyParamCaption}
+\item[{int}]{channel, }
+\item[{unsigned int}]{mode}
+\end{DoxyParamCaption}
+)}\hypertarget{pwm_8cpp_a1f3eb668e4be48c513fac9a62f61e484}{}\label{pwm_8cpp_a1f3eb668e4be48c513fac9a62f61e484}
+
+
+Sets the mode of the specified channel to P\+WM or Serializer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & The channel\+: 1 or 2 \\
+\hline
+{\em mode} & The mode\+: 0=P\+WM, 1=Serializer\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{pwm.\+cpp@{pwm.\+cpp}!pwm\+\_\+set\+M\+Senable@{pwm\+\_\+set\+M\+Senable}}
+\index{pwm\+\_\+set\+M\+Senable@{pwm\+\_\+set\+M\+Senable}!pwm.\+cpp@{pwm.\+cpp}}
+\subsubsection[{\texorpdfstring{pwm\+\_\+set\+M\+Senable(int channel, unsigned int mode)}{pwm_setMSenable(int channel, unsigned int mode)}}]{\setlength{\rightskip}{0pt plus 5cm}int pwm\+\_\+set\+M\+Senable (
+\begin{DoxyParamCaption}
+\item[{int}]{channel, }
+\item[{unsigned int}]{mode}
+\end{DoxyParamCaption}
+)}\hypertarget{pwm_8cpp_abfd010adbd0198be4ab4fc993270ae27}{}\label{pwm_8cpp_abfd010adbd0198be4ab4fc993270ae27}
+
+
+Sets the pwm mode\+: M/S or the algorithm (see datasheet pag 139) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & The channel\+: 1 or 2 \\
+\hline
+{\em mode} & The mode\+: 0=algorithm, 1=M/S\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{pwm.\+cpp@{pwm.\+cpp}!pwm\+\_\+set\+Range@{pwm\+\_\+set\+Range}}
+\index{pwm\+\_\+set\+Range@{pwm\+\_\+set\+Range}!pwm.\+cpp@{pwm.\+cpp}}
+\subsubsection[{\texorpdfstring{pwm\+\_\+set\+Range(int channel, uint32\+\_\+t range)}{pwm_setRange(int channel, uint32_t range)}}]{\setlength{\rightskip}{0pt plus 5cm}int pwm\+\_\+set\+Range (
+\begin{DoxyParamCaption}
+\item[{int}]{channel, }
+\item[{uint32\+\_\+t}]{range}
+\end{DoxyParamCaption}
+)}\hypertarget{pwm_8cpp_aac18bfaf5cf32dca4cfa3e9c9169d25d}{}\label{pwm_8cpp_aac18bfaf5cf32dca4cfa3e9c9169d25d}
+
+
+Sets the range of the specified channel counter. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & The channel\+: 1 or 2 \\
+\hline
+{\em range} & Range, it\textquotesingle{}s the number of possible pulses in a period.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{pwm.\+cpp@{pwm.\+cpp}!pwm\+\_\+set\+Repeat\+Last\+Word@{pwm\+\_\+set\+Repeat\+Last\+Word}}
+\index{pwm\+\_\+set\+Repeat\+Last\+Word@{pwm\+\_\+set\+Repeat\+Last\+Word}!pwm.\+cpp@{pwm.\+cpp}}
+\subsubsection[{\texorpdfstring{pwm\+\_\+set\+Repeat\+Last\+Word(int channel, unsigned int value)}{pwm_setRepeatLastWord(int channel, unsigned int value)}}]{\setlength{\rightskip}{0pt plus 5cm}int pwm\+\_\+set\+Repeat\+Last\+Word (
+\begin{DoxyParamCaption}
+\item[{int}]{channel, }
+\item[{unsigned int}]{value}
+\end{DoxyParamCaption}
+)}\hypertarget{pwm_8cpp_a97006093a77dac67344cc29eb59aedac}{}\label{pwm_8cpp_a97006093a77dac67344cc29eb59aedac}
+
+
+Sets the repetition of the last word in the fifo on serializer mode Warning\+: the pwm peripheral likes to ignore this setting and repeat the last word even if you say it not to. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & The channel to configure \\
+\hline
+{\em value} & 0=don\textquotesingle{}t repeat, 1=repeat\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{pwm.\+cpp@{pwm.\+cpp}!pwm\+\_\+set\+Serializer\+Mode@{pwm\+\_\+set\+Serializer\+Mode}}
+\index{pwm\+\_\+set\+Serializer\+Mode@{pwm\+\_\+set\+Serializer\+Mode}!pwm.\+cpp@{pwm.\+cpp}}
+\subsubsection[{\texorpdfstring{pwm\+\_\+set\+Serializer\+Mode(int channel, unsigned int mode)}{pwm_setSerializerMode(int channel, unsigned int mode)}}]{\setlength{\rightskip}{0pt plus 5cm}int pwm\+\_\+set\+Serializer\+Mode (
+\begin{DoxyParamCaption}
+\item[{int}]{channel, }
+\item[{unsigned int}]{mode}
+\end{DoxyParamCaption}
+)}\hypertarget{pwm_8cpp_a5b5f5fd0879c469710b57b02a245ed76}{}\label{pwm_8cpp_a5b5f5fd0879c469710b57b02a245ed76}
+
+
+Set the serialized mode to use the fifo or the data register. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & The channel\+: 1 or 2 \\
+\hline
+{\em mode} & The mode\+: 0=use data register, 1=use fifo\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}
+\index{pwm.\+cpp@{pwm.\+cpp}!pwm\+\_\+write\+To\+Fifo@{pwm\+\_\+write\+To\+Fifo}}
+\index{pwm\+\_\+write\+To\+Fifo@{pwm\+\_\+write\+To\+Fifo}!pwm.\+cpp@{pwm.\+cpp}}
+\subsubsection[{\texorpdfstring{pwm\+\_\+write\+To\+Fifo(unsigned int data)}{pwm_writeToFifo(unsigned int data)}}]{\setlength{\rightskip}{0pt plus 5cm}int pwm\+\_\+write\+To\+Fifo (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{data}
+\end{DoxyParamCaption}
+)}\hypertarget{pwm_8cpp_ad495fd44164a36a58c3442dd94e5c484}{}\label{pwm_8cpp_ad495fd44164a36a58c3442dd94e5c484}
+
+
+Write the provided data word to the fifo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The data\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}

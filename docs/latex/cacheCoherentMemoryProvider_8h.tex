@@ -11,20 +11,20 @@ Provides a way to easily allocate memory areas that are coherent between C\+PU a
 \begin{DoxyCompactItemize}
 \item 
 struct \hyperlink{structccmb__desc__struct}{ccmb\+\_\+desc\+\_\+struct}
-\begin{DoxyCompactList}\small\item\em Describes a Cache Coherent Memory Block allocated by \hyperlink{cacheCoherentMemoryProvider_8c_a72b3227fd1265a06a6b65e36b4c370ee}{ccmp\+\_\+malloc()} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Describes a Cache Coherent Memory Block allocated by \hyperlink{cacheCoherentMemoryProvider_8cpp_a72b3227fd1265a06a6b65e36b4c370ee}{ccmp\+\_\+malloc()} \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
 typedef struct \hyperlink{structccmb__desc__struct}{ccmb\+\_\+desc\+\_\+struct} \hyperlink{cacheCoherentMemoryProvider_8h_a05057d32e6fd59ce23d78f2f88d68da2}{Ccmb\+\_\+desc}\hypertarget{cacheCoherentMemoryProvider_8h_a05057d32e6fd59ce23d78f2f88d68da2}{}\label{cacheCoherentMemoryProvider_8h_a05057d32e6fd59ce23d78f2f88d68da2}
 
-\begin{DoxyCompactList}\small\item\em Describes a Cache Coherent Memory Block allocated by \hyperlink{cacheCoherentMemoryProvider_8c_a72b3227fd1265a06a6b65e36b4c370ee}{ccmp\+\_\+malloc()} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Describes a Cache Coherent Memory Block allocated by \hyperlink{cacheCoherentMemoryProvider_8cpp_a72b3227fd1265a06a6b65e36b4c370ee}{ccmp\+\_\+malloc()} \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 int \hyperlink{cacheCoherentMemoryProvider_8h_a72b3227fd1265a06a6b65e36b4c370ee}{ccmp\+\_\+malloc} (size\+\_\+t req\+Size, \hyperlink{cacheCoherentMemoryProvider_8h_a05057d32e6fd59ce23d78f2f88d68da2}{Ccmb\+\_\+desc} $\ast$allocated\+Area\+Desc, unsigned int byte\+Alignment)
 \begin{DoxyCompactList}\small\item\em Provides a way to easily allocate memory areas that are coherent between C\+PU and D\+MA. \end{DoxyCompactList}\item 
 int \hyperlink{cacheCoherentMemoryProvider_8h_a302470ace4f6aef718d5e017181e733e}{ccmp\+\_\+free} (\hyperlink{cacheCoherentMemoryProvider_8h_a05057d32e6fd59ce23d78f2f88d68da2}{Ccmb\+\_\+desc} $\ast$allocated\+Area\+Desc)
-\begin{DoxyCompactList}\small\item\em Frees a block allocated with \hyperlink{cacheCoherentMemoryProvider_8c_a72b3227fd1265a06a6b65e36b4c370ee}{ccmp\+\_\+malloc()} \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Frees a block allocated with \hyperlink{cacheCoherentMemoryProvider_8cpp_a72b3227fd1265a06a6b65e36b4c370ee}{ccmp\+\_\+malloc()} \end{DoxyCompactList}\item 
 uintptr\+\_\+t \hyperlink{cacheCoherentMemoryProvider_8h_a6001c94574407f5d0f222bcc057d9d9c}{ccmp\+\_\+virt\+Addr\+To\+Bus\+Addr} (\hyperlink{cacheCoherentMemoryProvider_8h_a05057d32e6fd59ce23d78f2f88d68da2}{Ccmb\+\_\+desc} $\ast$desc, void $\ast$virt\+Addr)
 \begin{DoxyCompactList}\small\item\em Converts a virtual address inside the block described by desc to it\textquotesingle{}s bus address. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -44,7 +44,7 @@ This files provides functions to get blocks of memory with known associated phys
 )}\hypertarget{cacheCoherentMemoryProvider_8h_a302470ace4f6aef718d5e017181e733e}{}\label{cacheCoherentMemoryProvider_8h_a302470ace4f6aef718d5e017181e733e}
 
 
-Frees a block allocated with \hyperlink{cacheCoherentMemoryProvider_8c_a72b3227fd1265a06a6b65e36b4c370ee}{ccmp\+\_\+malloc()} 
+Frees a block allocated with \hyperlink{cacheCoherentMemoryProvider_8cpp_a72b3227fd1265a06a6b65e36b4c370ee}{ccmp\+\_\+malloc()} 
 
 \begin{DoxyReturn}{Returns}
 negative in case of error 

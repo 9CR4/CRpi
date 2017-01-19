@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['transferinfo',['transferInfo',['../structControlBlock__struct.html#ab8ff6b85cb102ef270411fed5080a161',1,'ControlBlock_struct']]],
-  ['transferlength',['transferLength',['../structControlBlock__struct.html#ab63d26648bdb996d136f2e25bd383a76',1,'ControlBlock_struct']]]
+  ['virt_5faddress',['virt_address',['../structccmb__desc__struct.html#a849fdbceb8080e18a11878131c25808f',1,'ccmb_desc_struct']]]
 ];

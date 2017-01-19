@@ -1,0 +1,55 @@
+\hypertarget{addressing_8cpp}{}\section{src/lib/memory\+Management/addressing.cpp File Reference}
+\label{addressing_8cpp}\index{src/lib/memory\+Management/addressing.\+cpp@{src/lib/memory\+Management/addressing.\+cpp}}
+
+
+Provides helper macros for address management.  
+
+
+{\ttfamily \#include $<$memory\+Management/addressing.\+h$>$}\\*
+{\ttfamily \#include $<$C\+C\+R\+Coding\+Utils/include/error\+Management.\+h$>$}\\*
+{\ttfamily \#include $<$unistd.\+h$>$}\\*
+{\ttfamily \#include $<$fcntl.\+h$>$}\\*
+{\ttfamily \#include $<$inttypes.\+h$>$}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{addressing_8cpp_a74311d8932a009c0def7b97b0911d9e3}{addr\+Virt\+To\+Phys} (void $\ast$virt\+Addr, uintptr\+\_\+t $\ast$phys\+Addr\+Ret)
+\begin{DoxyCompactList}\small\item\em Gets the physical address corresponding to the provided virtual address. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uintptr\+\_\+t \hyperlink{addressing_8cpp_a245eee72d3b42da5ce640ea1be193edb}{peripherals\+Base\+Address\+Phys} = \hyperlink{addressing_8h_acdf901dd48c013338974daae498fec00}{P\+E\+R\+I\+P\+H\+E\+R\+A\+L\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+\_\+\+P\+H\+Y\+S\+\_\+\+R\+P\+I2}\hypertarget{addressing_8cpp_a245eee72d3b42da5ce640ea1be193edb}{}\label{addressing_8cpp_a245eee72d3b42da5ce640ea1be193edb}
+
+\begin{DoxyCompactList}\small\item\em Physical base address of the peripherals memory area. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Provides helper macros for address management. 
+
+see B\+CM 2835 pag 4 and following.
+
+See also the doc at \hyperlink{addressing_8h}{addressing.\+h} for some infos 
+
+\subsection{Function Documentation}
+\index{addressing.\+cpp@{addressing.\+cpp}!addr\+Virt\+To\+Phys@{addr\+Virt\+To\+Phys}}
+\index{addr\+Virt\+To\+Phys@{addr\+Virt\+To\+Phys}!addressing.\+cpp@{addressing.\+cpp}}
+\subsubsection[{\texorpdfstring{addr\+Virt\+To\+Phys(void $\ast$virt\+Addr, uintptr\+\_\+t $\ast$phys\+Addr\+Ret)}{addrVirtToPhys(void *virtAddr, uintptr_t *physAddrRet)}}]{\setlength{\rightskip}{0pt plus 5cm}int addr\+Virt\+To\+Phys (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{virt\+Addr, }
+\item[{uintptr\+\_\+t $\ast$}]{phys\+Addr\+Ret}
+\end{DoxyParamCaption}
+)}\hypertarget{addressing_8cpp_a74311d8932a009c0def7b97b0911d9e3}{}\label{addressing_8cpp_a74311d8932a009c0def7b97b0911d9e3}
+
+
+Gets the physical address corresponding to the provided virtual address. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em virt\+Addr} & The virtuall address to convert \\
+\hline
+{\em phys\+Addr\+Ret} & The physical address is rturned here\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 for success, negative for error, 1 if the virtual address isn\textquotesingle{}t in ram 
+\end{DoxyReturn}

@@ -1,0 +1,72 @@
+\hypertarget{physMemoryManagement_8cpp}{}\section{src/lib/memory\+Management/phys\+Memory\+Management.cpp File Reference}
+\label{physMemoryManagement_8cpp}\index{src/lib/memory\+Management/phys\+Memory\+Management.\+cpp@{src/lib/memory\+Management/phys\+Memory\+Management.\+cpp}}
+
+
+Helper functions to map and unmap physical memory regions.  
+
+
+{\ttfamily \#include $<$fcntl.\+h$>$}\\*
+{\ttfamily \#include $<$unistd.\+h$>$}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$sys/mman.\+h$>$}\\*
+{\ttfamily \#include $<$C\+C\+R\+Coding\+Utils/include/error\+Management.\+h$>$}\\*
+{\ttfamily \#include $<$memory\+Management/phys\+Memory\+Management.\+h$>$}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ \hyperlink{physMemoryManagement_8cpp_a7523d1e4888b868b795379735508e735}{map\+Phys\+Mem\+Area} (uintptr\+\_\+t area\+Base\+Addr\+Phys, size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Maps the specified physical memory area to a virtual memory area. \end{DoxyCompactList}\item 
+int \hyperlink{physMemoryManagement_8cpp_a95eb14347429b0ea47f0f62dfcd74c5c}{unmap\+Phys\+Mem\+Area} (void $\ast$area\+Base\+Addr\+Virt, size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Unmaps a physical memory area mapped using \hyperlink{physMemoryManagement_8cpp_a7523d1e4888b868b795379735508e735}{map\+Phys\+Mem\+Area()} \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Helper functions to map and unmap physical memory regions. 
+
+
+
+\subsection{Function Documentation}
+\index{phys\+Memory\+Management.\+cpp@{phys\+Memory\+Management.\+cpp}!map\+Phys\+Mem\+Area@{map\+Phys\+Mem\+Area}}
+\index{map\+Phys\+Mem\+Area@{map\+Phys\+Mem\+Area}!phys\+Memory\+Management.\+cpp@{phys\+Memory\+Management.\+cpp}}
+\subsubsection[{\texorpdfstring{map\+Phys\+Mem\+Area(uintptr\+\_\+t area\+Base\+Addr\+Phys, size\+\_\+t size)}{mapPhysMemArea(uintptr_t areaBaseAddrPhys, size_t size)}}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ map\+Phys\+Mem\+Area (
+\begin{DoxyParamCaption}
+\item[{uintptr\+\_\+t}]{area\+Base\+Addr\+Phys, }
+\item[{size\+\_\+t}]{size}
+\end{DoxyParamCaption}
+)}\hypertarget{physMemoryManagement_8cpp_a7523d1e4888b868b795379735508e735}{}\label{physMemoryManagement_8cpp_a7523d1e4888b868b795379735508e735}
+
+
+Maps the specified physical memory area to a virtual memory area. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em area\+Base\+Addr\+Phys} & The physical base address of the area \\
+\hline
+{\em size} & The size of the area to map\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The generated virtual address, or zero in case of error 
+\end{DoxyReturn}
+\index{phys\+Memory\+Management.\+cpp@{phys\+Memory\+Management.\+cpp}!unmap\+Phys\+Mem\+Area@{unmap\+Phys\+Mem\+Area}}
+\index{unmap\+Phys\+Mem\+Area@{unmap\+Phys\+Mem\+Area}!phys\+Memory\+Management.\+cpp@{phys\+Memory\+Management.\+cpp}}
+\subsubsection[{\texorpdfstring{unmap\+Phys\+Mem\+Area(void $\ast$area\+Base\+Addr\+Virt, size\+\_\+t size)}{unmapPhysMemArea(void *areaBaseAddrVirt, size_t size)}}]{\setlength{\rightskip}{0pt plus 5cm}int unmap\+Phys\+Mem\+Area (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{area\+Base\+Addr\+Virt, }
+\item[{size\+\_\+t}]{size}
+\end{DoxyParamCaption}
+)}\hypertarget{physMemoryManagement_8cpp_a95eb14347429b0ea47f0f62dfcd74c5c}{}\label{physMemoryManagement_8cpp_a95eb14347429b0ea47f0f62dfcd74c5c}
+
+
+Unmaps a physical memory area mapped using \hyperlink{physMemoryManagement_8cpp_a7523d1e4888b868b795379735508e735}{map\+Phys\+Mem\+Area()} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em area\+Base\+Addr\+Virt} & The virtual base address of the peripheral \\
+\hline
+{\em size} & The size of the mapped area\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+negative in case of error 
+\end{DoxyReturn}

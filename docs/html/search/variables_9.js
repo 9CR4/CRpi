@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['virt_5faddress',['virt_address',['../structccmb__desc__struct.html#a849fdbceb8080e18a11878131c25808f',1,'ccmb_desc_struct']]]
+  ['zero1',['zero1',['../structControlBlock__struct.html#a787cf262b46cd017a01e718f3c278f82',1,'ControlBlock_struct']]],
+  ['zero2',['zero2',['../structControlBlock__struct.html#a84856e5370201ce8b29e199eb34c6baf',1,'ControlBlock_struct']]]
 ];

@@ -155,7 +155,7 @@ Then you can initilize a channel with <a class="el" href="pwmByDma_8h.html#adcc4
 After this you can add pulses to the channel using <a class="el" href="pwmByDma_8h.html#a98fd2ef532e5e966a7e9e3ee69b022bd" title="Sets a pulse on the specified channel and gpio. ">pwmDma_addPulse()</a>, <a class="el" href="pwmByDma_8h.html#a14578e3f6bcdf9db871ef7530941fa97" title="Adds multiple pulses to the channel at the specified port. The pulse will be repeated every subPeriod...">pwmDma_addMultiplePulse()</a> or <a class="el" href="pwmByDma_8h.html#a623218011d12638edff77fab8939f7ba" title="Set the port to output a square wave with the specified duty cycle. Will be high for the first ratio*...">pwmDma_setMSRatio()</a>.<br />
 You can clear the output on a port using <a class="el" href="pwmByDma_8h.html#abacb90246d75155b15090e446183a70f" title="Removes any pulse on this port at the specified channel. ">pwmDma_clearPort()</a><br />
 When you finish you HAVE TO call <a class="el" href="pwmByDma_8h.html#a43ce520a1f7cff79498d171fbbe83500" title="Frees a channel initialized with pwmDma_initChannel or pwmDma_initChannel_periodInPulses. ">pwmDma_freeChannel()</a> on the channel you initialized.<br />
- See <a class="el" href="pwmByDma_8c.html" title="Generates pwm outputs on the gpio pins using the dma engine. ">pwmByDma.c</a> for more details. </p>
+ See pwmByDma.c for more details. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a14578e3f6bcdf9db871ef7530941fa97"></a>
 <div class="memitem">

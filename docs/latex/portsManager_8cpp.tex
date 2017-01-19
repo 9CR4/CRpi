@@ -1,0 +1,33 @@
+\hypertarget{portsManager_8cpp}{}\section{src/lib/utils/ports\+Manager.cpp File Reference}
+\label{portsManager_8cpp}\index{src/lib/utils/ports\+Manager.\+cpp@{src/lib/utils/ports\+Manager.\+cpp}}
+
+
+utility to manage ports usage, and avoid using the same port for two different things.  
+
+
+{\ttfamily \#include \char`\"{}ports\+Manager.\+hpp\char`\"{}}\\*
+{\ttfamily \#include $<$peripherals/gpio.\+h$>$}\\*
+{\ttfamily \#include $<$mutex$>$}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries is\+Port\+Used} (Bcm\+\_\+port bcm\+Port)\hypertarget{portsManager_8cpp_a34c641451c54b2d4951b34f29d446f27}{}\label{portsManager_8cpp_a34c641451c54b2d4951b34f29d446f27}
+
+\item 
+int {\bfseries acquire\+Port} (Bcm\+\_\+port bcm\+Port)\hypertarget{portsManager_8cpp_ad5cd15f55eb625ce437a0f6fb6d9a9d2}{}\label{portsManager_8cpp_ad5cd15f55eb625ce437a0f6fb6d9a9d2}
+
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint64\+\_\+t {\bfseries used\+Ports}\hypertarget{portsManager_8cpp_a5ee798856dce26d1cceea0e250cc5c8b}{}\label{portsManager_8cpp_a5ee798856dce26d1cceea0e250cc5c8b}
+
+\item 
+mutex {\bfseries main\+Mutex}\hypertarget{portsManager_8cpp_a123145ba167db9fdb22465c404aab5c0}{}\label{portsManager_8cpp_a123145ba167db9fdb22465c404aab5c0}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+utility to manage ports usage, and avoid using the same port for two different things. 
+
